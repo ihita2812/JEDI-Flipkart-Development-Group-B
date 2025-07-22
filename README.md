@@ -18,13 +18,13 @@
     - ~~booking~~
     - gymadmin
     - gymcenter
-    - gymcustomer
+    - ~~gymcustomer~~
     - gymowner
     - gym user
-    - notification
-    - payment
+    - ~~notification~~
+    - ~~payment~~
     - registration
-    - slot
+    - ~~slot~~
 3. clients:
     - booking
     - gymadmin
