@@ -5,6 +5,6 @@ import com.flipfit.business.SlotBusiness;
 public class SlotClient {
 	public static void main(String[] args ) {
 		SlotBusiness slot = new SlotBusiness();
-		slot.deleteBooking(null);
+		slot.isAvail(null);
 	}
 }
