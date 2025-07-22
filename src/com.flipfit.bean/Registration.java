@@ -8,7 +8,7 @@ public class Registration {
         return this.userId;
     }
 
-    public void setUserId(GymUser.userId userId) {
+    public void setUserId(int userId) {
         this.userId = userId;
     }
 

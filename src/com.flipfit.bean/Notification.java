@@ -1,21 +1,12 @@
 package com.flipfit.bean;
 
-public Class Notification {
+public class Notification {
     private int notifId;
     private String message;
     private int userId;
 
-
-    public Class getNotification() {
-        return Notification;
-    }
-
-    public void setNotification(Class notification) {
-        Notification = notification;
-    }
-
     public int getNotifId() {
-        return notifId;
+        return this.notifId;
     }
 
     public void setNotifId(int notifId) {
@@ -23,18 +14,20 @@ public Class Notification {
     }
 
     public String getMessage() {
-        return message;
+        return this.message;
     }
 
     public void setMessage(String message) {
         this.message = message;
     }
 
-    public GymUser.userId getUserId() {
-        return userId;
+    public int getUserId() {
+        return this.userId;
     }
 
-    public void setUserId(GymUser.userId userId) {
+    public void setUserId(int userId) {
         this.userId = userId;
     }
+
+
 }

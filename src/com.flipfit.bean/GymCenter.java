@@ -2,9 +2,18 @@ package com.flipfit.bean;
 
 public class GymCenter{
     private int centerId;
-    private String Name;
-    private String Location;
+    private String name;
+    private String location;
     private int capacity;
+    private int numSlots;
+
+    public int getNumSlots() {
+        return this.numSlots;
+    }
+
+    public void setNumSlots(int numSlots) {
+        this.numSlots = numSlots;
+    }
 
     public int getCenterId() {
         return this.centerId;
@@ -15,19 +24,19 @@ public class GymCenter{
     }
 
     public String getName() {
-        return this.Name;
+        return this.name;
     }
 
-    public void setName(String Name) {
-        this.Name = Name;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getLocation() {
-        return this.Location;
+        return this.location;
     }
 
-    public void setLocation(String Location) {
-        this.Location = Location;
+    public void setLocation(String location) {
+        this.location = location;
     }
 
     public int getCapacity() {

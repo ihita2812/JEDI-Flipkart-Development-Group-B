@@ -1,40 +1,34 @@
 package com.flipfit.bean;
 
-public Class Booking {
+public class Booking {
     private int bookingId;
-    private GymCustomer.customerId customerId;
-    private Slot.slotId slotId;
-
-
-    public Class getBooking() {
-        return Booking;
-    }
-
-    public void setBooking(Class booking) {
-        Booking = booking;
-    }
+    private int customerId;
+    private int slotId;
 
     public int getBookingId() {
-        return bookingId;
+        return this.bookingId;
     }
 
     public void setBookingId(int bookingId) {
         this.bookingId = bookingId;
     }
 
-    public GymCustomer.customerId getCustomerId() {
-        return customerId;
+    public int getCustomerId() {
+        return this.customerId;
     }
 
-    public void setCustomerId(GymCustomer.customerId customerId) {
+    public void setCustomerId(int customerId) {
         this.customerId = customerId;
     }
 
-    public Slot.slotId getSlotId() {
-        return slotId;
+    public int getSlotId() {
+        return this.slotId;
     }
 
-    public void setSlotId(Slot.slotId slotId) {
+    public void setSlotId(int slotId) {
         this.slotId = slotId;
     }
+
+
+   
 }

@@ -1,39 +1,33 @@
 package com.flipfit.bean;
 
-public Class Booking {
+public class Payment {
     private int paymentId;
     private int customerId;
     private float amount;
 
-    public Class getBooking() {
-        return Booking;
-    }
-
-    public void setBooking(Class booking) {
-        Booking = booking;
-    }
-
     public int getPaymentId() {
-        return paymentId;
+        return this.paymentId;
     }
 
     public void setPaymentId(int paymentId) {
         this.paymentId = paymentId;
     }
 
-    public Booking.bookingId getCustomerId() {
-        return customerId;
+    public int getCustomerId() {
+        return this.customerId;
     }
 
-    public void setCustomerId(Booking.bookingId customerId) {
+    public void setCustomerId(int customerId) {
         this.customerId = customerId;
     }
 
     public float getAmount() {
-        return amount;
+        return this.amount;
     }
 
     public void setAmount(float amount) {
         this.amount = amount;
     }
+
+    
 }

@@ -42,11 +42,11 @@ public class Slot {
         this.bookedSeats = bookedSeats;
     }
 
-    public GymCenter.centerId getCenterId() {
+    public int getCenterId() {
         return this.centerId;
     }
 
-    public void setCenterId(GymCenter.centerId centerId) {
+    public void setCenterId(int centerId) {
         this.centerId = centerId;
     }
     
