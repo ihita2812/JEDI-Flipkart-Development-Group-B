@@ -17,7 +17,7 @@
    - ~~slot~~
 2. businesses:
    - ~~booking~~
-   - gymadmin
+   - ~~gymadmin~~
    - ~~gymcenter~~
    - ~~gymcustomer~~
    - ~~gym user~~
