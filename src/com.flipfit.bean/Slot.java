@@ -8,7 +8,7 @@ public class Slot {
     private LocalTime startTime;
     private LocalDate date;
     private int bookedSeats;
-    private GymCenter.centerId centerId;
+    private int centerId;
 
     public int getSlotId() {
         return this.slotId;

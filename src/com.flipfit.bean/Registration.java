@@ -1,10 +1,10 @@
 package com.flipfit.bean;
 
 public class Registration {
-    private GymUser.userId userId;
+    private int userId;
     private String password;
 
-    public GymUser.userId getUserId() {
+    public int getUserId() {
         return this.userId;
     }
 
