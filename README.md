@@ -4,18 +4,18 @@
 
 ## DAY-2 : SKELETON
 1. beans:
-    - booking
+    - ~~booking~~
     - ~~gymadmin~~
     - ~~gymcenter~~
     - ~~gymcustomer~~
     - ~~gymowner~~
     - ~~gym user~~
-    - notification
-    - payment
+    - ~~notification~~
+    - ~~payment~~
     - ~~registration~~
     - ~~slot~~
 2. businesses:
-    - booking
+    - ~~booking~~
     - gymadmin
     - gymcenter
     - gymcustomer
