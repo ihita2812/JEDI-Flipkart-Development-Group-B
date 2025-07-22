@@ -1,16 +1,16 @@
 package com.flipfit.business;
 import com.flipfit.bean.*;
 public class GymOwnerBusiness {
-    
-    public void viewGymCenters(GymOwner owner) {
-        int ownerId = owner.getOwnerId();
+    GymOwner owner = new GymOwner();
+    public void viewGymCenters() {
+        int ownerId = this.owner.getOwnerId();
         // query a database to get all GymCenter objects where ownerId
         // matches the owner's ID.
     }
-    public void viewBookingDetails(GymOwner owner, Slot slot) {
+    public void viewBookingDetails(Slot slot) {
         System.out.println("Booking Details Viewed");
     }
-    public void addSlotsAndCapacity(GymOwner owner, GymCenter center, int numSlots, int capacity) {
+    public void addSlotsAndCapacity(GymCenter center, int numSlots, int capacity) {
         // updating the database with the new slot information.
         center.setNumSlots(numSlots);
         center.setCapacity(capacity);
