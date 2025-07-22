@@ -2,6 +2,7 @@ package com.flipfit.business;
 
 import com.flipfit.bean.GymAdmin;
 import com.flipfit.bean.GymOwner;
+import com.flipfit.bean.GymCenter;
 
 public class GymAdminBusiness
 {
