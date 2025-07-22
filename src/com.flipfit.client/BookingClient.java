@@ -1,4 +1,4 @@
-package com.flipflit.client;
+package com.flipkart.client;
 
 import com.flipfit.business.*;
 
