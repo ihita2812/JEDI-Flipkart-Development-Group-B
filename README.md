@@ -27,12 +27,12 @@
    - ~~slot~~
 3. clients:
    - ~~booking~~
-   - gymadmin
+   - ~~gymadmin~~
    - gymcenter
    - gymcustomer
-   - gymowner
-   - gym user
-   - notification
-   - payment
-   - registration
-   - slot
+   - ~~gymowner~~
+   - ~~gym user~~
+   - ~~notification~~
+   - ~~payment~~
+   - ~~registration~~
+   - ~~slot~~
