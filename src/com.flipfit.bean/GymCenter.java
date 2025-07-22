@@ -6,7 +6,16 @@ public class GymCenter{
     private String location;
     private int capacity;
     private int numSlots;
+    private int ownerId; // ID of the owner of the gym center
 
+    public int getOwnerId() {
+        return this.ownerId;
+    }
+
+    public void setOwnerId(int ownerId) {
+        this.ownerId = ownerId;
+    }
+    
     public int getNumSlots() {
         return this.numSlots;
     }
