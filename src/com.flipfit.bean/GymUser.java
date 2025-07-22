@@ -1,16 +1,16 @@
-package com.flipkart.bean;
+package com.flipfit.bean;
 
-public class User {
+public class GymUser {
     private int userId;
     private String userName;
-    private int Role;       // 0 -> GymCustomer, 1-> GymOwner, 2-> GymAdmin
+    private int role;       // 0 -> GymCustomer, 1-> GymOwner, 2-> GymAdmin
 
     public int getRole() {
-        return Role;
+        return role;
     }
 
     public void setRole(int role) {
-        Role = role;
+        this.role = role;
     }
     public int getUserId() {
         return userId;
