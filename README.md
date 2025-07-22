@@ -18,15 +18,15 @@
 2. businesses:
    - ~~booking~~
    - gymadmin
-   - gymcenter
+   - ~~gymcenter~~
    - ~~gymcustomer~~
-   - gym user
+   - ~~gym user~~
    - ~~notification~~
    - ~~payment~~
    - ~~registration~~
    - ~~slot~~
 3. clients:
-   - booking
+   - ~~booking~~
    - gymadmin
    - gymcenter
    - gymcustomer
