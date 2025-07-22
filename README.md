@@ -23,7 +23,7 @@
     - gym user
     - ~~notification~~
     - ~~payment~~
-    - registration
+    - ~~registration~~
     - ~~slot~~
 3. clients:
     - booking
