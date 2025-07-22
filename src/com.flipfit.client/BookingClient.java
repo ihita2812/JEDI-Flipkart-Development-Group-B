@@ -1,10 +1,10 @@
-package com.flipkart.client;
+package com.flipflit.client;
 
-import com.flipkart.business.BookingBusiness;
+import com.flipfit.business.*;
 
 public class BookingClient {
 	public static void main(String[] args ) {
-		Booking booking = new Booking();
-		booking.deleteBooking();
+		BookingBusiness booking = new BookingBusiness();
+		booking.deleteBooking(null);
 	}
 }
