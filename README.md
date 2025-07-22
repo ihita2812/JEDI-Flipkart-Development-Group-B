@@ -29,7 +29,7 @@
    - ~~booking~~
    - ~~gymadmin~~
    - gymcenter
-   - gymcustomer
+   - ~~gymcustomer~~
    - ~~gymowner~~
    - ~~gym user~~
    - ~~notification~~
