@@ -9,9 +9,12 @@ public class GymAdminClient {
         
         GymAdminBusiness admin = new GymAdminBusiness();
 
-         while(true)
-        {
         Scanner scanner = new Scanner(System.in);
+        boolean valid = true;    
+
+         while(valid)
+        {
+        
         System.out.println("Welcome Admin!");
         System.out.println("Enter your choice");
         System.out.println("\t1\tView all registered gym centers");
@@ -47,7 +50,7 @@ public class GymAdminClient {
             default:
                 System.out.println("Invalid choice.");
         }
-        scanner.close();
         }
+        scanner.close();
     }
 }
