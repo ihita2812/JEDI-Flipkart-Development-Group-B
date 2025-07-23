@@ -4,35 +4,13 @@
 
 ## DAY-2 : SKELETON
 
-1. beans:
-   - ~~booking~~
-   - ~~gymadmin~~
-   - ~~gymcenter~~
-   - ~~gymcustomer~~
-   - ~~gymowner~~
-   - ~~gym user~~
-   - ~~notification~~
-   - ~~payment~~
-   - ~~registration~~
-   - ~~slot~~
-2. businesses:
-   - ~~booking~~
-   - ~~gymadmin~~
-   - ~~gymcenter~~
-   - ~~gymcustomer~~
-   - ~~gym user~~
-   - ~~notification~~
-   - ~~payment~~
-   - ~~registration~~
-   - ~~slot~~
-3. clients:
-   - ~~booking~~
-   - ~~gymadmin~~
-   - gymcenter
-   - ~~gymcustomer~~
-   - ~~gymowner~~
-   - ~~gym user~~
-   - ~~notification~~
-   - ~~payment~~
-   - ~~registration~~
-   - ~~slot~~
+1. role bean
+2. user bean
+3. business/service- user, admin, customer, owner
+4. client- one only
+5. rename src
+6. client::
+    adminmenu
+    customermenu
+    ownermenu
+    gymappmainthingy which wil call the others
