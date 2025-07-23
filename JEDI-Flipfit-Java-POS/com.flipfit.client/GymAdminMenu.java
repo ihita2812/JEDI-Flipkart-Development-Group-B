@@ -1,13 +1,12 @@
 package com.flipfit.client;
 
 import java.util.Scanner;
-
 import com.flipfit.business.*;
 
 public class GymAdminMenu {
         public static void adminMenu(int adminId) {
         
-        GymAdminBusiness admin = new GymAdminBusiness();
+        GymAdminBusinessServiceInterface admin = new GymAdminBusinessService();
 
         Scanner scanner = new Scanner(System.in);
         boolean valid = true;    

@@ -6,7 +6,7 @@ import com.flipfit.business.*;
 
 public class GymOwnerMenu {
     public static void ownerMenu() {
-        GymOwnerBusiness ownerBusiness = new GymOwnerBusiness();
+        GymOwnerBusinessServiceInterface ownerBusiness = new GymOwnerBusinessService();
         Boolean isRunning = true;
 
         Scanner scanner = new Scanner(System.in);

@@ -1,14 +1,13 @@
 package com.flipfit.client;
 
 import java.util.Scanner;
-
 import com.flipfit.business.*;
 
 public class GymCustomerMenu {
 
     public static void customerMenu(int customerId) {
 
-        GymCustomerBusiness customer = new GymCustomerBusiness();
+        GymCustomerBusinessServiceInterface customer = new GymCustomerBusinessService();
 
 
         Scanner scanner = new Scanner(System.in);
