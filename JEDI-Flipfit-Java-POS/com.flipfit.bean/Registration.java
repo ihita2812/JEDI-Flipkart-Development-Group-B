@@ -1,15 +1,15 @@
 package com.flipfit.bean;
 
 public class Registration {
-    private int userId;
+    private int userName;
     private String password;
 
-    public int getUserId() {
-        return this.userId;
+    public int getUserName() {
+        return this.userName;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setUserName(int userName) {
+        this.userName = userName;
     }
 
     public String getPassword() {

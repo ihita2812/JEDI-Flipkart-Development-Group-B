@@ -1,23 +1,14 @@
 package com.flipfit.bean;
 
 public class GymAdmin extends GymUser {
-    private int Admin_id;
-    private String Admin_name;
+    private int adminId;
 
-    public int getAdmin_id() {
-        return this.Admin_id;
+    public int getAdminId() {
+        return this.adminId;
     }
 
-    public void setAdmin_id(int Admin_id) {
-        this.Admin_id = Admin_id;
-    }
-
-    public String getAdmin_name() {
-        return this.Admin_name;
-    }
-
-    public void setAdmin_name(String Admin_name) {
-        this.Admin_name = Admin_name;
+    public void setAdminId(int adminId) {
+        this.adminId = adminId;
     }
 }
 
