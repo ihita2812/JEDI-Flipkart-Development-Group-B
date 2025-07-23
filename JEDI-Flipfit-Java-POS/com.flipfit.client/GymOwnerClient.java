@@ -52,7 +52,5 @@ public class GymOwnerClient {
         scanner.close();
     }
 
-        scanner.close();
-
     }
 }
