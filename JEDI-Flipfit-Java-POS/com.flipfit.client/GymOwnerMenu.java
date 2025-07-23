@@ -4,7 +4,7 @@ import java.util.Scanner;
 import com.flipfit.bean.*;
 import com.flipfit.business.*;
 
-public class GymOwnerClient {
+public class GymOwnerMenu {
     public static void ownerMenu() {
         GymOwnerBusiness ownerBusiness = new GymOwnerBusiness();
         Boolean isRunning = true;

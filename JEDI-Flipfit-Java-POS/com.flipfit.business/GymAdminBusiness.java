@@ -31,4 +31,9 @@ public class GymAdminBusiness
         return true;
     }
 
+    public void addNewRole(String roleName, String roleDesc) {
+        // admin can create new role here
+        System.out.println("[New role added to db!]");
+    }
+
 }

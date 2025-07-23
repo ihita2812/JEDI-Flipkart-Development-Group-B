@@ -4,8 +4,9 @@ import java.util.Scanner;
 
 import com.flipfit.bean.*;
 import com.flipfit.business.*;
-import com.flipflit.client.GymCustomerClient;
-import com.flipflit.client.GymAdminClient;
+import com.flipflit.client.GymCustomerMenu;
+import com.flipflit.client.GymAdminMenu;
+import com.flipflit.client.GymOwnerMenu;
 
 public class GymFlipfitApplicationClient {
     public static void main(String[] args) {
@@ -42,13 +43,13 @@ public class GymFlipfitApplicationClient {
                     if (username.equals("user") && password.equals("pass")) {
                         switch (role) {
                             case 0:
-                                GymCustomerClient.customerMenu(0);
+                                GymCustomerMenu.customerMenu(0);
                                 break;
                             case 1:
-                                GymOwnerClient.ownerMenu();
+                                GymOwnerMenu.ownerMenu();
                                 break;
                             case 2:
-                                GymAdminClient.adminMenu(0);
+                                GymAdminMenu.adminMenu(0);
                                 break;
                         }
                     } else {
@@ -78,7 +79,7 @@ public class GymFlipfitApplicationClient {
 
                 default:
                     System.out.println("Invalid choice! Please select again.");
-                    break;
+                    
             }
         }
 

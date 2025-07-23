@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 import com.flipfit.business.*;
 
-public class GymAdminClient {
+public class GymAdminMenu {
         public static void adminMenu(int adminId) {
         
         GymAdminBusiness admin = new GymAdminBusiness();

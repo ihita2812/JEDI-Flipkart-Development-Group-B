@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 import com.flipfit.business.*;
 
-public class GymCustomerClient {
+public class GymCustomerMenu {
 
     public static void customerMenu(int customerId) {
 
@@ -109,7 +109,7 @@ public class GymCustomerClient {
             default:
                 System.out.println("---------------------------------------------");
                 System.out.println("Bad choice :/");
-                break;
+                
             
             }
         }
