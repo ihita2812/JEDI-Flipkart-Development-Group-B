@@ -41,4 +41,8 @@ public class GymOwnerBusinessService {
         System.out.println("Yout gym has been sent for approval!");
         return 0;
     }
+
+    public void editSlot(int slotID, String centerName){
+        System.out.println("Your slot has been edited");
+    }
 }

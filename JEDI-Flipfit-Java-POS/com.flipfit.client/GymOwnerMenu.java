@@ -21,6 +21,7 @@ public class GymOwnerMenu {
         System.out.println("\t4\tView Slot");
         System.out.println("\t5\tView Notifications");
         System.out.println("\t6\tView Payment");
+        System.out.println("\t7\tEdit Slot");
         System.out.println("\t7\tLogout");
 
         int choice = scanner.nextInt();
@@ -46,6 +47,9 @@ public class GymOwnerMenu {
                 ownerBusiness.viewPayment(new GymCenter());
                 break;
             case 7:
+                ownerBusiness.editSlot("23", "HSR");
+                break;
+            case 8:
                 System.out.println("Logging out...");
                 isRunning = false; // Exit the owner menu
                 break;
