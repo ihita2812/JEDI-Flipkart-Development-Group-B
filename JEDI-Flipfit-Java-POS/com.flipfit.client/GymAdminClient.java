@@ -9,6 +9,8 @@ public class GymAdminClient {
         
         GymAdminBusiness admin = new GymAdminBusiness();
 
+         while(true)
+        {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Welcome Admin!");
         System.out.println("Enter your choice");
@@ -41,10 +43,11 @@ public class GymAdminClient {
                 break;
             case 4:
                 System.out.println("See you again!");
-                break;
+                return;
             default:
                 System.out.println("Invalid choice.");
         }
         scanner.close();
+        }
     }
 }
