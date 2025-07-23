@@ -10,11 +10,11 @@ public class GymCustomerBusiness
     public void viewGymCenter(String location){
         System.out.println("Gym Center Viewed");
     }
-    public void viewSlot(GymCenter gymCenter){
-        System.out.println("Slot Viewed");
+    public void viewSlot(int gymCenterId){
+        System.out.println("Slots of gym center " + gymCenterId + " Viewed");
     }
-    public void bookSlot(Slot slot){
-        System.out.println("Slot Booked");
+    public void bookSlot(int slotId){
+        System.out.println("Slot " + slotId + " Booked");
     }
     public void cancelbooking(Booking booking){
         System.out.println("Booking Cancelled");
