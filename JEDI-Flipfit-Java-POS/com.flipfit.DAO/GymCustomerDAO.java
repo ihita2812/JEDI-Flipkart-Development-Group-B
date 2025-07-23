@@ -1,12 +1,16 @@
 package com.flipfit.dao;
 
 import com.flipfit.bean.GymCustomer;
-import java.util.List;
 
 public interface GymCustomerDAO {
-    void addCustomer(GymCustomer customer);
-    GymCustomer getCustomerById(int customerId);
-    List<GymCustomer> getAllCustomers();
-    void updateCustomer(GymCustomer customer);
-    void removeCustomer(int customerId);
+    void registerCustomer(GymCustomer gymCustomer);
+    void viewGymCenter(String location);
+    void viewSlot(int gymCenterId);
+    void bookSlot(int slotId);
+    void cancelBooking(int bookingId);
+    void editBooking(int bookingId);
+    void makePayment(int bookingId);
+    void viewBookings(int customerId);
+    void editProfile(GymCustomer gymCustomer);
+    void addCustomer(GymCustomer gymCustomer);
 }
