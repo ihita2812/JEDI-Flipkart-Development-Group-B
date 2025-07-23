@@ -42,11 +42,13 @@ public class GymOwnerClient {
                 ownerBusiness.viewPayment(new GymCenter());
                 break;
             case 7:
+                scanner.close();
                 return;
             default:
                 System.out.println("Invalid choice.");
         }
 
+        scanner.close();
 
     }
 }
