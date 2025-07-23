@@ -22,4 +22,6 @@ public class GymCustomerBusiness
     public void makePayment(Booking booking){
         System.out.println("Make Payment");
     }
+
+    // TODO : ADD VIEW BOOKINGS
 }
