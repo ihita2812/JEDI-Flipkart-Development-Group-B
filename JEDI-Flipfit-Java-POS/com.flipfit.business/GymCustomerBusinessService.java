@@ -28,4 +28,7 @@ public class GymCustomerBusinessService
     public void viewBookings() {
         System.out.println("[Bookings viewed]");
     }
+    public void editProfile(GymCustomer gymCustomer){
+        System.out.println("Profile Edited!");
+    }
 }

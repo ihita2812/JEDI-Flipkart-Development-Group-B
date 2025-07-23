@@ -19,7 +19,8 @@ public class GymCustomerMenu {
             System.out.println("Enter your choice");
             System.out.println("\t1\tView gym centers near you");
             System.out.println("\t2\tView your bookings");
-            System.out.println("\t3\tLogout");
+            System.out.println("\t3\tEdit Profile");
+            System.out.println("\t4\tLogout");
 
             int choice = scanner.nextInt();
             scanner.nextLine();  // consume newline
@@ -112,6 +113,11 @@ public class GymCustomerMenu {
                 break;
 
             case 3:
+                System.out.println("---------------------------------------------");
+                customer.editProfile(null);
+                break;
+
+            case 4:
                 more = false;
                 break;
             

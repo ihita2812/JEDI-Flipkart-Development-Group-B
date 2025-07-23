@@ -12,6 +12,7 @@ public interface GymCustomerBusinessServiceInterface {
     void editBooking(int bookingId);
     void makePayment(int bookingId);
     void viewBookings();
+    public void editProfile(GymCustomer gymCustomer);
 }
 
 
