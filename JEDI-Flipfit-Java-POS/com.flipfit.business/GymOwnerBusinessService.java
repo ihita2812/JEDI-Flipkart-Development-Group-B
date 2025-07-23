@@ -3,7 +3,7 @@ package com.flipfit.business;
 import com.flipfit.bean.*;
 
 
-public class GymOwnerBusinessService {
+public class GymOwnerBusinessService implements GymOwnerBusinessServiceInterface{
     
     public void registerOwner(GymOwner gymOwner) {
         System.out.println("Gym Owner Created");

@@ -2,7 +2,7 @@ package com.flipfit.business;
 
 import com.flipfit.bean.*;
 
-public class GymUserBusinessService {
+public class GymUserBusinessService implements GymUserBusinessServiceInterface {
 
     public boolean loginUser(GymUser user) {
         System.out.println("User logged in!");

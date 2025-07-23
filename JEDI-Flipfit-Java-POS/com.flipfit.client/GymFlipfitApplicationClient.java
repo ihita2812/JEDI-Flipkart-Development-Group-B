@@ -11,9 +11,9 @@ import com.flipfit.client.GymOwnerMenu;
 public class GymFlipfitApplicationClient {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        GymCustomerBusiness customerBusiness = new GymCustomerBusiness();
-        GymOwnerBusiness ownerBusiness = new GymOwnerBusiness();
-        GymUserBusiness userBusiness = new GymUserBusiness();
+        GymCustomerBusinessService customerBusiness = new GymCustomerBusinessService();
+        GymOwnerBusinessService ownerBusiness = new GymOwnerBusinessService();
+        GymUserBusinessService userBusiness = new GymUserBusinessService();
         boolean more = true;
 
         while (more) {
