@@ -1,8 +1,6 @@
 package com.flipfit.business;
 
-import com.flipfit.bean.GymAdmin;
-import com.flipfit.bean.GymOwner;
-import com.flipfit.bean.GymCenter;
+import com.flipfit.bean.*;
 
 public class GymAdminBusiness
 {
@@ -18,7 +16,7 @@ public class GymAdminBusiness
     public void removeGym(GymCenter gymCenter){
         System.out.println("Removing Gym");
     }
-    public void viewPaymentsInformation(){
+    public void viewPayments(){
         System.out.println("Viewed Payment Information");
     }
 }

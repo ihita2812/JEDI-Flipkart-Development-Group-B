@@ -6,7 +6,7 @@ import com.flipfit.bean.Booking;
 
 public class GymCustomerBusiness
 {
-    public void createGymCustomer(GymCustomer gymCustomer){
+    public void registerCustomer(GymCustomer gymCustomer){
         System.out.println("Gym Customer Created");
     }
     public void viewGymCenter(){

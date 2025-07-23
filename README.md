@@ -10,16 +10,17 @@
 4. client- one only
 5. rename src
 6. client::
-    adminmenu
-    customermenu
-    ownermenu
-    gymappmainthingy which wil call the others
+   adminmenu
+   customermenu
+   ownermenu
+   gymappmainthingy which wil call the others
 
 BUSINESS FIXING:
-1. makepayment (booking id) - customer
-2. viewpayment (all) - admin
-3. viewpayment (centerid) - owner
-4. registration - customer, owner
+
+1. ~~makepayment (booking id) - customer~~
+2. ~~viewpayment (all) - admin~~
+3. ~~viewpayment (centerid) - owner~~
+4. ~~registration - customer, owner~~
 5. viewcenter (location) - customer
 6. viewslots (center id) - customer, owner
 7. bookslot (slot id) - customer

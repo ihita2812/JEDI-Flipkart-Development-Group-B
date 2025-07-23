@@ -1,9 +1,13 @@
 package com.flipfit.business;
 import com.flipfit.bean.*;
+
 public class GymOwnerBusiness {
-    GymOwner owner = new GymOwner();
-    public void viewGymCenters() {
-        int ownerId = this.owner.getOwnerId();
+    
+    public void registerOwner(GymOwner gymOwner) {
+        System.out.println("Gym Owner Created");
+    }
+    public void viewGymCenters(GymOwner owner) {
+        int ownerId = owner.getOwnerId();
         // query a database to get all GymCenter objects where ownerId
         // matches the owner's ID.
     }
@@ -20,4 +24,9 @@ public class GymOwnerBusiness {
         //fetching notifications from a database or a notification service.
         System.out.println("Notifications viewed"); 
     }
+    public void viewPayment(GymCenter center) {
+        // fetching payment details from a database or payment service.
+        System.out.println("Payment details viewed");
+    }
+
 }
