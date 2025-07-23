@@ -5,6 +5,7 @@ import java.util.Scanner;
 import com.flipfit.bean.*;
 import com.flipfit.business.*;
 import com.flipflit.client.GymCustomerClient;
+import com.flipflit.client.GymAdminClient;
 
 public class GymFlipfitApplicationClient {
     public static void main(String[] args) {
@@ -45,7 +46,7 @@ public class GymFlipfitApplicationClient {
                                 ownerMenu();
                                 break;
                             case 2:
-                                adminMenu();
+                                GymAdminClient.adminMenu(0);
                                 break;
                         }
                     } else {
@@ -83,7 +84,4 @@ public class GymFlipfitApplicationClient {
         System.out.println("Welcome Owner! [Add your menu options here]");
     }
 
-    public static void adminMenu() {
-        System.out.println("Welcome Admin! [Add your menu options here]");
-    }
 }
