@@ -7,10 +7,12 @@ import com.flipfit.business.*;
 public class GymOwnerClient {
     public static void ownerMenu() {
         GymOwnerBusiness ownerBusiness = new GymOwnerBusiness();
+        Boolean isRunning = true;
 
-        while(true)
-    {
         Scanner scanner = new Scanner(System.in);
+
+        while(isRunning){
+        System.out.println("---------------------------------------------");
         System.out.println("Welcome Gym Owner!");
         System.out.println("Enter your choice");
         System.out.println("\t1\tRegister Gym Center");
@@ -45,12 +47,12 @@ public class GymOwnerClient {
                 break;
             case 7:
                 System.out.println("Logging out...");
-                return; // Exit the owner menu
+                isRunning = false; // Exit the owner menu
+                break;
             default:
                 System.out.println("Invalid choice.");
         }
-        scanner.close();
     }
-
+    scanner.close();
     }
 }
