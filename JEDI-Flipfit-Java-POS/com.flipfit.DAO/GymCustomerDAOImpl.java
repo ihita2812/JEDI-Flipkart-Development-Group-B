@@ -8,6 +8,34 @@ public class GymCustomerDAOImpl implements GymCustomerDAO {
 
     private Map<Integer, GymCustomer> customerMap = new HashMap<>();
 
+    public GymCustomerDAOImpl() {
+
+        GymCustomer customer1 = new GymCustomer();
+        customer1.setUserId(3);
+        customer1.setUserName("customer");
+        customer1.setPassword("customer");
+        customer1.setName("Gym Customer");
+        customer1.setRole(customerRole);
+        customer1.setCustomerId(1);
+        customer1.setAge(25);
+        customer1.setLocation("Brookefield");
+        customer1.setGender('M');
+        customer1.setEmail("abc@gaanmara.com");
+        customerMap.put(customer1.getCustomerId(), customer1);
+
+        GymCustomer customer2 = new GymCustomer();
+        customer2.setUserId(6);
+        customer2.setUserName("customer1");
+        customer2.setPassword("customer");
+        customer2.setName("Gym Customer hu mai");
+        customer2.setRole(customerRole);
+        customer2.setCustomerId(2);
+        customer2.setAge(30);
+        customer2.setLocation("Brookefield");
+        customer2.setGender('F');
+        customer2.setEmail("def@gaanmara.com");
+        customerMap.put(customer2.getCustomerId(), customer2);
+    }
 
     /*
     private GymUserDAO userDAO = new GymUserDAOImpl();

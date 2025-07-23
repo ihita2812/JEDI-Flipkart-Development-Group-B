@@ -3,7 +3,7 @@ package com.flipfit.bean;
 public class Role {
     private int roleId;
     private String roleName;
-    private int roleDesc;       // 0 -> GymCustomer, 1-> GymOwner, 2-> GymAdmin
+    private String roleDesc;       // 0 -> GymCustomer, 1-> GymOwner, 2-> GymAdmin
 
     public int getRoleId() {
         return this.roleId;
@@ -21,11 +21,11 @@ public class Role {
         this.roleName = roleName;
     }
 
-    public int getRoleDesc() {
+    public String getRoleDesc() {
         return this.roleDesc;
     }
 
-    public void setRoleDesc(int roleDesc) {
+    public void setRoleDesc(String roleDesc) {
         this.roleDesc = roleDesc;
     }
     

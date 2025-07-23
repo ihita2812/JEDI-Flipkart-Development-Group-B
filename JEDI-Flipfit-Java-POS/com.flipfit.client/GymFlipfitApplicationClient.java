@@ -13,6 +13,12 @@ import com.flipfit.business.GymUserBusinessService.createUserBean;
 
 public class GymFlipfitApplicationClient {
     public static void main(String[] args) {
+
+        com.flipfit.DAO.GymUserDAOImpl userDAO = new com.flipfit.DAO.GymUserDAOImpl();
+
+
+
+
         Scanner scanner = new Scanner(System.in);
         GymCustomerBusinessService customerBusiness = new GymCustomerBusinessService();
         GymOwnerBusinessService ownerBusiness = new GymOwnerBusinessService();

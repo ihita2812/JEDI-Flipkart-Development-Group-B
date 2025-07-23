@@ -7,6 +7,28 @@ public class GymAdminDAOImpl implements GymAdminDAO {
 
     private Map<Integer, GymAdmin> adminMap = new HashMap<>();
 
+    public GymAdminDAOImpl() {
+
+        GymAdmin admin1 = new GymAdmin();
+        admin1.setUserId(1);
+        admin1.setUserName("admin");
+        admin1.setPassword("admin");
+        admin1.setName("Admin User");
+        admin1.setRole(adminRole);
+        admin1.setAdminId(1);
+        adminMap.put(admin1.getAdminId(), admin1);
+
+        GymAdmin admin2 = new GymAdmin();
+        admin2.setUserId(4);
+        admin2.setUserName("admin1");
+        admin2.setPassword("admin");
+        admin2.setName("Admin User hu mai");
+        admin2.setRole(adminRole);
+        admin2.setAdminId(2);
+        adminMap.put(admin2.getAdminId(), admin2);
+    }
+
+
     /*
 
     @Override
