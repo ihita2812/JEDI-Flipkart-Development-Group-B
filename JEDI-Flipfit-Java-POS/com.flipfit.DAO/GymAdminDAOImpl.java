@@ -1,4 +1,4 @@
-package com.flipfit.dao;
+package com.flipfit.DAO;
 
 import com.flipfit.bean.GymAdmin;
 import java.util.*;
@@ -6,6 +6,8 @@ import java.util.*;
 public class GymAdminDAOImpl implements GymAdminDAO {
 
     private Map<Integer, GymAdmin> adminMap = new HashMap<>();
+
+    /*
 
     @Override
     public void addAdmin(GymAdmin admin) {
@@ -44,4 +46,5 @@ public class GymAdminDAOImpl implements GymAdminDAO {
     public void removeAdmin(int adminId) {
         adminMap.remove(adminId);
     }
+    */
 }

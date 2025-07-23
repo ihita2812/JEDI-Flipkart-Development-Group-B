@@ -7,6 +7,7 @@ public class GymOwnerDAOImpl implements GymOwnerDAO {
 
     private Map<Integer, GymOwner> ownerMap = new HashMap<>();
 
+    /*
     @Override
     public void addOwner(GymOwner owner) {
         // Check if username already exists
@@ -46,4 +47,6 @@ public class GymOwnerDAOImpl implements GymOwnerDAO {
     public void removeOwner(int ownerId) {
         ownerMap.remove(ownerId);
     }
+    */
+    
 }

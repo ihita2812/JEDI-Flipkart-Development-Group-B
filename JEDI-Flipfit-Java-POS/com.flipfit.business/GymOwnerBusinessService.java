@@ -1,12 +1,30 @@
 package com.flipfit.business;
 
 import com.flipfit.bean.*;
+import com.flipfit.DAO.GymOwnerDAOImpl.ownerMap;
+import java.util.Collections;
+
 
 
 public class GymOwnerBusinessService implements GymOwnerBusinessServiceInterface{
     
     public void registerOwner(GymOwner gymOwner) {
-        System.out.println("Gym Owner Created");
+        ownerMap.put(gymOwner.getOwnerId(), gymOwner);
+    }
+
+    public int nextOwnerId() {
+        int currMax = Collections.max(ownerMap.keySet());
+        return (currMax + 1);
+    }
+
+    public GymOwner createOwnerBean(String name, String password, int role, String userName) {
+        GymOwner gymOwner = new GymOwner();
+        gymOwner.setOwnerId(nextOwnerId());
+        gymOwner.setName(name);
+        gymOwner.setPassword(password);
+        gymOwner.setRole(role);
+        gymOwner.setUserName(userName);
+        return gymOwner;
     }
     public void viewGymCenters(GymOwner owner) {
         int ownerId = owner.getOwnerId();

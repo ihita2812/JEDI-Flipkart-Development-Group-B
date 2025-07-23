@@ -7,6 +7,9 @@ import com.flipfit.business.*;
 import com.flipfit.client.GymCustomerMenu;
 import com.flipfit.client.GymAdminMenu;
 import com.flipfit.client.GymOwnerMenu;
+import com.flipfit.business.GymUserBusinessService.userNameExists;
+import com.flipfit.business.GymUserBusinessService.nextUserId;
+import com.flipfit.business.GymUserBusinessService.createUserBean;
 
 public class GymFlipfitApplicationClient {
     public static void main(String[] args) {
@@ -57,14 +60,77 @@ public class GymFlipfitApplicationClient {
                     }
                     break;
 
+                
+                // ROLL OBJECT CREATION
                 case 2:
-                    GymCustomer customer = new GymCustomer();
-                    customerBusiness.registerCustomer(customer);
+                    // ---------------------------------------------------------------------------
+                    boolean exists = true;
+                    String userName;
+                    while (exists) {
+                        System.out.println("Enter UNIQUE username:");
+                        userName = scanner.nextLine();
+                        scanner.nextLine();
+                        exists = userNameExists(userName);
+                    }
+                    System.out.println("Enter name:");
+                    String name = scanner.nextLine();
+                    scanner.nextLine();
+                    System.out.println("Enter password:");
+                    String pasword = scanner.nextLine();
+                    scanner.nextLine();
+                    GymUser newUser = createUserBean(name, password, role, userName);
+                    addUser(newUser);
+                    System.out.println("User registered successfully with ID: " + nextUserId);
+                    // ---------------------------------------------------------------------------
+                    System.out.println("Enter age:");
+                    int age = scanner.nextInt();
+                    scanner.nextLine();
+                    System.out.println("Enter location:");
+                    String loca = scanner.nextLine();
+                    scanner.nextLine();
+                    System.out.println("Enter gender:");
+                    String gender = scanner.nextLine();
+                    scanner.nextLine();
+                    System.out.println("Enter email:");
+                    String email = scanner.nextLine();
+                    scanner.nextLine();
+
+                    GymCustomer newCustomer = customerBusiness.createCustomerBean(name, pasword, role, userName, age, loca, gender, email);
+                    customerBusiness.registerCustomer(newCustomer);
+                    System.out.println("Customer registered successfully with ID: " + newCustomer.getCustomerId());
+
                     break;
 
                 case 3:
-                    GymOwner owner = new GymOwner();
-                    ownerBusiness.registerOwner(owner);
+                    // ---------------------------------------------------------------------------
+                    boolean exists1 = true;
+                    String userName1;
+                    while (exists) {
+                        System.out.println("Enter UNIQUE username:");
+                        userName1 = scanner.nextLine();
+                        scanner.nextLine();
+                        exists1 = userNameExists(userName);
+                    }
+                    System.out.println("Enter name:");
+                    String name1 = scanner.nextLine();
+                    scanner.nextLine();
+                    System.out.println("Enter password:");
+                    String password1 = scanner.nextLine();
+                    scanner.nextLine();
+                    GymUser newUser1 = createUserBean(name1, password1, role, userName1);
+                    addUser(newUser1);
+                    System.out.println("User registered successfully with ID: " + newUser1.getUserId());
+                    // ---------------------------------------------------------------------------
+                    System.out.println("Enter gender:");
+                    String gende = scanner.nextLine();
+                    scanner.nextLine();
+                    System.out.println("Enter email:");
+                    String emai = scanner.nextLine();
+                    scanner.nextLine();
+
+                    GymOwner newOwner = ownerBusiness.createOwnerBean(name1, password1, role, userName1, gende, emai);
+                    ownerBusiness.registerOwner(newOwner);
+                    System.out.println("Owner registered successfully with ID: " + newOwner.getOwnerId());
                     break;
 
                 case 4:

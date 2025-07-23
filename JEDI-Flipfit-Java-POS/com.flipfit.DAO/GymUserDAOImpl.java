@@ -1,12 +1,23 @@
 package com.flipfit.dao;
 
-import com.flipfit.bean.GymUser;
+import com.flipfit.bean.*;
 import java.util.*;
 
 public class GymUserDAOImpl implements GymUserDAO {
 
-    private Map<Integer, GymUser> userMap = new HashMap<>();
+    public Map<Integer, GymUser> userMap = new HashMap<>();
+    public Map<Integer, GymCenter> centerMap = new HashMap<>();
+    public Map<Integer, Slot> slotMap = new HashMap<>();
+    public Map<Integer, Booking> bookingMap = new HashMap<>();
+    public Map<Integer, Payment> paymentMap = new HashMap<>();
+    public Map<Integer, Notification> notificationMap = new HashMap<>();
 
+
+    
+
+    
+
+    /*
     @Override
     public void addUser(GymUser user) {
         for (GymUser existing : userMap.values()) {
@@ -58,4 +69,5 @@ public class GymUserDAOImpl implements GymUserDAO {
         }
         return false;
     }
+     */
 }

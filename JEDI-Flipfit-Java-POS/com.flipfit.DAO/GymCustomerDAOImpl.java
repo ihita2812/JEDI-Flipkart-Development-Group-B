@@ -7,11 +7,9 @@ import java.util.*;
 public class GymCustomerDAOImpl implements GymCustomerDAO {
 
     private Map<Integer, GymCustomer> customerMap = new HashMap<>();
-    private Map<Integer, Booking> bookingMap = new HashMap<>();
-    private Map<Integer, Slot> slotMap = new HashMap<>();
-    private Map<Integer, GymCenter> gymCenterMap = new HashMap<>();
-    private Map<Integer, List<Integer>> customerBookings = new HashMap<>();
 
+
+    /*
     private GymUserDAO userDAO = new GymUserDAOImpl();
 
     private int bookingIdCounter = 1;
@@ -148,4 +146,5 @@ public class GymCustomerDAOImpl implements GymCustomerDAO {
     public void addSlot(Slot slot) {
         slotMap.put(slot.getSlotId(), slot);
     }
+    */
 }
