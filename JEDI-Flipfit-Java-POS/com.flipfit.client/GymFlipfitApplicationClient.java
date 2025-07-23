@@ -5,24 +5,27 @@ import java.util.Scanner;
 import com.flipfit.bean.*;
 import com.flipfit.business.*;
 import com.flipflit.client.GymCustomerClient;
+import com.flipflit.client.GymAdminClient;
 
 public class GymFlipfitApplicationClient {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
         GymCustomerBusiness customerBusiness = new GymCustomerBusiness();
         GymOwnerBusiness ownerBusiness = new GymOwnerBusiness();
         GymUserBusiness userBusiness = new GymUserBusiness();
+        int choice;
 
         while (true) {
+            System.out.println("---------------------------------------------");
             System.out.println("Welcome to the Flipfit application");
             System.out.println("Enter your choice");
             System.out.println("\t1\tLogin");
-            System.out.println("\t2\tReg of Gym Cus");
-            System.out.println("\t3\tReg of Gym Own");
+            System.out.println("\t2\tReg of Gym Customer");
+            System.out.println("\t3\tReg of Gym Owner");
             System.out.println("\t4\tSave Password");
             System.out.println("\t5\tExit");
 
-            int choice = scanner.nextInt();
+            Scanner scanner = new Scanner(System.in);
+            choice = scanner.nextInt();
             scanner.nextLine();  // consume newline
 
             switch (choice) {
@@ -42,10 +45,10 @@ public class GymFlipfitApplicationClient {
                                 GymCustomerClient.customerMenu(0);
                                 break;
                             case 1:
-                                ownerMenu();
+                                GymOwnerClient.ownerMenu();
                                 break;
                             case 2:
-                                adminMenu();
+                                GymAdminClient.adminMenu(0);
                                 break;
                         }
                     } else {
@@ -70,20 +73,15 @@ public class GymFlipfitApplicationClient {
                 case 5:
                     System.out.println("Thank you for using Flipfit. Exiting...");
                     scanner.close();
-                    System.exit(0);
-                    break;
+                    return;
 
                 default:
                     System.out.println("Invalid choice! Please select again.");
+                    break;
             }
+
+            scanner.close();
         }
     }
 
-    public static void ownerMenu() {
-        System.out.println("Welcome Owner! [Add your menu options here]");
-    }
-
-    public static void adminMenu() {
-        System.out.println("Welcome Admin! [Add your menu options here]");
-    }
 }

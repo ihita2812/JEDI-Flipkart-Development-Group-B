@@ -5,23 +5,24 @@ import com.flipfit.bean.*;
 public class GymCustomerBusiness
 {
     public void registerCustomer(GymCustomer gymCustomer){
-        System.out.println("Gym Customer Created");
+        System.out.println("[Gym Customer Created]");
     }
     public void viewGymCenter(String location){
-        System.out.println("Gym Center Viewed");
+        System.out.println("[Gym Center Viewed]");
     }
     public void viewSlot(int gymCenterId){
-        System.out.println("Slots of gym center " + gymCenterId + " Viewed");
+        System.out.println("[Slots of gym center " + gymCenterId + " Viewed]");
     }
     public void bookSlot(int slotId){
-        System.out.println("Slot " + slotId + " Booked");
+        System.out.println("[Slot " + slotId + " Booked]");
     }
-    public void cancelbooking(Booking booking){
-        System.out.println("Booking Cancelled");
+    public void cancelbooking(int bookingId){
+        System.out.println("[Booking " + bookingId + " Cancelled]");
     }
-    public void makePayment(Booking booking){
-        System.out.println("Make Payment");
+    public void makePayment(int bookingId){
+        System.out.println("[Payment made!]");
     }
-
-    // TODO : ADD VIEW BOOKINGS
+    public void viewBookings() {
+        System.out.println("[Bookings viewed]");
+    }
 }
