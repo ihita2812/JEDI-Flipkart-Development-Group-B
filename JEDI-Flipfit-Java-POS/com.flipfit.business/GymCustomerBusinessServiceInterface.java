@@ -1,8 +1,9 @@
+
 package com.flipfit.business;
 
 import com.flipfit.bean.*;
 
-public interface GymCustomerBusinessInterface {
+public interface GymCustomerBusinessServiceInterface {
     void registerCustomer(GymCustomer gymCustomer);
     void viewGymCenter(String location);
     void viewSlot(int gymCenterId);
@@ -11,3 +12,7 @@ public interface GymCustomerBusinessInterface {
     void makePayment(int bookingId);
     void viewBookings();
 }
+
+
+
+
