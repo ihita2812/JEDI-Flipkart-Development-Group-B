@@ -13,4 +13,8 @@ public interface GymAdminBusinessServiceInterface {
     public void viewPendingGymCenters();
     public boolean verifyGymCenter(int gymCenter);
     public void addNewRole(String roleName, String roleDesc);
+    public void addGymCustomer(String customerName, String customerEmail, String customerPhone);
+    public void removeGymCustomer(int customerId);
+    public void addGymOwner(String ownerName, String ownerEmail, String ownerPhone);
+    public void removeGymOwner(int ownerId);
 }
