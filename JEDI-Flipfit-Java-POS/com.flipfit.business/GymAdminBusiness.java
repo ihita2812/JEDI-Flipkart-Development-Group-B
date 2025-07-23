@@ -16,7 +16,7 @@ public class GymAdminBusiness
     public void removeGym(GymCenter gymCenter){
         System.out.println("Removing Gym");
     }
-    public void viewPaymentsInformation(){
+    public void viewPayments(){
         System.out.println("Viewed Payment Information");
     }
     public void cancelbooking(Booking booking){
