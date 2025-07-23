@@ -4,9 +4,9 @@ import java.util.Scanner;
 
 import com.flipfit.bean.*;
 import com.flipfit.business.*;
-import com.flipflit.client.GymCustomerMenu;
-import com.flipflit.client.GymAdminMenu;
-import com.flipflit.client.GymOwnerMenu;
+import com.flipfit.client.GymCustomerMenu;
+import com.flipfit.client.GymAdminMenu;
+import com.flipfit.client.GymOwnerMenu;
 
 public class GymFlipfitApplicationClient {
     public static void main(String[] args) {

@@ -1,4 +1,4 @@
-package com.flipflit.client;
+package com.flipfit.client;
 
 import java.util.Scanner;
 
