@@ -20,4 +20,8 @@ public class GymOwnerBusiness {
         //fetching notifications from a database or a notification service.
         System.out.println("Notifications viewed"); 
     }
+     public void viewSlot(GymCenter gymCenter){
+        //fetching all the slots of the gym 
+        System.out.println("Slot Viewed");
+    }
 }

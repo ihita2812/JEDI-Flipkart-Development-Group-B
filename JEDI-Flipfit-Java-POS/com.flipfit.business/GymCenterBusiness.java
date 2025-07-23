@@ -1,6 +1,6 @@
 package com.flipfit.business;
 
-import com.flipfit.bean.GymCenter;
+import com.flipfit.bean.*;
 
 public class GymCenterBusiness {
     public void createGymCenter(){

@@ -1,8 +1,6 @@
 package com.flipfit.business;
 
-import com.flipfit.bean.GymAdmin;
-import com.flipfit.bean.GymOwner;
-import com.flipfit.bean.GymCenter;
+import com.flipfit.bean.*;
 
 public class GymAdminBusiness
 {
@@ -20,5 +18,8 @@ public class GymAdminBusiness
     }
     public void viewPaymentsInformation(){
         System.out.println("Viewed Payment Information");
+    }
+    public void cancelbooking(Booking booking){
+        System.out.println("Booking Cancelled");
     }
 }

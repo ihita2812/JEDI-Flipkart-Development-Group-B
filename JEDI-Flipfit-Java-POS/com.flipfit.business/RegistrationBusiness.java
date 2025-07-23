@@ -1,6 +1,6 @@
 package com.flipfit.business;
 
-import com.flipfit.bean.Registration;
+import com.flipfit.bean.*;
 
 public class RegistrationBusiness {
     public boolean verifyUser(Registration details)
