@@ -21,7 +21,8 @@ public class GymAdminClient {
         System.out.println("\t1\tView all registered gym centers");
         System.out.println("\t2\tView pending gym center approvals");
         System.out.println("\t3\tView all payments");
-        System.out.println("\t4\tLogout");
+        System.out.println("\t4\tAdd Roles");
+        System.out.println("\t5\tLogout");
 
         int choice = scanner.nextInt();
         scanner.nextLine();
@@ -47,6 +48,17 @@ public class GymAdminClient {
                 admin.viewPayments();
                 break;
             case 4:
+                System.out.println("Enter Role name to be added");
+                String roleName = scanner.nextLine();
+                scanner.nextLine();
+
+                System.out.println("Enter Role Description to be added");
+                String roleDesc = scanner.nextLine();
+                scanner.nextLine();
+
+                admin.addNewRole(roleName,roleDesc);
+                break;
+            case 5:
                 System.out.println("See you again!");
                 return;
             default:
