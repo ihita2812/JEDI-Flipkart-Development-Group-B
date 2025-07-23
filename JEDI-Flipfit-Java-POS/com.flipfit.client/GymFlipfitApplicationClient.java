@@ -9,12 +9,13 @@ import com.flipflit.client.GymAdminClient;
 
 public class GymFlipfitApplicationClient {
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
         GymCustomerBusiness customerBusiness = new GymCustomerBusiness();
         GymOwnerBusiness ownerBusiness = new GymOwnerBusiness();
         GymUserBusiness userBusiness = new GymUserBusiness();
-        int choice;
+        boolean more = true;
 
-        while (true) {
+        while (more) {
             System.out.println("---------------------------------------------");
             System.out.println("Welcome to the Flipfit application");
             System.out.println("Enter your choice");
@@ -24,8 +25,7 @@ public class GymFlipfitApplicationClient {
             System.out.println("\t4\tSave Password");
             System.out.println("\t5\tExit");
 
-            Scanner scanner = new Scanner(System.in);
-            choice = scanner.nextInt();
+            int choice = scanner.nextInt();
             scanner.nextLine();  // consume newline
 
             switch (choice) {
@@ -73,15 +73,15 @@ public class GymFlipfitApplicationClient {
                 case 5:
                     System.out.println("Thank you for using Flipfit. Exiting...");
                     scanner.close();
-                    return;
+                    more = false;
 
                 default:
                     System.out.println("Invalid choice! Please select again.");
                     break;
             }
-
-            scanner.close();
         }
+
+        scanner.close();
     }
 
 }
