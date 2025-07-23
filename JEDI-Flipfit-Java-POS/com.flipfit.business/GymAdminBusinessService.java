@@ -2,7 +2,7 @@ package com.flipfit.business;
 
 import com.flipfit.bean.*;
 
-public class GymAdminBusiness
+public class GymAdminBusinessService
 {
     public void createAdmin(GymAdmin gymAdmin){
         System.out.println("Creating Admin");

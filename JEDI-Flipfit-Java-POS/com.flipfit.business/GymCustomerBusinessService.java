@@ -2,7 +2,7 @@ package com.flipfit.business;
 
 import com.flipfit.bean.*;
 
-public class GymCustomerBusiness
+public class GymCustomerBusinessService
 {
     public void registerCustomer(GymCustomer gymCustomer){
         System.out.println("[Gym Customer Created]");
