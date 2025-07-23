@@ -2,13 +2,15 @@ package com.flipfit.client;
 
 import java.util.Scanner;
 
+import com.flipfit.bean.*;
 import com.flipfit.business.*;
 
-public class MainApp {
+public class GymFlipfitApplicationClient {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        LoginService loginService = new LoginService();
-        RegistrationService registrationService = new RegistrationService();
+        GymCustomerBusiness customerBusiness = new GymCustomerBusiness();
+        GymOwnerBusiness ownerBusiness = new GymOwnerBusiness();
+        GymUserBusiness userBusiness = new GymUserBusiness();
 
         while (true) {
             System.out.println("Welcome to the Flipfit application");
@@ -32,8 +34,8 @@ public class MainApp {
                     int role = scanner.nextInt();
                     scanner.nextLine(); // consume newline
 
-                    boolean isValid = loginService.authenticate(username, password, role);
-                    if (isValid) {
+                    
+                    if (username.equals("user") && password.equals("pass")) {
                         switch (role) {
                             case 0:
                                 customerMenu();
@@ -51,15 +53,17 @@ public class MainApp {
                     break;
 
                 case 2:
-                    registrationService.registerCustomer();
+                    GymCustomer customer = new GymCustomer();
+                    customerBusiness.registerCustomer(customer);
                     break;
 
                 case 3:
-                    registrationService.registerOwner();
+                    GymOwner owner = new GymOwner();
+                    ownerBusiness.registerOwner(owner);
                     break;
 
                 case 4:
-                    registrationService.savePassword();
+                    System.out.println("Password Saved. (dummy)");
                     break;
 
                 case 5:
