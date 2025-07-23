@@ -74,6 +74,7 @@ public class GymFlipfitApplicationClient {
                     System.out.println("Thank you for using Flipfit. Exiting...");
                     scanner.close();
                     more = false;
+                    break;
 
                 default:
                     System.out.println("Invalid choice! Please select again.");

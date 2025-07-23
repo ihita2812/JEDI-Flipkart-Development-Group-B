@@ -8,7 +8,7 @@ public class GymAdminBusiness
         System.out.println("Creating Admin");
     }
     public void viewRegisteredGyms(){
-        System.out.println("Viewed Registered Gyms");
+        System.out.println("[Viewed Registered Gyms]");
     }
     // public void approveGym(GymCenter gymCenter){
     //     System.out.println("Approving Gym");
@@ -17,17 +17,17 @@ public class GymAdminBusiness
     //     System.out.println("Removing Gym");
     // }
     public void viewPayments(){
-        System.out.println("Viewed Payment Information");
+        System.out.println("[Viewed Payment Information]");
     }
     public void cancelbooking(Booking booking){
         System.out.println("Booking Cancelled");
     }
     public void viewPendingGymCenters() {
-        System.out.println("Here are the gym centers pending approval!");
+        System.out.println("[Here are the gym centers pending approval!]");
     }
     public boolean verifyGymCenter(int gymCenter) {
         // admin will view details of gym and approve or reject.
-        System.out.println("Did you approve or reject? IDK, cos there is no functionality yet.");
+        System.out.println("[Did you approve or reject? IDK, cos there is no functionality yet.]");
         return true;
     }
 

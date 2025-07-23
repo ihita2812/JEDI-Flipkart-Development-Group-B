@@ -15,6 +15,7 @@ public class GymAdminClient {
          while(valid)
         {
         
+        System.out.println("---------------------------------------------");
         System.out.println("Welcome Admin!");
         System.out.println("Enter your choice");
         System.out.println("\t1\tView all registered gym centers");
@@ -31,8 +32,8 @@ public class GymAdminClient {
                 admin.viewRegisteredGyms();
                 break;
             case 2:
-                admin.viewPendingGymCenters();
                 System.out.println("Select a gym for approval or rejection!");
+                admin.viewPendingGymCenters();
                 int gymChoice = scanner.nextInt();
                 scanner.nextLine();
                 boolean status = admin.verifyGymCenter(gymChoice);
@@ -42,6 +43,7 @@ public class GymAdminClient {
                 System.out.println("Gym center with id" + gymChoice+"rejected!");
                 break;
             case 3:
+                System.out.println("Here are the payments!");
                 admin.viewPayments();
                 break;
             case 4:
