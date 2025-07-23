@@ -35,5 +35,21 @@ public class GymAdminBusinessService
         // admin can create new role here
         System.out.println("[New role added to db!]");
     }
+    public void addGymCustomer(String customerName, String customerEmail, String customerPhone) {
+        // admin can add new gym customer here
+        System.out.println("[New gym customer added to db!]");
+    }
+    public void removeGymCustomer(int customerId) {
+        // admin can remove gym customer here
+        System.out.println("[Gym customer with ID " + customerId + " removed from db!]");
+    }
+    public void addGymOwner(String ownerName, String ownerEmail, String ownerPhone) {
+        // admin can add new gym owner here
+        System.out.println("[New gym owner added to db!]");
+    }
+    public void removeGymOwner(int ownerId) {
+        // admin can remove gym owner here
+        System.out.println("[Gym owner with ID " + ownerId + " removed from db!]");
+    }
 
 }
