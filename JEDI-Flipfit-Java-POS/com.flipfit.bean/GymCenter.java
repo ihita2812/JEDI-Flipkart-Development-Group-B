@@ -7,6 +7,15 @@ public class GymCenter{
     private int capacity;
     private int numSlots;
     private int ownerId; // ID of the owner of the gym center
+    private int approvalStatus; // 0: rejected, 1: approved, 2: pending
+
+    public int getApprovalStatus() {
+        return this.approvalStatus;
+    }
+
+    public void setApprovalStatus(int approvalStatus) {
+        this.approvalStatus = approvalStatus;
+    }
 
     public int getOwnerId() {
         return this.ownerId;

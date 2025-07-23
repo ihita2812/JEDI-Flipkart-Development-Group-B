@@ -1,22 +1,23 @@
 package com.flipfit.business;
 
-import com.flipfit.bean.GymCustomer;
-import com.flipfit.bean.GymCenter;
-import com.flipfit.bean.Booking;
+import com.flipfit.bean.*;
 
 public class GymCustomerBusiness
 {
     public void registerCustomer(GymCustomer gymCustomer){
         System.out.println("Gym Customer Created");
     }
-    public void viewGymCenter(){
+    public void viewGymCenter(String location){
         System.out.println("Gym Center Viewed");
     }
-    public void bookSlot(GymCenter gymCenter){
+    public void viewSlot(GymCenter gymCenter){
+        System.out.println("Slot Viewed");
+    }
+    public void bookSlot(Slot slot){
         System.out.println("Slot Booked");
     }
-    public void cancelSlot(){
-        System.out.println("Slot Cancelled");
+    public void cancelbooking(Booking booking){
+        System.out.println("Booking Cancelled");
     }
     public void makePayment(Booking booking){
         System.out.println("Make Payment");
