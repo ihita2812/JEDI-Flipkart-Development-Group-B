@@ -8,6 +8,8 @@ public class GymOwnerClient {
     public static void ownerMenu() {
         GymOwnerBusiness ownerBusiness = new GymOwnerBusiness();
 
+        while(true)
+    {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Welcome Gym Owner!");
         System.out.println("Enter your choice");
@@ -42,10 +44,13 @@ public class GymOwnerClient {
                 ownerBusiness.viewPayment(new GymCenter());
                 break;
             case 7:
-                return;
+                System.out.println("Logging out...");
+                return; // Exit the owner menu
             default:
                 System.out.println("Invalid choice.");
         }
+        scanner.close();
+    }
 
 
     }
