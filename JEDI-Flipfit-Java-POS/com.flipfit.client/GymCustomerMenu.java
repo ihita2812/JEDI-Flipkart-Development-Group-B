@@ -87,7 +87,7 @@ public class GymCustomerMenu {
                     System.out.println("BOOKING NUMBER " + i);
                 }
                 System.out.println("---------------------------------------------");
-                System.out.println("You can enter the booking number number to cancel it!");
+                System.out.println("You can enter the booking number number to CANCEL or EDIT it!");
                 System.out.println("Enter 0 to go back!");
 
                 int choice5 = scanner.nextInt();
@@ -97,7 +97,17 @@ public class GymCustomerMenu {
                     break;
                 } else {
                     System.out.println("---------------------------------------------");
-                    customer.cancelbooking(choice5);
+                    System.out.println("Enter C for CANCEL or E for EDIT (anything else to quit to home page)!");
+                    char choice6 = scanner.nextChar();
+                    switch (choice6) {
+                        case 'C':
+                            customer.cancelBooking(choice5);
+                            break;
+                        case 'E':
+                            customer.editBooking(choice5);
+                        default:
+                            break;
+                    }
                 }
                 break;
 

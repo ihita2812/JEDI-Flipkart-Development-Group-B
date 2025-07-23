@@ -16,8 +16,11 @@ public class GymCustomerBusinessService
     public void bookSlot(int slotId){
         System.out.println("[Slot " + slotId + " Booked]");
     }
-    public void cancelbooking(int bookingId){
+    public void cancelBooking(int bookingId){
         System.out.println("[Booking " + bookingId + " Cancelled]");
+    }
+    public void editBooking(int bookingId){
+        System.out.println("[Booking " + bookingId + " Edited]");
     }
     public void makePayment(int bookingId){
         System.out.println("[Payment made!]");

@@ -8,7 +8,8 @@ public interface GymCustomerBusinessServiceInterface {
     void viewGymCenter(String location);
     void viewSlot(int gymCenterId);
     void bookSlot(int slotId);
-    void cancelbooking(int bookingId);
+    void cancelBooking(int bookingId);
+    void editBooking(int bookingId);
     void makePayment(int bookingId);
     void viewBookings();
 }
