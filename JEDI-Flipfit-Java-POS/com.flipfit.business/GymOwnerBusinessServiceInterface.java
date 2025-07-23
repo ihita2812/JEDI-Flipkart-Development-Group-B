@@ -10,4 +10,5 @@ public interface GymOwnerBusinessServiceInterface {
     public void viewPayment(GymCenter center);
     public void viewSlot(GymCenter gymCenter);
     public int registerGymCenter(String centerName, String centerLocation);
+    public void editSlot(int slotID, String centerName);
 }
