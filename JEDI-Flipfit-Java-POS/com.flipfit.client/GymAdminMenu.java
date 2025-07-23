@@ -1,13 +1,13 @@
 package com.flipfit.client;
 
+import com.flipfit.business.*;
 import java.util.Scanner;
 
-import com.flipfit.business.*;
 
 public class GymAdminMenu {
         public static void adminMenu(int adminId) {
         
-        GymAdminBusiness admin = new GymAdminBusiness();
+        GymAdminBusinessService admin = new GymAdminBusinessService();
 
         Scanner scanner = new Scanner(System.in);
         boolean valid = true;    
@@ -22,7 +22,11 @@ public class GymAdminMenu {
         System.out.println("\t2\tView pending gym center approvals");
         System.out.println("\t3\tView all payments");
         System.out.println("\t4\tAdd Roles");
-        System.out.println("\t5\tLogout");
+        System.out.println("\t5\tAdd Gym Customer");
+        System.out.println("\t6\tRemove Gym Customer");
+        System.out.println("\t7\tAdd Gym Owner");
+        System.out.println("\t8\tRemove Gym Owner");
+        System.out.println("\t9\tLogout");
 
         int choice = scanner.nextInt();
         scanner.nextLine();
@@ -59,6 +63,51 @@ public class GymAdminMenu {
                 admin.addNewRole(roleName,roleDesc);
                 break;
             case 5:
+                System.out.println("Enter Gym Customer Name to be added");
+                String customerName = scanner.nextLine();
+                scanner.nextLine();
+
+                System.out.println("Enter Gym Customer Email to be added");
+                String customerEmail = scanner.nextLine();
+                scanner.nextLine();
+
+                System.out.println("Enter Gym Customer Phone to be added");
+                String customerPhone = scanner.nextLine();
+                scanner.nextLine();
+
+                admin.addGymCustomer(customerName, customerEmail, customerPhone);
+                break;
+            case 6:
+                System.out.println("Enter Gym Customer ID to be removed");
+                int customerId = scanner.nextInt();
+                scanner.nextLine();
+                admin.removeGymCustomer(customerId); // Assuming this method exists
+                System.out.println("Gym Customer with ID " + customerId + " removed.");
+                break;
+            case 7:
+                System.out.println("Enter Gym Owner Name to be added");
+                String ownerName = scanner.nextLine();
+                scanner.nextLine();
+
+                System.out.println("Enter Gym Owner Email to be added");
+                String ownerEmail = scanner.nextLine();
+                scanner.nextLine();
+
+                System.out.println("Enter Gym Owner Phone to be added");
+                String ownerPhone = scanner.nextLine();
+                scanner.nextLine();
+
+                admin.addGymOwner(ownerName, ownerEmail, ownerPhone); // Assuming this method exists
+                System.out.println("Gym Owner " + ownerName + " added.");
+                break;
+            case 8:
+                System.out.println("Enter Gym Owner ID to be removed");
+                int ownerId = scanner.nextInt();
+                scanner.nextLine();
+                admin.removeGymOwner(ownerId); // Assuming this method exists
+                System.out.println("Gym Owner with ID " + ownerId + " removed.");
+                break;
+            case 9:
                 System.out.println("See you again!");
                 return;
             default:
