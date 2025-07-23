@@ -4,6 +4,15 @@ public class Booking {
     private int bookingId;
     private int customerId;
     private int slotId;
+    private int status; //0: payment pending, 1: confirmed
+
+    public int getStatus() {
+        return this.status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
 
     public int getBookingId() {
         return this.bookingId;
@@ -28,7 +37,5 @@ public class Booking {
     public void setSlotId(int slotId) {
         this.slotId = slotId;
     }
-
-
-   
+       
 }
