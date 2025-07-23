@@ -22,4 +22,14 @@ public class GymAdminBusiness
     public void cancelbooking(Booking booking){
         System.out.println("Booking Cancelled");
     }
+
+    public void viewPendingGymCenters() {
+        System.out.println("Here are the gym centers pending approval!")
+    }
+
+    public void verifyGymCenter(GymCenter gymCenter) {
+        // admin will view details of gym and approve or reject.
+        System.out.println("Did you approve or reject? IDK, cos there is no functionality yet.")
+    }
+
 }

@@ -25,7 +25,7 @@ BUSINESS FIXING:
 7. ~~bookslot (slot id) - customer~~
 8. ~~cancel booking (book id) - customer, admin~~
 9. viewcenter (owner id) - owner
-10. check notifs (user id) - user
-11. login (thingies) - user
-12. approve/reject center ( center id) - admin
-13. register gym - owner
+10. ~~check notifs (user id) - user~~
+11. ~~login (thingies) - user~~
+12. ~~approve/reject center ( center id) - admin~~
+13. ~~register gym - owner~~
