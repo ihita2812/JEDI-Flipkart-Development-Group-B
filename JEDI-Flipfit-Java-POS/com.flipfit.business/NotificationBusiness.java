@@ -7,6 +7,6 @@ public class NotificationBusiness {
         System.out.println("bhejdi notif, dekho");
     }
     public void deleteNotification(Notification notification) {
-        System.out.println("ura di notif :)");
+        System.out.println("ura di notif :");
     }
 }

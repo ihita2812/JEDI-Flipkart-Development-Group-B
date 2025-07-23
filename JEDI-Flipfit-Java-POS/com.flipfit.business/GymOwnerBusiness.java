@@ -1,5 +1,7 @@
 package com.flipfit.business;
+
 import com.flipfit.bean.*;
+
 public class GymOwnerBusiness {
     GymOwner owner = new GymOwner();
     public void viewGymCenters() {
@@ -19,5 +21,11 @@ public class GymOwnerBusiness {
     public void viewNotifications(){
         //fetching notifications from a database or a notification service.
         System.out.println("Notifications viewed"); 
+    }
+    public int registerGymCenter(String centerName, String centerLocation) {
+        // give GSTIN etc number of self to register gym
+        // send to admin for approval
+        System.out.println("Yout gym has been sent for approval!");
+        return 0;
     }
 }

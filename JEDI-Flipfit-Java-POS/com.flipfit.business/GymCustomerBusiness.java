@@ -15,7 +15,7 @@ public class GymCustomerBusiness
     public void bookSlot(GymCenter gymCenter){
         System.out.println("Slot Booked");
     }
-    public void cancelSlot(){
+    public void deleteBooking(Booking booking){
         System.out.println("Slot Cancelled");
     }
     public void makePayment(Booking booking){
