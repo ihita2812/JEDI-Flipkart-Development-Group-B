@@ -3,6 +3,15 @@ package com.flipfit.bean;
 public class GymOwner extends GymUser{
     private int ownerId;
     private int gender;
+    private String email;
+
+    public String getEmail() {
+        return this.email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
     
     public int getOwnerId() {
         return this.ownerId;

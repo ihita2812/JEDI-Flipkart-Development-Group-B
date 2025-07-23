@@ -6,6 +6,15 @@ public class GymCustomer extends GymUser{
     private int age;
     private String location;
     private char gender;
+    private String email;
+
+    public String getEmail() {
+        return this.email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     public int getCustomerId() {
         return this.customerId;
