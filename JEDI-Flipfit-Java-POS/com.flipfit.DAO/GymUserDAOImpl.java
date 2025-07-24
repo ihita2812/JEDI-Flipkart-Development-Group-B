@@ -42,6 +42,9 @@ public class GymUserDAOImpl implements GymUserDAO {
         adminUser.setName("Admin User");
         adminUser.setRole(adminRole);
         userMap.put(1, adminUser);
+        GymAdmin adminGym = new GymAdmin();
+        adminGym.setUserId(1);
+        GymAdminDAOImpl.adminMap.put(1, adminGym);
 
         GymUser ownerUser = new GymUser();
         ownerUser.setUserId(2);
@@ -50,6 +53,12 @@ public class GymUserDAOImpl implements GymUserDAO {
         ownerUser.setName("Gym Owner");
         ownerUser.setRole(ownerRole);
         userMap.put(2, ownerUser);
+        GymOwner ownerGym = new GymOwner();
+        ownerGym.setUserId(2);
+        ownerGym.setOwnerId(1);
+        ownerGym.setEmail("owner");
+        ownerGym.setGender(0);
+        GymOwnerDAOImpl.ownerMap.put(1, ownerGym);
 
         GymUser customerUser = new GymUser();
         customerUser.setUserId(3);
@@ -58,30 +67,14 @@ public class GymUserDAOImpl implements GymUserDAO {
         customerUser.setName("Gym Customer");
         customerUser.setRole(customerRole);
         userMap.put(3, customerUser);
-
-        GymUser adminUser1 = new GymUser();
-        adminUser1.setUserId(4);
-        adminUser1.setUserName("admin1");
-        adminUser1.setPassword("admin");
-        adminUser1.setName("Admin User hu mai");
-        adminUser1.setRole(adminRole);
-        userMap.put(4, adminUser1);
-
-        GymUser ownerUser1 = new GymUser();
-        ownerUser1.setUserId(5);
-        ownerUser1.setUserName("owner1");
-        ownerUser1.setPassword("owner");
-        ownerUser1.setName("Gym Owner hu mai");
-        ownerUser1.setRole(ownerRole);
-        userMap.put(5, ownerUser1);
-
-        GymUser customerUser1 = new GymUser();
-        customerUser1.setUserId(6);
-        customerUser1.setUserName("customer1");
-        customerUser1.setPassword("customer");
-        customerUser1.setName("Gym Customer hu mai");
-        customerUser1.setRole(customerRole);
-        userMap.put(6, customerUser1);
+        GymCustomer customerGym = new GymCustomer();
+        customerGym.setUserId(3);
+        customerGym.setCustomerId(1);
+        customerGym.setEmail("customer");
+        customerGym.setGender(0);
+        customerGym.setAge(21);
+        customerGym.setLocation("Kol");
+        GymCustomerDAOImpl.customerMap.put(3, customerGym);
 
     }
 
