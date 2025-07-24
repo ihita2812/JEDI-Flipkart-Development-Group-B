@@ -1,15 +1,16 @@
 package com.flipfit.client;
 
 import java.util.*;
+import java.util.*;
 import com.flipfit.business.*;
 import com.flipfit.bean.*;
+import java.time.LocalTime;
 
 public class GymCustomerMenu {
 
     public static void customerMenu(int customerId) {
 
         GymCustomerBusinessServiceInterface customer = new GymCustomerBusinessService();
-
 
         Scanner scanner = new Scanner(System.in);
         boolean more = true;
@@ -25,58 +26,69 @@ public class GymCustomerMenu {
             System.out.println("\t5\tLogout");
 
             int choice = scanner.nextInt();
-            scanner.nextLine();  // consume newline
+            scanner.nextLine(); // consume newline
 
             switch (choice) {
-            
-            case 1:
-                System.out.println("---------------------------------------------");
-                System.out.println("Here are the centers near you!");
-                customer.viewGymCenter(null);
-                for (int i = 1; i < 5; i++) {
-                    System.out.println("GYM CENTER " + i);
-                }
-                System.out.println("---------------------------------------------");
-                System.out.println("You can enter the gym center number to view available slots!");
-                System.out.println("Enter 0 to go to home page!");
 
-                int choice2 = scanner.nextInt();
-                scanner.nextLine();
-
-                if (choice2 == 0) {
-                    break;
-                } else {
+                case 1:
                     System.out.println("---------------------------------------------");
-                    System.out.println("Here are the available slots!");
-                    customer.viewSlot(choice2);
+                    System.out.println("Here are the centers near you!");
+                    customer.viewGymCenter(null);
                     for (int i = 1; i < 5; i++) {
-                        System.out.println("SLOT NUMBER " + i);
+                        System.out.println("GYM CENTER " + i);
                     }
                     System.out.println("---------------------------------------------");
-                    System.out.println("You can enter the slot number to book it!");
+                    System.out.println("You can enter the gym center number to view available slots!");
                     System.out.println("Enter 0 to go to home page!");
 
-                    int choice3 = scanner.nextInt();
+                    int choice2 = scanner.nextInt();
                     scanner.nextLine();
 
-                    if (choice3 == 0) {
+                    if (choice2 == 0) {
                         break;
                     } else {
                         System.out.println("---------------------------------------------");
-                        customer.bookSlot(choice3);
-                        int bookingId = 0;
-                        System.out.println("Make payment atleast 6 hours before the slot timing to confirm!");
-                        System.out.println("Enter 1 to pay now, 0 to pay later and go to home page!");
+                        // customer.viewSlot(choice2);
+                        // for (int i = 1; i < 5; i++) {
+                        // System.out.println("SLOT NUMBER " + i);
+                        // }
+                        List<Slot> slots = customer.viewSlot(choice2);
+                        if (slots.isEmpty()) {
+                            System.out.println("No slots available for the selected gym center.");
+                            continue;
+                        }
+                        System.out.println("Here are the available slots!");
 
-                        int choice4 = scanner.nextInt();
+                        for (Slot slot : slots) {
+                            LocalTime startTime = slot.getStartTime();
+                            LocalTime endTime = startTime.plusHours(1);
+                            System.out.println("Slot: " + startTime + " - " + endTime + " on " + slot.getDate());
+                        }
+                        System.out.println("---------------------------------------------");
+                        System.out.println("You can enter the slot number to book it!");
+                        System.out.println("Enter 0 to go to home page!");
+
+                        int choice3 = scanner.nextInt();
                         scanner.nextLine();
 
-                        if (choice4 == 1) {
-                            System.out.println("---------------------------------------------");
-                            customer.makePayment(bookingId);
+                        if (choice3 == 0) {
+                            break;
                         } else {
-                            more = false;
-                        }
+                            System.out.println("---------------------------------------------");
+                            customer.bookSlot(choice3);
+                            int bookingId = 0;
+                            System.out.println("Make payment atleast 6 hours before the slot timing to confirm!");
+                            System.out.println("Enter 1 to pay now, 0 to pay later and go to home page!");
+
+                            int choice4 = scanner.nextInt();
+                            scanner.nextLine();
+
+                            if (choice4 == 1) {
+                                System.out.println("---------------------------------------------");
+                                customer.makePayment(bookingId);
+                            } else {
+                                more = false;
+                            }
 
                     }
                 }
@@ -108,59 +120,45 @@ public class GymCustomerMenu {
                 System.out.println("You can enter the booking number number to CANCEL or EDIT it!");
                 System.out.println("Enter 0 to go back!");
 
-                int choice5 = scanner.nextInt();
-                scanner.nextLine();
+                    int choice5 = scanner.nextInt();
+                    scanner.nextLine();
 
-                if (choice5 == 0) {
-                    break;
-                } else {
-                    if (bookingIds.contains(choice5)) {
-                        System.out.println("---------------------------------------------");
-                        System.out.println("Enter C for CANCEL or E for EDIT (anything else to quit to home page)!");
-                        char choice6 = scanner.next().charAt(0);
-                        switch (choice6) {
-                            case 'C':
-                                customer.cancelBooking(choice5);
-                                break;
-                            case 'E':
-                                customer.editBooking(choice5);
-                            default:
-                                break;
-                        }
+                    if (choice5 == 0) {
+                        break;
                     } else {
+                        if (bookingIds.contains(choice5)) {
+                        System.out.println("---------------------------------------------");
+                            System.out.println("Enter C for CANCEL or E for EDIT (anything else to quit to home page)!");
+                            char choice6 = scanner.next().charAt(0);
+                            switch (choice6) {
+                                case 'C':
+                                    customer.cancelBooking(choice5);
+                                    break;
+                                case 'E':
+                                    customer.editBooking(choice5);
+                                default:
+                                    break;
+                            }
+                        } else {
                         System.out.println("Invalid Booking ID. Breaking to main menu.");
                     }
                     
                 }
-                break;
+                    break;
 
             case 3:
                 System.out.println("---------------------------------------------");
                 customer.editProfile(null);
                 break;
 
-            case 4:
-                System.out.println("---------------------------------------------");
-                System.out.println("Here are your notifications!");
-                List <Notification> notifications = customer.viewNotifications(customerId);
-                if (notifications.isEmpty()) {
-                    System.out.println("No notifications found!");
-                } else {
-                    for (Notification notification : notifications) {
-                        System.out.println(notification.getMessage());
-                    }
-                }
-                System.out.println("---------------------------------------------");
-                break;
-            case 5:
-                more = false;
-                break;
-            
-            default:
-                System.out.println("---------------------------------------------");
-                System.out.println("Bad choice :/");
-                
-            
+                case 4:
+                    more = false;
+                    break;
+
+                default:
+                    System.out.println("---------------------------------------------");
+                    System.out.println("Bad choice :/");
+
             }
         }
     
