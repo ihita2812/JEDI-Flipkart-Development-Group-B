@@ -9,7 +9,7 @@ public interface GymOwnerBusinessServiceInterface {
 
     public List<GymCenter> viewGymCenters(int ownerId);
 
-    public void viewBookingDetails(Slot slot);
+    public List<Booking> viewBookingDetails(int slotId);
 
     public void addSlotsAndCapacity(int centerId, int numSlots, int capacity);
 
@@ -17,7 +17,7 @@ public interface GymOwnerBusinessServiceInterface {
 
     public void viewPayment(GymCenter center);
 
-    public void viewSlot(GymCenter gymCenter);
+    public List<Object> viewSlots(int centerId);
 
     public void registerGymCenter(GymCenter gymCenter);
 

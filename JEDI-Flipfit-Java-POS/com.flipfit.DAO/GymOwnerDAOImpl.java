@@ -59,6 +59,16 @@ public class GymOwnerDAOImpl implements GymOwnerDAO {
         return GymUserDAOImpl.centerMap.get(centerId);
     }
 
+    public List<Booking> getBookingsBySlotId(int slotId) {
+        List<Booking> bookings = new ArrayList<>();
+        for (Booking booking : GymUserDAOImpl.bookingMap.values()) {
+            if (booking.getSlotId() == slotId) {
+                bookings.add(booking);
+            }
+        }
+        return bookings;
+    }
+
     @Override
     public void addOwner(GymOwner gymOwner) {
         // Check if username already exists

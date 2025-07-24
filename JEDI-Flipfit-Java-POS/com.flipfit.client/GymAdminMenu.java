@@ -1,8 +1,8 @@
 package com.flipfit.client;
 
 import com.flipfit.business.*;
-import java.util.Scanner;
-
+import java.util.*;
+import com.flipfit.bean.*;
 public class GymAdminMenu {
         public static void adminMenu(int adminId) {
         
@@ -48,7 +48,7 @@ public class GymAdminMenu {
                 }
                 break;
             case 3:
-                List<Payment> payments = admin.viewPayments();
+                List<Payment> payments = new ArrayList<Payment>(); //{}admin.viewPayments();
                 if (payments.isEmpty()) {
                     System.out.println("No payments found.");
                 } else {

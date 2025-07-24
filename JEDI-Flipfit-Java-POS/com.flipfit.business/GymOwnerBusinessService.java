@@ -35,8 +35,9 @@ public class GymOwnerBusinessService implements GymOwnerBusinessServiceInterface
         // System.out.println("Gym Centers Viewed");
     }
 
-    public void viewBookingDetails(Slot slot) {
-        System.out.println("Booking Details Viewed");
+    public List<Booking> viewBookingDetails(int slotId) {
+        List<Booking> bookings = ownerDAO.getBookingsBySlotId(slotId);
+        return bookings;
     }
 
     public void addSlotsAndCapacity(int centerId, int numSlots, int capacity) {
@@ -59,9 +60,8 @@ public class GymOwnerBusinessService implements GymOwnerBusinessServiceInterface
         System.out.println("Payment details viewed");
     }
 
-    public void viewSlot(GymCenter gymCenter) {
-        // fetching all the slots of the gym
-        System.out.println("Slot Viewed");
+    public List<Object> viewSlots(int centerId) {
+        return userDAO.getSlotByCenterId(centerId);
     }
 
     public GymCenter createGymCenterBean(String centerName, String centerLocation, int capacity, int numSlots,

@@ -2,6 +2,7 @@ package com.flipfit.business;
 
 import com.flipfit.bean.*;
 import com.flipfit.dao.GymUserDAOImpl;
+import java.util.*;
 
 public class GymAdminBusinessService implements GymAdminBusinessServiceInterface
 {
@@ -13,8 +14,8 @@ public class GymAdminBusinessService implements GymAdminBusinessServiceInterface
         System.out.println("[Viewed Registered Gyms]");
     }
 
-    public List<Payment> viewPayments() {
-        return getAllPayments();
+    public void viewPayments() {
+        return ;//getAllPayments();
     }
 
     public void cancelbooking(Booking booking){

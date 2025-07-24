@@ -21,5 +21,7 @@ public interface GymOwnerDAO {
 
     void removeOwner(int ownerId);
 
+    List<Booking> getBookingsBySlotId(int slotId);
+
     public List<Notification> getNotificationsByOwnerId(int ownerId);
 }

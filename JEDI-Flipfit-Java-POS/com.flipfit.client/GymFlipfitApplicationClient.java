@@ -47,7 +47,7 @@ public class GymFlipfitApplicationClient {
                             case 0:
                                 GymCustomerMenu.customerMenu(roleSpecificId);
                                 break;
-                            case 1:
+                            case 1: // check for approval before login
                                 GymOwnerMenu.ownerMenu(roleSpecificId);
                                 break;
                             case 2:
