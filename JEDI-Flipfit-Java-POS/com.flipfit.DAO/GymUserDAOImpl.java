@@ -5,13 +5,13 @@ import java.util.*;
 
 public class GymUserDAOImpl implements GymUserDAO {
 
-    public Map<Integer, GymUser> userMap = new HashMap<>();
-    public Map<Integer, Role> roleMap = new HashMap<>();
-    public Map<Integer, GymCenter> centerMap = new HashMap<>();
-    public Map<Integer, Slot> slotMap = new HashMap<>();
-    public Map<Integer, Booking> bookingMap = new HashMap<>();
-    public Map<Integer, Payment> paymentMap = new HashMap<>();
-    public Map<Integer, Notification> notificationMap = new HashMap<>();
+    public static Map<Integer, GymUser> userMap = new HashMap<>();
+    public static Map<Integer, Role> roleMap = new HashMap<>();
+    public static Map<Integer, GymCenter> centerMap = new HashMap<>();
+    public static Map<Integer, Slot> slotMap = new HashMap<>();
+    public static Map<Integer, Booking> bookingMap = new HashMap<>();
+    public static Map<Integer, Payment> paymentMap = new HashMap<>();
+    public static Map<Integer, Notification> notificationMap = new HashMap<>();
 
     public GymUserDAOImpl() {
         Role customerRole = new Role();
@@ -82,14 +82,22 @@ public class GymUserDAOImpl implements GymUserDAO {
 
     }
 
-    public List<Booking> getBookingsByCustomerId(int customerId) {
+    public List<> getBookingsByCustomerId(int customerId) {
         List<Booking> bookings = new ArrayList<>();
+        List<Booking> bookingIds = new ArrayList<>();
+        List<Slot> slots = new ArrayList<>();
         for (Booking booking : bookingMap.values()) {
             if (booking.getCustomerId() == customerId) {
                 bookings.add(booking);
+                bookingIds.add(booking.getBookingId());
+                slots.add(slotMap.get(booking.getSlotId()));
             }
         }
-        return bookings;
+        List<> results = new ArrayList<>();
+        results.add(bookingIds);
+        results.add(bookings);
+        results.add(slots);
+        return results;
     }
     
     public void addUser(GymUser user) {

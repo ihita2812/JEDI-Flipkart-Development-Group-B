@@ -3,6 +3,11 @@ package com.flipfit.client;
 import java.util.Scanner;
 import com.flipfit.business.*;
 import com.flipfit.bean.*;
+import com.flipfit.DAO.GymUserDAOImpl;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 
 public class GymCustomerMenu {
@@ -85,16 +90,25 @@ public class GymCustomerMenu {
             case 2:
                 System.out.println("---------------------------------------------");
                 System.out.println("Here are your bookings!");
-                List<Booking> customerBookings = customer.viewBookings();
-                if (customerBookings.isEmpty()) {
+                List<> bookingResultsList = customer.viewBookings();
+                if (bookingResultsList.isEmpty()) {
                     System.out.println("No bookings found.");
                 } else {
-                    for (Booking booking : customerBookings) {
-                        System.out.println("Booking ID: " + booking.getBookingId());
+                    List<Integer> bookingIds = (List<Integer>) bookingResultsList.get(0);
+                    List<Booking> bookings = (List<Booking>) bookingResultsList.get(1);
+                    List<Slot> slots = (List<Slot>) bookingResultsList.get(2);
+
+                    for (int i = 0; i < bookingIds.size(); i++) {
+                        System.out.println("Booking ID: " + bookingIds.get(i));
+                        LocalTime slotStartTime = slots.get(i).getStartTime();
+                        LocalTime slotEndTime = slotStartTime.plusHours(1);
+                        LocalDate slotDate = slots.get(i).getDate();
+                        System.out.println("Slot: " + slotStartTime + " - " + slotEndTime + " on " + slotDate);
+                        System.out.println("Status: " + bookings.get(i).getStatus());
+                        System.out.println("Gym Center: " + centerMap.get(slots.get(i).getGymCenterId()).getName());
+                        System.out.println("---------------------------------------------");
                     }
                 }
-                // list of booking ids
-                // booking to slot info
                 System.out.println("---------------------------------------------");
                 System.out.println("You can enter the booking number number to CANCEL or EDIT it!");
                 System.out.println("Enter 0 to go back!");
@@ -105,18 +119,23 @@ public class GymCustomerMenu {
                 if (choice5 == 0) {
                     break;
                 } else {
-                    System.out.println("---------------------------------------------");
-                    System.out.println("Enter C for CANCEL or E for EDIT (anything else to quit to home page)!");
-                    char choice6 = scanner.nextChar();
-                    switch (choice6) {
-                        case 'C':
-                            customer.cancelBooking(choice5);
-                            break;
-                        case 'E':
-                            customer.editBooking(choice5);
-                        default:
-                            break;
+                    if (bookingIds.contains(choice5)) {
+                        System.out.println("---------------------------------------------");
+                        System.out.println("Enter C for CANCEL or E for EDIT (anything else to quit to home page)!");
+                        char choice6 = scanner.next().charAt(0);
+                        switch (choice6) {
+                            case 'C':
+                                customer.cancelBooking(choice5);
+                                break;
+                            case 'E':
+                                customer.editBooking(choice5);
+                            default:
+                                break;
+                        }
+                    } else {
+                        System.out.println("Invalid Booking ID. Breaking to main menu.");
                     }
+                    
                 }
                 break;
 

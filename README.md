@@ -9,3 +9,11 @@
 - follow the menus of all users and implement the services
 - ihita : login
 - others : will assign
+
+BOOKING- 
+- view booking (customer)
+- do booking (customer)
+- cancel booking (customer)
+- edit booking (customer)
+- view booking (owner)
+- view booking (admin)
