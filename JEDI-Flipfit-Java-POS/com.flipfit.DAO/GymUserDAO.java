@@ -1,8 +1,7 @@
 package com.flipfit.dao;
 
-import com.flipfit.bean.Role;
-import com.flipfit.bean.GymUser;
-import java.util.List;
+import com.flipfit.bean.*;
+import java.util.*;
 
 public interface GymUserDAO {
     void addUser(GymUser user);

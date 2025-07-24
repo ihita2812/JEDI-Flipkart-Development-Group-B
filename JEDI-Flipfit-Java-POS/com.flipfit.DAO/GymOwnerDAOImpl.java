@@ -1,9 +1,8 @@
 package com.flipfit.dao;
 
-import com.flipfit.bean.GymOwner;
+import com.flipfit.bean.*;
 import java.util.*;
-import com.flipfit.DAO.GymUserDAOImpl.roleMap;
-import com.flipfit.DAO.GymUserDAOImpl.notificationMap;
+import com.flipfit.dao.GymUserDAOImpl;
 
 public class GymOwnerDAOImpl implements GymOwnerDAO {
 

@@ -2,7 +2,7 @@ package com.flipfit.DAO;
 
 import com.flipfit.bean.GymAdmin;
 import java.util.*;
-import com.flipfit.DAO.GymUserDAOImpl.roleMap;
+import com.flipfit.dao.GymUserDAOImpl.roleMap;
 
 public class GymAdminDAOImpl implements GymAdminDAO {
 

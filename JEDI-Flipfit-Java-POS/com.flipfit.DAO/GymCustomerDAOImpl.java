@@ -2,6 +2,7 @@ package com.flipfit.dao;
 
 import com.flipfit.bean.*;
 import com.flipfit.dao.GymUserDAOImpl;
+
 import java.util.*;
 
 public class GymCustomerDAOImpl implements GymCustomerDAO {
