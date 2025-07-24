@@ -110,6 +110,10 @@ public class GymUserDAOImpl implements GymUserDAO {
         userMap.remove(userId);
     }
 
+    public Role getRole(int role) {
+        return roleMap.get(role);
+    }
+
     // public boolean validateLogin(String username, String password) {
     // for (GymUser user : userMap.values()) {
     // if (user.getUserName().equals(username) &&

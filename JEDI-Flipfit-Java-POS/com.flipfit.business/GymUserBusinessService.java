@@ -27,10 +27,10 @@ public class GymUserBusinessService implements GymUserBusinessServiceInterface {
         return userDAO.getUserByUsername(userName) != null;
     }
 
-    public GymUser createUserBean(String name, String pass, Role role, String userName) {
+    public GymUser createUserBean(String name, String pass, int role, String userName) {
         GymUser user = new GymUser();
         user.setUserName(userName);
-        user.setRole(role);
+        user.setRole(userDAO.getRole(role));
         user.setName(name);
         user.setPassword(pass);
         // The DAO will set the user ID when the user is added to the database.
@@ -40,4 +40,5 @@ public class GymUserBusinessService implements GymUserBusinessServiceInterface {
     public void addUser(GymUser user) {
         userDAO.addUser(user);
     }
+
 }
