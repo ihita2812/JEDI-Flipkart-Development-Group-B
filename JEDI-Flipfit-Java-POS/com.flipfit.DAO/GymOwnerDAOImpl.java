@@ -2,9 +2,8 @@ package com.flipfit.dao;
 
 import com.flipfit.bean.*;
 import java.util.*;
-// import com.flipfit.DAO.GymUserDAOImpl.roleMap;
-// Access roleMap via GymUserDAOImpl.roleMap if it is public and static
-// import com.flipfit.DAO.GymUserDAOImpl.centermap;
+import com.flipfit.DAO.GymUserDAOImpl.roleMap;
+import com.flipfit.DAO.GymUserDAOImpl.notificationMap;
 
 public class GymOwnerDAOImpl implements GymOwnerDAO {
 
@@ -37,7 +36,7 @@ public class GymOwnerDAOImpl implements GymOwnerDAO {
         ownerMap.put(owner2.getOwnerId(), owner2);
     }
 
-   
+    @Override
     public List<GymCenter> getAllCenters(int OwnerId)
     {
         List<GymCenter> ownerGyms = new ArrayList<>();
@@ -92,5 +91,14 @@ public class GymOwnerDAOImpl implements GymOwnerDAO {
         ownerMap.remove(ownerId);
     }
     
-    
+    public void addGymCenter(GymCenter gymCenter) {
+        // This method would typically save the gym center to a database.
+        // For now, we will just add it to the map.
+        // GymUserDAOImpl.centermap.put(gymCenter.getCenterId(), gymCenter);
+        // System.out.println("Gym Center Added: " + gymCenter.getName());
+        int newGymCenterId = Collections.max(centerMap.keySet()) + 1;
+        gymCenter.setCenterId(newGymCenterId);
+        centerMap.put(newGymCenterId, gymCenter);
+        // System.out.println("User added successfully with ID: " + newGymCenterId);
+    }
 }

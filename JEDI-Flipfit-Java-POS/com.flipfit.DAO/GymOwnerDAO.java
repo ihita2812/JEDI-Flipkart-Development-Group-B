@@ -5,6 +5,7 @@ import java.util.List;
 
 public interface GymOwnerDAO {
     void addOwner(GymOwner owner);
+    void addGymCenter(GymCenter gymCenter);
     GymOwner getOwnerById(int ownerId);
     List<GymOwner> getAllOwners();
     List<GymCenter> getAllCenters(int ownerId);

@@ -1,13 +1,11 @@
 package com.flipfit.client;
 
-import java.util.Scanner;
 import com.flipfit.bean.*;
 import com.flipfit.business.*;
-import com.flipfit.DAO.*;
-import java.util.List;
+import java.util.*;
 
 public class GymOwnerMenu {
-    public static void ownerMenu() {
+    public static void ownerMenu(int ownerId) {
         GymOwnerBusinessServiceInterface ownerBusiness = new GymOwnerBusinessService();
         Boolean isRunning = true;
 
@@ -34,12 +32,22 @@ public class GymOwnerMenu {
                 System.out.println("---------------------------------------------");
                 System.out.println("Enter Center Name:");
                 String centerName = scanner.nextLine();
+                scanner.nextLine();
                 System.out.println("Enter Center Location:");
                 String centerLocation = scanner.nextLine();
-                ownerBusiness.registerGymCenter("CultFit", "Kormangla");
+                scanner.nextLine();
+                System.out.println("Enter Gym Capacity:");
+                int capacity = scanner.nextInt();
+                scanner.nextLine(); 
+                System.out.println("Enter Number of Slots:");
+                int numSlots = scanner.nextInt();
+                scanner.nextLine(); 
+                GymCenter newgymCenter = ownerBusiness.createGymCenterBean(centerName, centerLocation, capacity, numSlots, ownerId);
+                ownerBusiness.registerGymCenter(newgymCenter);
+                System.out.println("Your gym has been sent for approval!");
                 break;
             case 2:
-                List<GymCenter> gymCenters= ownerBusiness.viewGymCenters(new GymOwner());
+                List<GymCenter> gymCenters= ownerBusiness.viewGymCenters(ownerId);
                 if (gymCenters.isEmpty()) {
                     System.out.println("No gym centers found for this owner.");
                 } else {
@@ -56,7 +64,16 @@ public class GymOwnerMenu {
                 ownerBusiness.viewSlot(new GymCenter());
                 break;
             case 5:
-                ownerBusiness.viewNotifications();
+                System.out.println("Notifications:");
+                // Assuming viewNotifications returns a list of notifications
+                List <Notificaton> notifications = ownerBusiness.viewNotifications();
+                for (Notificaton notification : notifications) {
+                    System.out.println(notification.getMessage());
+                }
+                if (notifications.isEmpty()) {
+                    System.out.println("No notifications available.");
+                }
+                System.out.println("---------------------------------------------");
                 break;
             case 6:
                 ownerBusiness.viewPayment(new GymCenter());

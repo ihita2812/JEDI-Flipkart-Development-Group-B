@@ -47,7 +47,7 @@ public class GymFlipfitApplicationClient {
                                 GymCustomerMenu.customerMenu(0);
                                 break;
                             case 1:
-                                GymOwnerMenu.ownerMenu();
+                                GymOwnerMenu.ownerMenu(0);
                                 break;
                             case 2:
                                 GymAdminMenu.adminMenu(0);

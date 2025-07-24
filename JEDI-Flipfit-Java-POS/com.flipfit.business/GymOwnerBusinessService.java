@@ -1,12 +1,15 @@
 package com.flipfit.business;
 
 import com.flipfit.bean.*;
-import com.flipfit.DAO.*;
+import com.flipfit.dao.GymOwnerDAO;
+import com.flipfit.dao.GymOwnerDAOImpl;
 import java.util.Collections;
 import java.util.List;
 
+import java.util.*;
 
 public class GymOwnerBusinessService implements GymOwnerBusinessServiceInterface{
+    private GymOwnerDAO ownerDAO = new GymOwnerDAOImpl();
     
     public void registerOwner(GymOwner gymOwner) {
         ownerMap.put(gymOwner.getOwnerId(), gymOwner);
@@ -17,7 +20,7 @@ public class GymOwnerBusinessService implements GymOwnerBusinessServiceInterface
         return (currMax + 1);
     }
 
-    public GymOwner createOwnerBean(String name, String password, int role, String userName) {
+    public GymOwner createOwnerBean(String name, String password, int role, String userName ) {
         GymOwner gymOwner = new GymOwner();
         gymOwner.setOwnerId(nextOwnerId());
         gymOwner.setName(name);
@@ -26,43 +29,63 @@ public class GymOwnerBusinessService implements GymOwnerBusinessServiceInterface
         gymOwner.setUserName(userName);
         return gymOwner;
     }
-    public List viewGymCenters(GymOwner owner) {
-        int ownerId = owner.getOwnerId();
+
+    public List viewGymCenters(int ownerId) {
         List<GymCenter> gymCenters = GymOwnerDAOImpl.getAllCenters(ownerId);
         return gymCenters;
         // This method would typically return a list of GymCenter objects
-        // query a database to get all GymCenter objects where ownerId
-        // matches the owner's ID.
+        // fetching gym centers from a database or service.
+        // System.out.println("Gym Centers Viewed");
     }
+   
     public void viewBookingDetails(Slot slot) {
         System.out.println("Booking Details Viewed");
     }
+   
     public void addSlotsAndCapacity(GymCenter center, int numSlots, int capacity) {
         // updating the database with the new slot information.
         center.setNumSlots(numSlots);
         center.setCapacity(capacity);
         System.out.println("Slots and capacity added for center: " + center.getName());
     }
-    public void viewNotifications(){
-        //fetching notifications from a database or a notification service.
-        System.out.println("Notifications viewed"); 
+    public List <Notification> viewNotifications(){
+        int ownerId = owner.getOwnerId();
+        
+        // iterate in notificationMap and store the Notification objects in a List which match the owner's ID
+        List <Notification> notifications = viewOwnerNotifications(ownerId);
+
+        return notifications;
     }
+  
     public void viewPayment(GymCenter center) {
         // fetching payment details from a database or payment service.
         System.out.println("Payment details viewed");
     }
 
+  
      public void viewSlot(GymCenter gymCenter){
         //fetching all the slots of the gym 
         System.out.println("Slot Viewed");
      }
-    public int registerGymCenter(String centerName, String centerLocation) {
+    
+    public GymCenter createGymCenterBean(String centerName, String centerLocation, int capacity, int numSlots, int ownerId) {
+        GymCenter gymCenter = new GymCenter();
+        gymCenter.setName(centerName);
+        gymCenter.setLocation(centerLocation);
+        gymCenter.setCapacity(capacity);
+        gymCenter.setNumSlots(numSlots);
+        gymCenter.setOwnerId(ownerId);
+        gymCenter.setApprovalStatus(2); // pending approval
+        return gymCenter;  
         // give GSTIN etc number of self to register gym
         // send to admin for approval
-        System.out.println("Yout gym has been sent for approval!");
-        return 0;
     }
 
+    public void registerGymCenter(GymCenter gymCenter) {
+        // This method would typically save the gym center to a database.
+        ownerDAO.addGymCenter(gymCenter);
+        // System.out.println("Gym Center Registered: " + gymCenter.getName());
+    }
     public void editSlot(int slotID, String centerName){
         System.out.println("Your slot has been edited");
     }
