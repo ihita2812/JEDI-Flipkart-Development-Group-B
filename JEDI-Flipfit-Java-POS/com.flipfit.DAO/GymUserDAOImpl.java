@@ -82,6 +82,7 @@ public class GymUserDAOImpl implements GymUserDAO {
 
     }
 
+<<<<<<< HEAD
     public List<Booking> getBookingsByCustomerId(int customerId) {
         List<Booking> bookings = new ArrayList<>();
         for (Booking booking : bookingMap.values()) {
@@ -96,28 +97,19 @@ public class GymUserDAOImpl implements GymUserDAO {
 
     /*
     @Override
+=======
+>>>>>>> 14ddfb19a79053e20e40bf3d9935edf605ddcd2a
     public void addUser(GymUser user) {
-        for (GymUser existing : userMap.values()) {
-            if (existing.getUserName().equals(user.getUserName())) {
-                System.out.println("Username already exists!");
-                return;
-            }
-        }
-        
-        int newUserId = userMap.keySet().stream()
-                               .max(Integer::compareTo)
-                               .orElse(0) + 1;
+        int newUserId = Collections.max(userMap.keySet()) + 1;
         user.setUserId(newUserId);
         userMap.put(newUserId, user);
         System.out.println("User added successfully with ID: " + newUserId);
     }
 
-    @Override
     public GymUser getUserById(int userId) {
         return userMap.get(userId);
     }
 
-    @Override
     public GymUser getUserByUsername(String username) {
         for (GymUser user : userMap.values()) {
             if (user.getUserName().equals(username)) {
@@ -127,24 +119,26 @@ public class GymUserDAOImpl implements GymUserDAO {
         return null;
     }
 
-    @Override
     public List<GymUser> getAllUsers() {
         return new ArrayList<>(userMap.values());
     }
 
-    @Override
     public void removeUser(int userId) {
         userMap.remove(userId);
     }
 
-    @Override
-    public boolean validateLogin(String username, String password) {
-        for (GymUser user : userMap.values()) {
-            if (user.getUserName().equals(username) && user.getPassword().equals(password)) {
-                return true;
-            }
-        }
-        return false;
+    public Role getRole(int role) {
+        return roleMap.get(role);
     }
-     */
+
+    // public boolean validateLogin(String username, String password) {
+    // for (GymUser user : userMap.values()) {
+    // if (user.getUserName().equals(username) &&
+    // user.getPassword().equals(password)) {
+    // return true;
+    // }
+    // }
+    // return false;
+    // }
+
 }

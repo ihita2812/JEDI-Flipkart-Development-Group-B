@@ -2,22 +2,15 @@ package com.flipfit.client;
 
 import java.util.Scanner;
 
-import com.flipfit.bean.*;
-import com.flipfit.business.*;
-import com.flipfit.client.GymCustomerMenu;
-import com.flipfit.client.GymAdminMenu;
-import com.flipfit.client.GymOwnerMenu;
-import com.flipfit.business.GymUserBusinessService.userNameExists;
-import com.flipfit.business.GymUserBusinessService.nextUserId;
-import com.flipfit.business.GymUserBusinessService.createUserBean;
+import com.flipfit.bean.GymCustomer;
+import com.flipfit.bean.GymOwner;
+import com.flipfit.bean.GymUser;
+import com.flipfit.business.GymCustomerBusinessService;
+import com.flipfit.business.GymOwnerBusinessService;
+import com.flipfit.business.GymUserBusinessService;
 
 public class GymFlipfitApplicationClient {
     public static void main(String[] args) {
-
-        com.flipfit.DAO.GymUserDAOImpl userDAO = new com.flipfit.DAO.GymUserDAOImpl();
-
-
-
 
         Scanner scanner = new Scanner(System.in);
         GymCustomerBusinessService customerBusiness = new GymCustomerBusinessService();
@@ -36,7 +29,7 @@ public class GymFlipfitApplicationClient {
             System.out.println("\t5\tExit");
 
             int choice = scanner.nextInt();
-            scanner.nextLine();  // consume newline
+            scanner.nextLine(); // consume newline
 
             switch (choice) {
                 case 1:
@@ -48,7 +41,6 @@ public class GymFlipfitApplicationClient {
                     int role = scanner.nextInt();
                     scanner.nextLine(); // consume newline
 
-                    
                     if (username.equals("user") && password.equals("pass")) {
                         switch (role) {
                             case 0:
@@ -66,7 +58,6 @@ public class GymFlipfitApplicationClient {
                     }
                     break;
 
-                
                 // ROLL OBJECT CREATION
                 case 2:
                     // ---------------------------------------------------------------------------
@@ -76,7 +67,7 @@ public class GymFlipfitApplicationClient {
                         System.out.println("Enter UNIQUE username:");
                         userName = scanner.nextLine();
                         scanner.nextLine();
-                        exists = userNameExists(userName);
+                        exists = userBusiness.userNameExists(userName);
                     }
                     System.out.println("Enter name:");
                     String name = scanner.nextLine();
@@ -84,9 +75,9 @@ public class GymFlipfitApplicationClient {
                     System.out.println("Enter password:");
                     String pasword = scanner.nextLine();
                     scanner.nextLine();
-                    GymUser newUser = createUserBean(name, password, role, userName);
-                    addUser(newUser);
-                    System.out.println("User registered successfully with ID: " + nextUserId);
+                    GymUser newUser = userBusiness.createUserBean(name, password, role, userName);
+                    userBusiness.addUser(newUser);
+                    System.out.println("User registered successfully with ID: " + newUser.getUserId());
                     // ---------------------------------------------------------------------------
                     System.out.println("Enter age:");
                     int age = scanner.nextInt();
@@ -101,7 +92,8 @@ public class GymFlipfitApplicationClient {
                     String email = scanner.nextLine();
                     scanner.nextLine();
 
-                    GymCustomer newCustomer = customerBusiness.createCustomerBean(name, pasword, role, userName, age, loca, gender, email);
+                    GymCustomer newCustomer = customerBusiness.createCustomerBean(name, pasword, role, userName, age,
+                            loca, gender, email);
                     customerBusiness.registerCustomer(newCustomer);
                     System.out.println("Customer registered successfully with ID: " + newCustomer.getCustomerId());
 
@@ -115,7 +107,7 @@ public class GymFlipfitApplicationClient {
                         System.out.println("Enter UNIQUE username:");
                         userName1 = scanner.nextLine();
                         scanner.nextLine();
-                        exists1 = userNameExists(userName);
+                        exists1 = userBusiness.userNameExists(userName);
                     }
                     System.out.println("Enter name:");
                     String name1 = scanner.nextLine();
@@ -123,8 +115,8 @@ public class GymFlipfitApplicationClient {
                     System.out.println("Enter password:");
                     String password1 = scanner.nextLine();
                     scanner.nextLine();
-                    GymUser newUser1 = createUserBean(name1, password1, role, userName1);
-                    addUser(newUser1);
+                    GymUser newUser1 = userBusiness.createUserBean(name1, password1, role, userName1);
+                    userBusiness.addUser(newUser1);
                     System.out.println("User registered successfully with ID: " + newUser1.getUserId());
                     // ---------------------------------------------------------------------------
                     System.out.println("Enter gender:");
@@ -151,7 +143,7 @@ public class GymFlipfitApplicationClient {
 
                 default:
                     System.out.println("Invalid choice! Please select again.");
-                    
+
             }
         }
 
