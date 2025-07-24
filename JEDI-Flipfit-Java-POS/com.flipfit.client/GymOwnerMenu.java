@@ -29,10 +29,33 @@ public class GymOwnerMenu {
 
         switch (choice) {
             case 1:
-                ownerBusiness.registerGymCenter("CultFit", "Kormangla");
+                System.out.println("---------------------------------------------");
+                System.out.println("Enter Center Name:");
+                String centerName = scanner.nextLine();
+                scanner.nextLine();
+                System.out.println("Enter Center Location:");
+                String centerLocation = scanner.nextLine();
+                scanner.nextLine();
+                System.out.println("Enter Gym Capacity:");
+                int capacity = scanner.nextInt();
+                scanner.nextLine(); 
+                System.out.println("Enter Number of Slots:");
+                int numSlots = scanner.nextInt();
+                scanner.nextLine(); 
+                GymCenter newgymCenter = ownerBusiness.createGymCenterBean(centerName, centerLocation, capacity, numSlots, ownerId);
+                ownerBusiness.registerGymCenter(newgymCenter);
+                System.out.println("Your gym has been sent for approval!");
                 break;
             case 2:
-                ownerBusiness.viewGymCenters(new GymOwner());
+                List<GymCenter> gymCenters= ownerBusiness.viewGymCenters(ownerId);
+                if (gymCenters.isEmpty()) {
+                    System.out.println("No gym centers found for this owner.");
+                } else {
+                    System.out.println("Gym Centers for you:");
+                    for (GymCenter center : gymCenters) {
+                        System.out.println("Center Name: " + center.getName() + ", Location: " + center.getLocation());
+                    }
+                }
                 break;
             case 3:
                 ownerBusiness.addSlotsAndCapacity(new GymCenter(), 5, 20);
@@ -43,8 +66,8 @@ public class GymOwnerMenu {
             case 5:
                 System.out.println("Notifications:");
                 
-                List <Notificaton> notifications = ownerBusiness.viewNotificationsByOwnerId(ownerId);
-                for (Notificaton notification : notifications) {
+                List <Notification> notifications = ownerBusiness.viewNotificationsByOwnerId(ownerId);
+                for (Notification notification : notifications) {
                     System.out.println(notification.getMessage());
                 }
                 if (notifications.isEmpty()) {
@@ -56,7 +79,7 @@ public class GymOwnerMenu {
                 ownerBusiness.viewPayment(new GymCenter());
                 break;
             case 7:
-                ownerBusiness.editSlot("23", "HSR");
+                ownerBusiness.editSlot(23, "HSR");
                 break;
             case 8:
                 System.out.println("Logging out...");

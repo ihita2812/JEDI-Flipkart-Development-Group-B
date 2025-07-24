@@ -2,10 +2,11 @@ package com.flipfit.business;
 
 import com.flipfit.bean.*;
 import java.util.*;
-import com.flipfit.dao.GymCustomerDAOImpl;
-import com.flipfit.dao.GymUserDAOImpl;
+import com.flipfit.dao.*;
 
 public class GymCustomerBusinessService implements GymCustomerBusinessServiceInterface {
+    private GymCustomerDAO customerDAO = new GymCustomerDAOImpl();
+
     public void registerCustomer(GymCustomer gymCustomer) {
         GymCustomerDAOImpl.customerMap.put(gymCustomer.getCustomerId(), gymCustomer);
     }
@@ -15,8 +16,7 @@ public class GymCustomerBusinessService implements GymCustomerBusinessServiceInt
         return (currMax + 1);
     }
 
-    public GymCustomer createCustomerBean(String name, String password, int role, String userName, int age,
-            String location, int gender, String email) {
+    public GymCustomer createCustomerBean(String name, String password, int role, String userName, int age, String location, int gender, String email) {
         GymCustomer gymCustomer = new GymCustomer();
         gymCustomer.setCustomerId(nextCustomerId());
         gymCustomer.setName(name);
@@ -48,7 +48,7 @@ public class GymCustomerBusinessService implements GymCustomerBusinessServiceInt
     }
     public List <Notification> viewNotificationsByCustomerId(int customerId){
         // iterate in notificationMap and store the Notification objects in a List which match the owner's ID
-        List <Notification> notifications = getNotificationsByCustomerId(customerId);
+        List <Notification> notifications = customerDAO.getNotificationsByCustomerId(customerId);
 
         return notifications;
     }

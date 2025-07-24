@@ -9,8 +9,8 @@ public class GymOwnerDAOImpl implements GymOwnerDAO {
     public static Map<Integer, GymOwner> ownerMap = new HashMap<>();
 
     public GymOwnerDAOImpl() {
-
-        Role ownerRole = GymOwnerDAOImpl.roleMap.get(1);
+        Role ownerRole = GymUserDAOImpl.roleMap.get(1);
+        // Role ownerRole = roleMap.get(1);
 
         GymOwner owner1 = new GymOwner();
         owner1.setUserId(2);
@@ -37,32 +37,38 @@ public class GymOwnerDAOImpl implements GymOwnerDAO {
 
     public List <Notification> getNotificationsByOwnerId(int ownerId) {
         List <Notification> notifications = new ArrayList<>();
-        for (Notification notification : notificationMap.values()) {
+        for (Notification notification : GymUserDAOImpl.notificationMap.values()) {
             if (notification.getUserId() == ownerId) {
                 notifications.add(notification);
             }
         }
         return notifications;
     }
-    /*
+
+     public List <GymCenter> getAllCentersByOwnerId(int ownerId) {
+        List <GymCenter> gymCenters = new ArrayList<>();
+        for (GymCenter gymCenter : GymUserDAOImpl.centerMap.values()) {
+            if (gymCenter.getOwnerId() == ownerId) {
+                gymCenters.add(gymCenter);
+            }
+        }
+        return gymCenters;
+    }
+
     @Override
-    public void addOwner(GymOwner owner) {
+    public void addOwner(GymOwner gymOwner) {
         // Check if username already exists
         for (GymOwner existing : ownerMap.values()) {
-            if (existing.getUserName().equals(owner.getUserName())) {
+            if (existing.getUserName().equals(gymOwner.getUserName())) {
                 System.out.println("Username already exists!");
                 return;
             }
         }
-
-        // Auto-generate owner ID
-        int newOwnerId = ownerMap.keySet().stream()
-                                 .max(Integer::compareTo)
-                                 .orElse(0) + 1;
-        owner.setOwnerId(newOwnerId);
-        owner.setUserId(newOwnerId); // For compatibility with GymUser
-        ownerMap.put(newOwnerId, owner);
-        System.out.println("Owner added successfully with ID: " + newOwnerId);
+      
+        int newOwnerId = Collections.max(ownerMap.keySet()) + 1;
+        gymOwner.setOwnerId(newOwnerId);
+        ownerMap.put(newOwnerId, gymOwner);
+        // System.out.println("Owner added successfully with ID: " + newOwnerId);
     }
 
     @Override
@@ -84,6 +90,15 @@ public class GymOwnerDAOImpl implements GymOwnerDAO {
     public void removeOwner(int ownerId) {
         ownerMap.remove(ownerId);
     }
-    */
     
+    public void addGymCenter(GymCenter gymCenter) {
+        // This method would typically save the gym center to a database.
+        // For now, we will just add it to the map.
+        // GymUserDAOImpl.centermap.put(gymCenter.getCenterId(), gymCenter);
+        // System.out.println("Gym Center Added: " + gymCenter.getName());
+        int newGymCenterId = Collections.max(GymUserDAOImpl.centerMap.keySet()) + 1;
+        gymCenter.setCenterId(newGymCenterId);
+        GymUserDAOImpl.centerMap.put(newGymCenterId, gymCenter);
+        // System.out.println("User added successfully with ID: " + newGymCenterId);
+    }
 }

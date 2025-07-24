@@ -44,7 +44,7 @@ public class GymCustomer extends GymUser{
         return this.gender;
     }
 
-    public void setGender(char gender) {
+    public void setGender(int gender) {
         this.gender = gender;
     }    
 

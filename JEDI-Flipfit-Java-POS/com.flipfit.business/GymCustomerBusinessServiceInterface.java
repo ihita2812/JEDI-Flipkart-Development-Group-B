@@ -6,8 +6,7 @@ import java.util.*;
 import com.flipfit.bean.*;
 
 public interface GymCustomerBusinessServiceInterface {
-    void registerCustomer(GymCustomer gymCustomer);
-
+    public void registerCustomer(GymCustomer gymCustomer);
     void viewGymCenter(String location);
 
     List<Slot> viewSlot(int gymCenterId);
@@ -23,6 +22,6 @@ public interface GymCustomerBusinessServiceInterface {
     void viewBookings();
 
     public void editProfile(GymCustomer gymCustomer);
-    public GymOwner createOwnerBean(String name, String password, int role, String userName, int gender, String email);
+    public GymCustomer createCustomerBean(String name, String password, int role, String userName, int age,String location, int gender, String email);
     public List <Notification> viewNotificationsByCustomerId(int customerId);
 }

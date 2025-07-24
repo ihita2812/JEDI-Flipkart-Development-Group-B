@@ -5,12 +5,14 @@ import com.flipfit.DAO.*;
 
 public interface GymOwnerBusinessServiceInterface {
     public void registerOwner(GymOwner gymOwner);
-    public void viewGymCenters(GymOwner owner);
+    public List<GymCenter> viewGymCenters(int ownerId);
     public void viewBookingDetails(Slot slot);
     public void addSlotsAndCapacity(GymCenter center, int numSlots, int capacity);
-    public List <Notification> viewNotifications(int ownerId);
+    public List <Notification> viewNotificationsByOwnerId(int ownerId);
     public void viewPayment(GymCenter center);
     public void viewSlot(GymCenter gymCenter);
-    public int registerGymCenter(String centerName, String centerLocation);
+    public void registerGymCenter(GymCenter gymCenter);
+    public GymCenter createGymCenterBean(String centerName, String centerLocation, int capacity, int numSlots, int ownerId);
     public void editSlot(int slotID, String centerName);
+    public GymOwner createOwnerBean(String name, String password, int role, String userName, int gender, String email);
 }

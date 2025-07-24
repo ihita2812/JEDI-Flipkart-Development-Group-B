@@ -42,7 +42,7 @@ public class GymCustomerDAOImpl implements GymCustomerDAO {
 
     public List<Notification> getNotificationsByCustomerId(int customerId) {
         List<Notification> notifications = new ArrayList<>();
-        for (Notification notification : notificationMap.values()) {
+        for (Notification notification : GymUserDAOImpl.notificationMap.values()) {
             if (notification.getUserId() == customerId) {
                 notifications.add(notification);
             }
