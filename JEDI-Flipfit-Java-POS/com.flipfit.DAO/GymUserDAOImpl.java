@@ -211,8 +211,14 @@ public class GymUserDAOImpl implements GymUserDAO {
         return null;
     }
 
-    public List<GymCenter> getAllCenters() {
-        return new ArrayList<>(centerMap.values());
+    public List<GymCenter> getAllValidCenters() {
+        List<GymCenter> centers = new ArrayList<>();
+        for (GymCenter center : centerMap.values()) {
+            if (center.getApprovalStatus() == 1) {
+                centers.add(center);
+            }
+        }
+        return centers;
     }
 
     @Override
