@@ -2,12 +2,15 @@ package com.flipfit.dao;
 
 import com.flipfit.bean.GymOwner;
 import java.util.*;
+import com.flipfit.DAO.GymUserDAOImpl.roleMap;
 
 public class GymOwnerDAOImpl implements GymOwnerDAO {
 
     private Map<Integer, GymOwner> ownerMap = new HashMap<>();
 
     public GymOwnerDAOImpl() {
+
+        Role ownerRole = roleMap.get(1);
 
         GymOwner owner1 = new GymOwner();
         owner1.setUserId(2);
