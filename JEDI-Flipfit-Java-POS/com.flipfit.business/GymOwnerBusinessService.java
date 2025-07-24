@@ -1,13 +1,12 @@
 package com.flipfit.business;
 
 import com.flipfit.bean.*;
-import com.flipfit.DAO.GymOwnerDAOImpl.ownerMap;
-import java.util.Collections;
-
+import java.util.*;
 
 
 public class GymOwnerBusinessService implements GymOwnerBusinessServiceInterface{
     
+    @Override
     public void registerOwner(GymOwner gymOwner) {
         ownerMap.put(gymOwner.getOwnerId(), gymOwner);
     }
@@ -26,33 +25,48 @@ public class GymOwnerBusinessService implements GymOwnerBusinessServiceInterface
         gymOwner.setUserName(userName);
         return gymOwner;
     }
-    public void viewGymCenters(GymOwner owner) {
+    @Override
+    public List <Notification> viewGymCenters(GymOwner owner) {
         int ownerId = owner.getOwnerId();
-        // query a database to get all GymCenter objects where ownerId
-        // matches the owner's ID.
+        
+        // iterate in notificationMap and store the Notification objects in a List which match the owner's ID
+        List <Notification> notifications = new ArrayList<>();
+        for (Notification notification : notificationMap.values()) {
+            if (notification.getUserId() == ownerId) {
+                notifications.add(notification);
+            }
+        }
+
+        return notifications;
     }
+    @Override
     public void viewBookingDetails(Slot slot) {
         System.out.println("Booking Details Viewed");
     }
+    @Override
     public void addSlotsAndCapacity(GymCenter center, int numSlots, int capacity) {
         // updating the database with the new slot information.
         center.setNumSlots(numSlots);
         center.setCapacity(capacity);
         System.out.println("Slots and capacity added for center: " + center.getName());
     }
+    @Override
     public void viewNotifications(){
         //fetching notifications from a database or a notification service.
         System.out.println("Notifications viewed"); 
     }
+    @Override
     public void viewPayment(GymCenter center) {
         // fetching payment details from a database or payment service.
         System.out.println("Payment details viewed");
     }
 
+     @Override
      public void viewSlot(GymCenter gymCenter){
         //fetching all the slots of the gym 
         System.out.println("Slot Viewed");
      }
+    @Override
     public int registerGymCenter(String centerName, String centerLocation) {
         // give GSTIN etc number of self to register gym
         // send to admin for approval
@@ -60,6 +74,7 @@ public class GymOwnerBusinessService implements GymOwnerBusinessServiceInterface
         return 0;
     }
 
+    @Override
     public void editSlot(int slotID, String centerName){
         System.out.println("Your slot has been edited");
     }
