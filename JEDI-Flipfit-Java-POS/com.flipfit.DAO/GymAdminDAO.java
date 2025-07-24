@@ -4,9 +4,9 @@ import com.flipfit.bean.GymAdmin;
 import java.util.List;
 
 public interface GymAdminDAO {
-    void addAdmin(GymAdmin admin);
+    /*void addAdmin(GymAdmin admin);
     GymAdmin getAdminById(int adminId);
     List<GymAdmin> getAllAdmins();
     void updateAdmin(GymAdmin admin);
-    void removeAdmin(int adminId);
+    void removeAdmin(int adminId);*/
 }

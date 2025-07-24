@@ -1,8 +1,8 @@
 package com.flipfit.client;
 
-import java.util.Scanner;
 import com.flipfit.bean.*;
 import com.flipfit.business.*;
+import java.util.*;
 
 public class GymOwnerMenu {
     public static void ownerMenu() {
@@ -41,7 +41,15 @@ public class GymOwnerMenu {
                 ownerBusiness.viewSlot(new GymCenter());
                 break;
             case 5:
-                ownerBusiness.viewNotifications();
+                System.out.println("Notifications:");
+                // Assuming viewNotifications returns a list of notifications
+                List <Notificaton> notifications = ownerBusiness.viewNotifications();
+                for (Notificaton notification : notifications) {
+                    System.out.println(notification.getMessage());
+                }
+                if (notifications.isEmpty()) {
+                    System.out.println("No notifications available.");
+                }
                 break;
             case 6:
                 ownerBusiness.viewPayment(new GymCenter());
