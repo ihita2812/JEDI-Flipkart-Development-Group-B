@@ -1,8 +1,9 @@
 package com.flipfit.DAO;
 
-import com.flipfit.bean.GymAdmin;
+import com.flipfit.bean.*;
+import com.flipfit.dao.GymAdminDAO;
 import java.util.*;
-import com.flipfit.DAO.GymUserDAOImpl.roleMap;
+import com.flipfit.dao.GymUserDAOImpl;
 
 public class GymAdminDAOImpl implements GymAdminDAO {
 
@@ -10,7 +11,7 @@ public class GymAdminDAOImpl implements GymAdminDAO {
 
     public GymAdminDAOImpl() {
 
-        Role adminRole = roleMap.get(2);
+        Role adminRole = GymUserDAOImpl.roleMap.get(2);
 
         GymAdmin admin1 = new GymAdmin();
         admin1.setUserId(1);

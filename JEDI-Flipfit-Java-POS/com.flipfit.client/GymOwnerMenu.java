@@ -65,9 +65,9 @@ public class GymOwnerMenu {
                 break;
             case 5:
                 System.out.println("Notifications:");
-                // Assuming viewNotifications returns a list of notifications
-                List <Notificaton> notifications = ownerBusiness.viewNotifications();
-                for (Notificaton notification : notifications) {
+                
+                List <Notification> notifications = ownerBusiness.viewNotificationsByOwnerId(ownerId);
+                for (Notification notification : notifications) {
                     System.out.println(notification.getMessage());
                 }
                 if (notifications.isEmpty()) {

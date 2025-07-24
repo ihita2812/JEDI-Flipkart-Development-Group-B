@@ -5,7 +5,7 @@ public class GymCustomer extends GymUser{
     private int customerId;
     private int age;
     private String location;
-    private char gender;
+    private int gender;
     private String email;
 
     public String getEmail() {
@@ -40,11 +40,11 @@ public class GymCustomer extends GymUser{
         this.location = location;
     }
 
-    public char getGender() {
+    public int getGender() {
         return this.gender;
     }
 
-    public void setGender(char gender) {
+    public void setGender(int gender) {
         this.gender = gender;
     }    
 

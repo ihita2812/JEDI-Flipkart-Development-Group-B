@@ -2,6 +2,7 @@ package com.flipfit.dao;
 
 import com.flipfit.bean.GymAdmin;
 import java.util.List;
+import com.flipfit.dao.GymUserDAOImpl;
 
 public interface GymAdminDAO {
     /*void addAdmin(GymAdmin admin);

@@ -1,8 +1,8 @@
 package com.flipfit.business;
 
 import com.flipfit.bean.*;
-import com.flipfit.dao.GymOwnerDAO;
-import com.flipfit.dao.GymOwnerDAOImpl;
+import com.flipfit.dao.*;
+
 import java.util.Collections;
 import java.util.List;
 
@@ -10,28 +10,28 @@ import java.util.*;
 
 public class GymOwnerBusinessService implements GymOwnerBusinessServiceInterface{
     private GymOwnerDAO ownerDAO = new GymOwnerDAOImpl();
+    private GymUserDAO userDAO = new GymUserDAOImpl();
+
     
     public void registerOwner(GymOwner gymOwner) {
-        ownerMap.put(gymOwner.getOwnerId(), gymOwner);
+        ownerDAO.addOwner(gymOwner);
+        
     }
 
-    public int nextOwnerId() {
-        int currMax = Collections.max(ownerMap.keySet());
-        return (currMax + 1);
-    }
 
-    public GymOwner createOwnerBean(String name, String password, int role, String userName ) {
+    public GymOwner createOwnerBean(String name, String password, int role, String userName, int gender, String email) {
         GymOwner gymOwner = new GymOwner();
-        gymOwner.setOwnerId(nextOwnerId());
         gymOwner.setName(name);
         gymOwner.setPassword(password);
-        gymOwner.setRole(role);
+        gymOwner.setRole(userDAO.getRole(role));
         gymOwner.setUserName(userName);
+        gymOwner.setGender(gender);
+        gymOwner.setEmail(email);
         return gymOwner;
     }
 
-    public List viewGymCenters(int ownerId) {
-        List<GymCenter> gymCenters = GymOwnerDAOImpl.getAllCenters(ownerId);
+    public List <GymCenter>  viewGymCenters(int ownerId) {
+        List<GymCenter> gymCenters = ownerDAO.getAllCentersByOwnerId(ownerId);
         return gymCenters;
         // This method would typically return a list of GymCenter objects
         // fetching gym centers from a database or service.
@@ -48,11 +48,9 @@ public class GymOwnerBusinessService implements GymOwnerBusinessServiceInterface
         center.setCapacity(capacity);
         System.out.println("Slots and capacity added for center: " + center.getName());
     }
-    public List <Notification> viewNotifications(){
-        int ownerId = owner.getOwnerId();
-        
+    public List <Notification> viewNotificationsByOwnerId(int ownerId){
         // iterate in notificationMap and store the Notification objects in a List which match the owner's ID
-        List <Notification> notifications = viewOwnerNotifications(ownerId);
+        List <Notification> notifications = ownerDAO.getNotificationsByOwnerId(ownerId);
 
         return notifications;
     }

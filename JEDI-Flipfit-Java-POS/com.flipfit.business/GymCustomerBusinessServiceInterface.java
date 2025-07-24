@@ -1,20 +1,27 @@
 
 package com.flipfit.business;
 
+import java.util.*;
+import java.util.*;
 import com.flipfit.bean.*;
 
 public interface GymCustomerBusinessServiceInterface {
-    public GymCenter registerCustomer(GymCustomer gymCustomer);
+    public void registerCustomer(GymCustomer gymCustomer);
     void viewGymCenter(String location);
-    void viewSlot(int gymCenterId);
+
+    List<Slot> viewSlot(int gymCenterId);
+
     void bookSlot(int slotId);
+
     void cancelBooking(int bookingId);
+
     void editBooking(int bookingId);
+
     void makePayment(int bookingId);
+
     void viewBookings();
+
     public void editProfile(GymCustomer gymCustomer);
+    public GymCustomer createCustomerBean(String name, String password, int role, String userName, int age,String location, int gender, String email);
+    public List <Notification> viewNotificationsByCustomerId(int customerId);
 }
-
-
-
-
