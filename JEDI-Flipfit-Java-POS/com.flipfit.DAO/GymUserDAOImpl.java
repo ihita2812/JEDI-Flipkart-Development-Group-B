@@ -82,6 +82,18 @@ public class GymUserDAOImpl implements GymUserDAO {
 
     }
 
+    public List<Booking> getBookingsByCustomerId(int customerId) {
+        List<Booking> bookings = new ArrayList<>();
+        for (Booking booking : bookingMap.values()) {
+            if (booking.getCustomerId() == customerId) {
+                bookings.add(booking);
+            }
+        }
+        return bookings;
+    }
+
+
+
     /*
     @Override
     public void addUser(GymUser user) {

@@ -2,7 +2,8 @@ package com.flipfit.business;
 
 import com.flipfit.bean.*;
 import java.util.Collections;
-import com.flipfit.DAO.GymCustomerDAOImpl.customerMap;
+import com.flipfit.DAO.GymCustomerDAOImpl;
+import com.flipfit.DAO.GymUserDAOImpl;
 
 public class GymCustomerBusinessService implements GymCustomerBusinessServiceInterface
 {
@@ -47,8 +48,8 @@ public class GymCustomerBusinessService implements GymCustomerBusinessServiceInt
     public void makePayment(int bookingId){
         System.out.println("[Payment made!]");
     }
-    public void viewBookings() {
-        System.out.println("[Bookings viewed]");
+    public List<Booking> viewBookings(GymCustomer gymCustomer) {
+        return getBookingsByCustomerId(gymCustomer.getCustomerId());
     }
     public void editProfile(GymCustomer gymCustomer){
         System.out.println("Profile Edited!");

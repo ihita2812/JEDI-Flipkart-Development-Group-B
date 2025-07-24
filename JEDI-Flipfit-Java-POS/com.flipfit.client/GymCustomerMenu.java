@@ -2,6 +2,8 @@ package com.flipfit.client;
 
 import java.util.Scanner;
 import com.flipfit.business.*;
+import com.flipfit.bean.*;
+import java.util.List;
 
 public class GymCustomerMenu {
 
@@ -83,10 +85,7 @@ public class GymCustomerMenu {
             case 2:
                 System.out.println("---------------------------------------------");
                 System.out.println("Here are your bookings!");
-                customer.viewBookings();
-                for (int i = 1; i < 5; i++) {
-                    System.out.println("BOOKING NUMBER " + i);
-                }
+                List<Booking> customerBookings = customer.viewBookings();
                 System.out.println("---------------------------------------------");
                 System.out.println("You can enter the booking number number to CANCEL or EDIT it!");
                 System.out.println("Enter 0 to go back!");
