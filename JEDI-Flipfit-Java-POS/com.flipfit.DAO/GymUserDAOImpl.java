@@ -99,6 +99,10 @@ public class GymUserDAOImpl implements GymUserDAO {
         results.add(slots);
         return results;
     }
+
+    public void cancelBookingById(int bookingId) {
+        bookingMap.remove(bookingId);
+    }
     
     @Override
     public void addUser(GymUser user) {

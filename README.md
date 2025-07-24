@@ -11,9 +11,9 @@
 - others : will assign
 
 BOOKING- 
-- view booking (customer)
+- ~~view booking (customer)~~
 - do booking (customer)
-- cancel booking (customer)
+- ~~cancel booking (customer)~~
 - edit booking (customer)
 - view booking (owner)
 - view booking (admin)

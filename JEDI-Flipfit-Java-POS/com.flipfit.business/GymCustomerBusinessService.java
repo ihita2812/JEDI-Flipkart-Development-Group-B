@@ -45,6 +45,7 @@ public class GymCustomerBusinessService implements GymCustomerBusinessServiceInt
         System.out.println("[Slot " + slotId + " Booked]");
     }
     public void cancelBooking(int bookingId){
+        cancelBookingById(bookingId);
         System.out.println("[Booking " + bookingId + " Cancelled]");
     }
     public void editBooking(int bookingId){
