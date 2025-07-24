@@ -85,13 +85,13 @@ public class GymFlipfitApplicationClient {
                     scanner.nextLine();
                     System.out.println("Enter location:");
                     String loca = scanner.nextLine();
-                    scanner.nextLine();
                     System.out.println("Enter gender:");
-                    System.out.println("0 for Male");
-                    System.out.println("1 for Female");
+                    System.out.println("\t\t0 for Male");
+                    System.out.println("\t\t1 for Female");
                     int gender = scanner.nextInt();
                     System.out.println("Enter email:");
                     String email = scanner.nextLine();
+                    scanner.nextLine();
                     int userId = newUser.getUserId();
                     GymCustomer newCustomer = customerBusiness.createCustomerBean(name, pasword, 0, userName, age, loca, gender, email, userId);
                     customerBusiness.registerCustomer(newCustomer);
@@ -106,22 +106,20 @@ public class GymFlipfitApplicationClient {
                     while (exists1) {
                         System.out.println("Enter UNIQUE username:");
                         userName1 = scanner.nextLine();
-                        scanner.nextLine();
                         exists1 = userBusiness.userNameExists(userName1);
                     }
                     System.out.println("Enter name:");
                     String name1 = scanner.nextLine();
-                    scanner.nextLine();
                     System.out.println("Enter password:");
                     String password1 = scanner.nextLine();
-                    scanner.nextLine();
                     GymUser newUser1 = userBusiness.createUserBean(name1, password1, 1, userName1);
                     userBusiness.addUser(newUser1);
                     System.out.println("User registered successfully with ID: " + newUser1.getUserId());
                     // ---------------------------------------------------------------------------
                     System.out.println("Enter gender:");
+                    System.out.println("\t\t0 for Male");
+                    System.out.println("\t\t1 for Female");
                     int gende = scanner.nextInt();
-                    scanner.nextLine();
                     System.out.println("Enter email:");
                     String emai = scanner.nextLine();
                     scanner.nextLine();
