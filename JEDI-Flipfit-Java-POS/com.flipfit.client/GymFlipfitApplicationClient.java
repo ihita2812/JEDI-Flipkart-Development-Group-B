@@ -3,13 +3,13 @@ package com.flipfit.client;
 import java.util.Scanner;
 
 import com.flipfit.bean.*;
-import com.flipfit.business.*;
-import com.flipfit.client.GymCustomerMenu;
-import com.flipfit.client.GymAdminMenu;
-import com.flipfit.client.GymOwnerMenu;
+import com.flipfit.business.GymCustomerBusinessService;
+import com.flipfit.business.GymOwnerBusinessService;
+import com.flipfit.business.GymUserBusinessService;
 
 public class GymFlipfitApplicationClient {
     public static void main(String[] args) {
+
         Scanner scanner = new Scanner(System.in);
         GymCustomerBusinessService customerBusiness = new GymCustomerBusinessService();
         GymOwnerBusinessService ownerBusiness = new GymOwnerBusinessService();
@@ -27,7 +27,7 @@ public class GymFlipfitApplicationClient {
             System.out.println("\t5\tExit");
 
             int choice = scanner.nextInt();
-            scanner.nextLine();  // consume newline
+            scanner.nextLine(); // consume newline
 
             switch (choice) {
                 case 1:
@@ -38,33 +38,99 @@ public class GymFlipfitApplicationClient {
                     System.out.print("Enter Role (0: Customer, 1: Owner, 2: Admin): ");
                     int role = scanner.nextInt();
                     scanner.nextLine(); // consume newline
-
+                    // check the implementation of loginUser
+                
+                    int roleSpecificId = userBusiness.loginUser(username, password,role);
                     
-                    if (username.equals("user") && password.equals("pass")) {
+                    if (roleSpecificId != -1 && roleSpecificId != -2) {
                         switch (role) {
                             case 0:
-                                GymCustomerMenu.customerMenu(0);
+                                GymCustomerMenu.customerMenu(roleSpecificId);
                                 break;
-                            case 1:
-                                GymOwnerMenu.ownerMenu();
+                            case 1: // check for approval before login
+                                GymOwnerMenu.ownerMenu(roleSpecificId);
                                 break;
                             case 2:
-                                GymAdminMenu.adminMenu(0);
+                                GymAdminMenu.adminMenu(roleSpecificId);
                                 break;
                         }
-                    } else {
+                    } else if (roleSpecificId == -2) {
+                        System.out.println("role is invalid. Please enter correct role.");
+                    }
+                    else{
                         System.out.println("Invalid credentials. Try again.");
                     }
                     break;
 
+                // ROLL OBJECT CREATION
                 case 2:
-                    GymCustomer customer = new GymCustomer();
-                    customerBusiness.registerCustomer(customer);
+                    // ---------------------------------------------------------------------------
+                    boolean exists = true;
+                    String userName = "";
+                    while (exists) {
+                        System.out.println("Enter UNIQUE username:");
+                        userName = scanner.nextLine();
+                        scanner.nextLine();
+                        exists = userBusiness.userNameExists(userName);
+                    }
+                    System.out.println("Enter name:");
+                    String name = scanner.nextLine();
+                    scanner.nextLine();
+                    System.out.println("Enter password:");
+                    String pasword = scanner.nextLine();
+                    scanner.nextLine();
+                    GymUser newUser = userBusiness.createUserBean(name, pasword, 0, userName);
+                    userBusiness.addUser(newUser);
+                    System.out.println("User registered successfully with ID: " + newUser.getUserId());
+                    // ---------------------------------------------------------------------------
+                    System.out.println("Enter age:");
+                    int age = scanner.nextInt();
+                    scanner.nextLine();
+                    System.out.println("Enter location:");
+                    String loca = scanner.nextLine();
+                    scanner.nextLine();
+                    System.out.println("Enter gender:");
+                    int gender = scanner.nextInt();
+                    scanner.nextLine();
+                    System.out.println("Enter email:");
+                    String email = scanner.nextLine();
+                    scanner.nextLine();
+                    GymCustomer newCustomer = customerBusiness.createCustomerBean(name, pasword, 0, userName, age, loca, gender, email);
+                    customerBusiness.registerCustomer(newCustomer);
+                    System.out.println("Customer registered successfully with ID: " + newCustomer.getCustomerId());
+
                     break;
 
                 case 3:
-                    GymOwner owner = new GymOwner();
-                    ownerBusiness.registerOwner(owner);
+                    // ---------------------------------------------------------------------------
+                    boolean exists1 = true;
+                    String userName1 = "";
+                    while (exists1) {
+                        System.out.println("Enter UNIQUE username:");
+                        userName1 = scanner.nextLine();
+                        scanner.nextLine();
+                        exists1 = userBusiness.userNameExists(userName1);
+                    }
+                    System.out.println("Enter name:");
+                    String name1 = scanner.nextLine();
+                    scanner.nextLine();
+                    System.out.println("Enter password:");
+                    String password1 = scanner.nextLine();
+                    scanner.nextLine();
+                    GymUser newUser1 = userBusiness.createUserBean(name1, password1, 1, userName1);
+                    userBusiness.addUser(newUser1);
+                    System.out.println("User registered successfully with ID: " + newUser1.getUserId());
+                    // ---------------------------------------------------------------------------
+                    System.out.println("Enter gender:");
+                    int gende = scanner.nextInt();
+                    scanner.nextLine();
+                    System.out.println("Enter email:");
+                    String emai = scanner.nextLine();
+                    scanner.nextLine();
+
+                    GymOwner newOwner = ownerBusiness.createOwnerBean(name1, password1, 1, userName1, gende, emai);
+                    ownerBusiness.registerOwner(newOwner);
+                    System.out.println("Owner registered successfully with ID: " + newOwner.getOwnerId());
                     break;
 
                 case 4:
@@ -79,7 +145,7 @@ public class GymFlipfitApplicationClient {
 
                 default:
                     System.out.println("Invalid choice! Please select again.");
-                    
+
             }
         }
 

@@ -1,19 +1,32 @@
 # JEDI-Flipkart-Development-Group-B
 
-## DAY-1 (UML DIAGRAMS) : DONE
+## DAY-1 : UML DIAGRAMS : DONE
 
-## DAY-2 : SKELETON
+## DAY-2 : SKELETON : DONE
 
-1. ~~role bean~~
-2. ~~user bean~~
-3. ~~business/service- user, admin, customer, owner~~
-4. client- one only
-5. ~~rename src~~
-6. client::
-   adminmenu
-   customermenu
-   ownermenu
-   gymappmainthingy which wil call the others
+## DAY-3 : DAO
 
+### menu:
 
-user/pass wrong ?
+- ~~view booking (customer)~~
+- ~~do booking (customer)~~
+- ~~cancel booking (customer)~~
+- edit booking (customer)
+- view booking (owner)
+- view booking (admin)
+- make payment (customer)
+- ~~view slots (customer)~~
+- ~~view payments (admin)~~
+
+### login:
+
+- authenticate
+- return role specific id
+
+### registration:
+
+??? what is update idk
+
+## DAY-4 : MYSQL
+
+????? what is update idk
