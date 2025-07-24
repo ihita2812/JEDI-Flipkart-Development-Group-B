@@ -70,15 +70,12 @@ public class GymFlipfitApplicationClient {
                     while (exists) {
                         System.out.println("Enter UNIQUE username:");
                         userName = scanner.nextLine();
-                        scanner.nextLine();
                         exists = userBusiness.userNameExists(userName);
                     }
                     System.out.println("Enter name:");
                     String name = scanner.nextLine();
-                    scanner.nextLine();
                     System.out.println("Enter password:");
                     String pasword = scanner.nextLine();
-                    scanner.nextLine();
                     GymUser newUser = userBusiness.createUserBean(name, pasword, 0, userName);
                     userBusiness.addUser(newUser);
                     System.out.println("User registered successfully with ID: " + newUser.getUserId());
@@ -90,11 +87,11 @@ public class GymFlipfitApplicationClient {
                     String loca = scanner.nextLine();
                     scanner.nextLine();
                     System.out.println("Enter gender:");
+                    System.out.println("0 for Male");
+                    System.out.println("1 for Female");
                     int gender = scanner.nextInt();
-                    scanner.nextLine();
                     System.out.println("Enter email:");
                     String email = scanner.nextLine();
-                    scanner.nextLine();
                     int userId = newUser.getUserId();
                     GymCustomer newCustomer = customerBusiness.createCustomerBean(name, pasword, 0, userName, age, loca, gender, email, userId);
                     customerBusiness.registerCustomer(newCustomer);

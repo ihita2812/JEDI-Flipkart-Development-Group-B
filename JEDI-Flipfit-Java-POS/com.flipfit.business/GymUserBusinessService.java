@@ -22,12 +22,9 @@ public class GymUserBusinessService implements GymUserBusinessServiceInterface {
                     case 0: // Customer
                         return userDAO.getCustomerId(foundUser);
                     case 1: // Owner
-                        if (foundUser instanceof GymOwner) {
-                            return ((GymOwner) foundUser).getOwnerId();
-                        }
-                        break;
+                        return userDAO.getOwnerId(foundUser);
                     case 2: // Admin
-                        return ((GymAdmin) foundUser).getAdminId();
+                        return userDAO.getAdminId(foundUser);
                 }
             }
         }

@@ -4,6 +4,7 @@ public class GymOwner extends GymUser{
     private int ownerId;
     private int gender;
     private String email;
+    private int userId;
 
     public int getUserId() {
         return userId;
@@ -12,8 +13,6 @@ public class GymOwner extends GymUser{
     public void setUserId(int userId) {
         this.userId = userId;
     }
-
-    private int userId;
 
     public String getEmail() {
         return this.email;
