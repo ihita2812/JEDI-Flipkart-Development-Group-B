@@ -50,6 +50,7 @@ public class GymOwnerMenu {
                 if (notifications.isEmpty()) {
                     System.out.println("No notifications available.");
                 }
+                System.out.println("---------------------------------------------");
                 break;
             case 6:
                 ownerBusiness.viewPayment(new GymCenter());

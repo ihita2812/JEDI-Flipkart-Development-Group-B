@@ -2,7 +2,7 @@ package com.flipfit.business;
 
 import com.flipfit.bean.*;
 import java.util.*;
-
+import com.flipfit.DAO.*;
 
 public class GymOwnerBusinessService implements GymOwnerBusinessServiceInterface{
     
@@ -26,18 +26,9 @@ public class GymOwnerBusinessService implements GymOwnerBusinessServiceInterface
         return gymOwner;
     }
     @Override
-    public List <Notification> viewGymCenters(GymOwner owner) {
-        int ownerId = owner.getOwnerId();
-        
-        // iterate in notificationMap and store the Notification objects in a List which match the owner's ID
-        List <Notification> notifications = new ArrayList<>();
-        for (Notification notification : notificationMap.values()) {
-            if (notification.getUserId() == ownerId) {
-                notifications.add(notification);
-            }
-        }
-
-        return notifications;
+    public void viewGymCenters(GymOwner owner) {
+        // fetching gym centers from a database or service.
+        System.out.println("Gym Centers Viewed");
     }
     @Override
     public void viewBookingDetails(Slot slot) {
@@ -50,10 +41,13 @@ public class GymOwnerBusinessService implements GymOwnerBusinessServiceInterface
         center.setCapacity(capacity);
         System.out.println("Slots and capacity added for center: " + center.getName());
     }
-    @Override
-    public void viewNotifications(){
-        //fetching notifications from a database or a notification service.
-        System.out.println("Notifications viewed"); 
+    public List <Notification> viewNotifications(){
+        int ownerId = owner.getOwnerId();
+        
+        // iterate in notificationMap and store the Notification objects in a List which match the owner's ID
+        List <Notification> notifications = viewOwnerNotifications(ownerId);
+
+        return notifications;
     }
     @Override
     public void viewPayment(GymCenter center) {

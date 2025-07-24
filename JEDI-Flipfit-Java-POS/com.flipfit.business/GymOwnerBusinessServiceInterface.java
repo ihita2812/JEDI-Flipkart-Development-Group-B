@@ -1,6 +1,7 @@
 package com.flipfit.business;
 import com.flipfit.bean.*;
 import java.util.*;
+import com.flipfit.DAO.*;
 
 public interface GymOwnerBusinessServiceInterface {
     public void registerOwner(GymOwner gymOwner);
