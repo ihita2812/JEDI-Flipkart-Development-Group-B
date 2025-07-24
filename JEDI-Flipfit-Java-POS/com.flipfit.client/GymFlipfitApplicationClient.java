@@ -6,6 +6,7 @@ import com.flipfit.bean.*;
 import com.flipfit.business.GymCustomerBusinessService;
 import com.flipfit.business.GymOwnerBusinessService;
 import com.flipfit.business.GymUserBusinessService;
+import com.flipfit.dao.*;
 
 public class GymFlipfitApplicationClient {
     public static void main(String[] args) {
@@ -15,6 +16,9 @@ public class GymFlipfitApplicationClient {
         GymOwnerBusinessService ownerBusiness = new GymOwnerBusinessService();
         GymUserBusinessService userBusiness = new GymUserBusinessService();
         boolean more = true;
+
+        GymUserDAOImpl gymUserDAO = new GymUserDAOImpl();
+        gymUserDAO.initializeAdmin(); // Initialize admin, owner, and customer roles
 
         while (more) {
             System.out.println("---------------------------------------------");

@@ -16,7 +16,7 @@ public class GymUserDAOImpl implements GymUserDAO {
     public static Map<Integer, Payment> paymentMap = new HashMap<>();
     public static Map<Integer, Notification> notificationMap = new HashMap<>();
 
-    public GymUserDAOImpl() {
+    public void initializeAdmin() {
         Role customerRole = new Role();
         customerRole.setRoleId(0);
         customerRole.setRoleName("Customer");
@@ -109,6 +109,7 @@ public class GymUserDAOImpl implements GymUserDAO {
                 return admin.getAdminId();
             }
         }
+
         return -1;
     }
 

@@ -37,4 +37,6 @@ public interface GymUserDAO {
     int getAdminId(GymUser gymUser);
 
     int getOwnerId(GymUser gymUser);
+
+    void initializeAdmin();
 }
