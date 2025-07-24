@@ -16,7 +16,7 @@ public class GymCustomerBusinessService implements GymCustomerBusinessServiceInt
     }
 
     public GymCustomer createCustomerBean(String name, String password, int role, String userName, int age,
-            String location, String gender, String email) {
+            String location, int gender, String email) {
         GymCustomer gymCustomer = new GymCustomer();
         gymCustomer.setCustomerId(nextCustomerId());
         gymCustomer.setName(name);
@@ -45,6 +45,12 @@ public class GymCustomerBusinessService implements GymCustomerBusinessServiceInt
             }
         }
         return newSlots;
+    }
+    public List <Notification> viewNotificationsByCustomerId(int customerId){
+        // iterate in notificationMap and store the Notification objects in a List which match the owner's ID
+        List <Notification> notifications = getNotificationsByCustomerId(customerId);
+
+        return notifications;
     }
 
     public void bookSlot(int slotId) {

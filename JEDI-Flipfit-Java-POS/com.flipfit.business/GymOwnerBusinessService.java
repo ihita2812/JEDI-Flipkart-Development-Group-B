@@ -16,13 +16,15 @@ public class GymOwnerBusinessService implements GymOwnerBusinessServiceInterface
         return (currMax + 1);
     }
 
-    public GymOwner createOwnerBean(String name, String password, int role, String userName) {
+    public GymOwner createOwnerBean(String name, String password, int role, String userName, int gender, String email) {
         GymOwner gymOwner = new GymOwner();
         gymOwner.setOwnerId(nextOwnerId());
         gymOwner.setName(name);
         gymOwner.setPassword(password);
         gymOwner.setRole(role);
         gymOwner.setUserName(userName);
+        gymOwner.setGender(gender);
+        gymOwner.setEmail(email);
         return gymOwner;
     }
     @Override
@@ -41,9 +43,9 @@ public class GymOwnerBusinessService implements GymOwnerBusinessServiceInterface
         center.setCapacity(capacity);
         System.out.println("Slots and capacity added for center: " + center.getName());
     }
-    public List <Notification> viewNotifications(int ownerId){
+    public List <Notification> viewNotificationsByOwnerId(int ownerId){
         // iterate in notificationMap and store the Notification objects in a List which match the owner's ID
-        List <Notification> notifications = viewOwnerNotifications(ownerId);
+        List <Notification> notifications = getNotificationsByOwnerId(ownerId);
 
         return notifications;
     }

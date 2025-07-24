@@ -35,7 +35,7 @@ public class GymOwnerDAOImpl implements GymOwnerDAO {
         ownerMap.put(owner2.getOwnerId(), owner2);
     }
 
-    public List <Notification> viewOwnerNotifications(int ownerId) {
+    public List <Notification> getNotificationsByOwnerId(int ownerId) {
         List <Notification> notifications = new ArrayList<>();
         for (Notification notification : notificationMap.values()) {
             if (notification.getUserId() == ownerId) {

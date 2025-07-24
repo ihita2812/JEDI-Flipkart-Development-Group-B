@@ -43,7 +43,7 @@ public class GymOwnerMenu {
             case 5:
                 System.out.println("Notifications:");
                 
-                List <Notificaton> notifications = ownerBusiness.viewNotifications(ownerId);
+                List <Notificaton> notifications = ownerBusiness.viewNotificationsByOwnerId(ownerId);
                 for (Notificaton notification : notifications) {
                     System.out.println(notification.getMessage());
                 }

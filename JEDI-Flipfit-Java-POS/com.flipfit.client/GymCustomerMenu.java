@@ -1,7 +1,6 @@
 package com.flipfit.client;
 
 import java.util.*;
-import java.util.*;
 import com.flipfit.business.*;
 import com.flipfit.bean.*;
 import java.time.LocalTime;
@@ -10,7 +9,7 @@ public class GymCustomerMenu {
 
     public static void customerMenu(int customerId) {
 
-        GymCustomerBusinessServiceInterface customer = new GymCustomerBusinessService();
+        GymCustomerBusinessServiceInterface customerBusiness = new GymCustomerBusinessService();
 
         Scanner scanner = new Scanner(System.in);
         boolean more = true;
@@ -33,7 +32,7 @@ public class GymCustomerMenu {
                 case 1:
                     System.out.println("---------------------------------------------");
                     System.out.println("Here are the centers near you!");
-                    customer.viewGymCenter(null);
+                    customerBusiness.viewGymCenter(null);
                     for (int i = 1; i < 5; i++) {
                         System.out.println("GYM CENTER " + i);
                     }
@@ -52,7 +51,7 @@ public class GymCustomerMenu {
                         // for (int i = 1; i < 5; i++) {
                         // System.out.println("SLOT NUMBER " + i);
                         // }
-                        List<Slot> slots = customer.viewSlot(choice2);
+                        List<Slot> slots = customerBusiness.viewSlot(choice2);
                         if (slots.isEmpty()) {
                             System.out.println("No slots available for the selected gym center.");
                             continue;
@@ -75,7 +74,7 @@ public class GymCustomerMenu {
                             break;
                         } else {
                             System.out.println("---------------------------------------------");
-                            customer.bookSlot(choice3);
+                            customerBusiness.bookSlot(choice3);
                             int bookingId = 0;
                             System.out.println("Make payment atleast 6 hours before the slot timing to confirm!");
                             System.out.println("Enter 1 to pay now, 0 to pay later and go to home page!");
@@ -85,7 +84,7 @@ public class GymCustomerMenu {
 
                             if (choice4 == 1) {
                                 System.out.println("---------------------------------------------");
-                                customer.makePayment(bookingId);
+                                customerBusiness.makePayment(bookingId);
                             } else {
                                 more = false;
                             }
@@ -97,7 +96,7 @@ public class GymCustomerMenu {
                 case 2:
                     System.out.println("---------------------------------------------");
                     System.out.println("Here are your bookings!");
-                    customer.viewBookings();
+                    customerBusiness.viewBookings();
                     for (int i = 1; i < 5; i++) {
                         System.out.println("BOOKING NUMBER " + i);
                     }
@@ -116,10 +115,10 @@ public class GymCustomerMenu {
                         char choice6 = scanner.nextChar();
                         switch (choice6) {
                             case 'C':
-                                customer.cancelBooking(choice5);
+                                customerBusiness.cancelBooking(choice5);
                                 break;
                             case 'E':
-                                customer.editBooking(choice5);
+                                customerBusiness.editBooking(choice5);
                             default:
                                 break;
                         }
@@ -128,10 +127,21 @@ public class GymCustomerMenu {
 
                 case 3:
                     System.out.println("---------------------------------------------");
-                    customer.editProfile(null);
+                    customerBusiness.editProfile(null);
                     break;
 
                 case 4:
+                    System.out.println("Here are your notifications!");
+                    List <Notificaton> notifications = customerBusiness.viewNotificationsByCustomerId(customerId);
+                    for (Notificaton notification : notifications) {
+                        System.out.println(notification.getMessage());
+                    }
+                    if (notifications.isEmpty()) {
+                        System.out.println("No notifications available.");
+                    }
+                    System.out.println("---------------------------------------------");
+                    break;
+                case 5:
                     more = false;
                     break;
 
