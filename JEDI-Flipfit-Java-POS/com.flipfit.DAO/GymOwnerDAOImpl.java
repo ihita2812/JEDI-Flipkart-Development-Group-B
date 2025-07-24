@@ -1,6 +1,6 @@
 package com.flipfit.dao;
 
-import com.flipfit.bean.GymOwner;
+import com.flipfit.bean.*;
 import java.util.*;
 
 public class GymOwnerDAOImpl implements GymOwnerDAO {
@@ -31,7 +31,17 @@ public class GymOwnerDAOImpl implements GymOwnerDAO {
         owner2.setEmail("owner1@gaanmara.com");
         ownerMap.put(owner2.getOwnerId(), owner2);
     }
-    /*
+
+    @Override
+    public List<GymCenter> getAllCenters(int OwnerId)
+    {
+        for(GymCenter center : centermap.values())
+        {
+            
+        }
+        return new List<>(centermap.values());
+    }
+
     @Override
     public void addOwner(GymOwner owner) {
         // Check if username already exists
@@ -71,6 +81,6 @@ public class GymOwnerDAOImpl implements GymOwnerDAO {
     public void removeOwner(int ownerId) {
         ownerMap.remove(ownerId);
     }
-    */
+    
     
 }

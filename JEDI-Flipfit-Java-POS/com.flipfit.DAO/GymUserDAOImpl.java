@@ -82,7 +82,7 @@ public class GymUserDAOImpl implements GymUserDAO {
 
     }
 
-    /*
+    
     @Override
     public void addUser(GymUser user) {
         for (GymUser existing : userMap.values()) {
@@ -134,5 +134,5 @@ public class GymUserDAOImpl implements GymUserDAO {
         }
         return false;
     }
-     */
+     
 }

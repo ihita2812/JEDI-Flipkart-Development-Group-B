@@ -37,7 +37,7 @@ public class GymCustomerDAOImpl implements GymCustomerDAO {
         customerMap.put(customer2.getCustomerId(), customer2);
     }
 
-    /*
+    
     private GymUserDAO userDAO = new GymUserDAOImpl();
 
     private int bookingIdCounter = 1;
@@ -174,5 +174,5 @@ public class GymCustomerDAOImpl implements GymCustomerDAO {
     public void addSlot(Slot slot) {
         slotMap.put(slot.getSlotId(), slot);
     }
-    */
+    
 }
