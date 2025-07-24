@@ -3,6 +3,8 @@ package com.flipfit.client;
 import java.util.Scanner;
 import com.flipfit.bean.*;
 import com.flipfit.business.*;
+import com.flipfit.DAO.*;
+import java.util.List;
 
 public class GymOwnerMenu {
     public static void ownerMenu() {
@@ -29,10 +31,23 @@ public class GymOwnerMenu {
 
         switch (choice) {
             case 1:
+                System.out.println("---------------------------------------------");
+                System.out.println("Enter Center Name:");
+                String centerName = scanner.nextLine();
+                System.out.println("Enter Center Location:");
+                String centerLocation = scanner.nextLine();
                 ownerBusiness.registerGymCenter("CultFit", "Kormangla");
                 break;
             case 2:
-                ownerBusiness.viewGymCenters(new GymOwner());
+                List<GymCenter> gymCenters= ownerBusiness.viewGymCenters(new GymOwner());
+                if (gymCenters.isEmpty()) {
+                    System.out.println("No gym centers found for this owner.");
+                } else {
+                    System.out.println("Gym Centers for you:");
+                    for (GymCenter center : gymCenters) {
+                        System.out.println("Center Name: " + center.getName() + ", Location: " + center.getLocation());
+                    }
+                }
                 break;
             case 3:
                 ownerBusiness.addSlotsAndCapacity(new GymCenter(), 5, 20);
@@ -47,7 +62,7 @@ public class GymOwnerMenu {
                 ownerBusiness.viewPayment(new GymCenter());
                 break;
             case 7:
-                ownerBusiness.editSlot("23", "HSR");
+                ownerBusiness.editSlot(23, "HSR");
                 break;
             case 8:
                 System.out.println("Logging out...");

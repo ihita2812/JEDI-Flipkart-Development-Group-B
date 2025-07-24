@@ -1,14 +1,17 @@
 package com.flipfit.dao;
 
 import com.flipfit.bean.*;
+import com.flipfit.DAO.GymUserDAOImpl.roleMap;
 
 import java.util.*;
 
 public class GymCustomerDAOImpl implements GymCustomerDAO {
 
-    private Map<Integer, GymCustomer> customerMap = new HashMap<>();
+    public static Map<Integer, GymCustomer> customerMap = new HashMap<>();
 
     public GymCustomerDAOImpl() {
+
+        Role customerRole = roleMap.get(0);
 
         GymCustomer customer1 = new GymCustomer();
         customer1.setUserId(3);

@@ -2,12 +2,17 @@ package com.flipfit.dao;
 
 import com.flipfit.bean.*;
 import java.util.*;
+// import com.flipfit.DAO.GymUserDAOImpl.roleMap;
+// Access roleMap via GymUserDAOImpl.roleMap if it is public and static
+// import com.flipfit.DAO.GymUserDAOImpl.centermap;
 
 public class GymOwnerDAOImpl implements GymOwnerDAO {
 
-    private Map<Integer, GymOwner> ownerMap = new HashMap<>();
+    public static Map<Integer, GymOwner> ownerMap = new HashMap<>();
 
     public GymOwnerDAOImpl() {
+        Role ownerRole = GymUserDAOImpl.roleMap.get(1);
+        // Role ownerRole = roleMap.get(1);
 
         GymOwner owner1 = new GymOwner();
         owner1.setUserId(2);
@@ -32,14 +37,19 @@ public class GymOwnerDAOImpl implements GymOwnerDAO {
         ownerMap.put(owner2.getOwnerId(), owner2);
     }
 
-    @Override
+   
     public List<GymCenter> getAllCenters(int OwnerId)
     {
-        for(GymCenter center : centermap.values())
+        List<GymCenter> ownerGyms = new ArrayList<>();
+
+        for(GymCenter center : GymUserDAOImpl.centermap.values())
         {
-            
+            if(center.getOwnerId() == OwnerId)
+            {
+                ownerGyms.add(center);
+            }
         }
-        return new List<>(centermap.values());
+        return ownerGyms;
     }
 
     @Override

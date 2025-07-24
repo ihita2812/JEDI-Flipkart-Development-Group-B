@@ -1,9 +1,9 @@
 package com.flipfit.business;
 
 import com.flipfit.bean.*;
-import com.flipfit.DAO.GymOwnerDAOImpl.ownerMap;
+import com.flipfit.DAO.*;
 import java.util.Collections;
-
+import java.util.List;
 
 
 public class GymOwnerBusinessService implements GymOwnerBusinessServiceInterface{
@@ -26,8 +26,11 @@ public class GymOwnerBusinessService implements GymOwnerBusinessServiceInterface
         gymOwner.setUserName(userName);
         return gymOwner;
     }
-    public void viewGymCenters(GymOwner owner) {
+    public List viewGymCenters(GymOwner owner) {
         int ownerId = owner.getOwnerId();
+        List<GymCenter> gymCenters = GymOwnerDAOImpl.getAllCenters(ownerId);
+        return gymCenters;
+        // This method would typically return a list of GymCenter objects
         // query a database to get all GymCenter objects where ownerId
         // matches the owner's ID.
     }

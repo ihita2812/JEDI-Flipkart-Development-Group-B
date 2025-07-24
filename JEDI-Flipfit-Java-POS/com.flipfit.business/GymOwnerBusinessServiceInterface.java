@@ -1,9 +1,10 @@
 package com.flipfit.business;
 import com.flipfit.bean.*;
+import java.util.List;
 
 public interface GymOwnerBusinessServiceInterface {
     public void registerOwner(GymOwner gymOwner);
-    public void viewGymCenters(GymOwner owner);
+    public List viewGymCenters(GymOwner owner);
     public void viewBookingDetails(Slot slot);
     public void addSlotsAndCapacity(GymCenter center, int numSlots, int capacity);
     public void viewNotifications();
