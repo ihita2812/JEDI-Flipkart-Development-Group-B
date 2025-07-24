@@ -15,6 +15,11 @@ public interface GymUserDAO {
     void removeUser(int userId);
 
     Role getRole(int role);
-
+    public List<Object> getSlotByCenterId(int gymCenterId);
+    public List<Object> getBookingsByCustomerId(int customerId);
+    public void approvePayment(int bookingId);
+    public int addBooking(Booking booking) ;
+    public void cancelBookingById(int bookingId);
+    
     // boolean validateLogin(String username, String password);
 }

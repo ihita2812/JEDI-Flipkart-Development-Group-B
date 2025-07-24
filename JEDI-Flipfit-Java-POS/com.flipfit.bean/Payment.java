@@ -6,6 +6,15 @@ public class Payment {
     private int customerId;
     private float amount;
     private LocalDateTime paymentDateTime;
+    private int bookingId;
+
+    public int getBookingId() {
+        return this.bookingId;
+    }
+
+    public void setBookingId(int bookingId) {
+        this.bookingId = bookingId;
+    }
 
     public LocalDateTime getPaymentDateTime() {
         return this.paymentDateTime;

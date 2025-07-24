@@ -82,9 +82,9 @@ public class GymUserDAOImpl implements GymUserDAO {
 
     }
 
-    public List<> getBookingsByCustomerId(int customerId) {
+    public List<Object> getBookingsByCustomerId(int customerId) {
         List<Booking> bookings = new ArrayList<>();
-        List<Booking> bookingIds = new ArrayList<>();
+        List<Integer> bookingIds = new ArrayList<>();
         List<Slot> slots = new ArrayList<>();
         for (Booking booking : bookingMap.values()) {
             if (booking.getCustomerId() == customerId) {
@@ -93,7 +93,7 @@ public class GymUserDAOImpl implements GymUserDAO {
                 slots.add(slotMap.get(booking.getSlotId()));
             }
         }
-        List<> results = new ArrayList<>();
+        List<Object> results = new ArrayList<>();
         results.add(bookingIds);
         results.add(bookings);
         results.add(slots);
@@ -133,7 +133,7 @@ public class GymUserDAOImpl implements GymUserDAO {
         bookingMap.remove(bookingId);
     }
 
-    public List<> getSlotByCenterId(int gymCenterId) {
+    public List<Object> getSlotByCenterId(int gymCenterId) {
         List<Slot> slots = new ArrayList<>();
         List<Integer> slotIds = new ArrayList<>();
         for (Slot slot : GymUserDAOImpl.slotMap.values()) {
@@ -142,7 +142,7 @@ public class GymUserDAOImpl implements GymUserDAO {
                 slotIds.add(slot.getSlotId());
             }
         }
-        List<> results = new ArrayList<>();
+        List<Object> results = new ArrayList<>();
         results.add(slotIds);
         results.add(slots);
         return results;
