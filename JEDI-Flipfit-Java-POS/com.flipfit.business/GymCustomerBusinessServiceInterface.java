@@ -1,6 +1,7 @@
 
 package com.flipfit.business;
 
+import java.util.*;
 import com.flipfit.bean.*;
 
 public interface GymCustomerBusinessServiceInterface {
@@ -12,6 +13,7 @@ public interface GymCustomerBusinessServiceInterface {
     void editBooking(int bookingId);
     void makePayment(int bookingId);
     void viewBookings();
+    public List <Notification> viewNotifications(int customerId);
     public void editProfile(GymCustomer gymCustomer);
 }
 

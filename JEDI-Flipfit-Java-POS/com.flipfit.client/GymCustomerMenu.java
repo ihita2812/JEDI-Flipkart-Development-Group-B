@@ -1,7 +1,8 @@
 package com.flipfit.client;
 
-import java.util.Scanner;
+import java.util.*;
 import com.flipfit.business.*;
+import com.flipfit.bean.*;
 
 public class GymCustomerMenu {
 
@@ -20,7 +21,8 @@ public class GymCustomerMenu {
             System.out.println("\t1\tView gym centers near you");
             System.out.println("\t2\tView your bookings");
             System.out.println("\t3\tEdit Profile");
-            System.out.println("\t4\tLogout");
+            System.out.println("\t4\tView Notifications");
+            System.out.println("\t5\tLogout");
 
             int choice = scanner.nextInt();
             scanner.nextLine();  // consume newline
@@ -118,6 +120,19 @@ public class GymCustomerMenu {
                 break;
 
             case 4:
+                System.out.println("---------------------------------------------");
+                System.out.println("Here are your notifications!");
+                List <Notification> notifications = customer.viewNotifications(customerId);
+                if (notifications.isEmpty()) {
+                    System.out.println("No notifications found!");
+                } else {
+                    for (Notification notification : notifications) {
+                        System.out.println(notification.getMessage());
+                    }
+                }
+                System.out.println("---------------------------------------------");
+                break;
+            case 5:
                 more = false;
                 break;
             

@@ -1,8 +1,8 @@
 package com.flipfit.business;
 
 import com.flipfit.bean.*;
-import java.util.Collections;
-import com.flipfit.DAO.GymCustomerDAOImpl.customerMap;
+import java.util.*;
+import com.flipfit.DAO.*;
 
 public class GymCustomerBusinessService implements GymCustomerBusinessServiceInterface
 {
@@ -27,6 +27,12 @@ public class GymCustomerBusinessService implements GymCustomerBusinessServiceInt
         gymCustomer.setGender(gender);
         gymCustomer.setEmail(email);
         return gymCustomer;
+    }
+
+    public List <Notification> viewNotifications(int customerId) {
+        List<Notification> notifications = viewCustomerNotificatoin(customerId);
+        
+        return notifications;
     }
 
     public void viewGymCenter(String location){

@@ -8,7 +8,7 @@ public interface GymOwnerBusinessServiceInterface {
     public void viewGymCenters(GymOwner owner);
     public void viewBookingDetails(Slot slot);
     public void addSlotsAndCapacity(GymCenter center, int numSlots, int capacity);
-    public List <Notification> viewNotifications();
+    public List <Notification> viewNotifications(int ownerId);
     public void viewPayment(GymCenter center);
     public void viewSlot(GymCenter gymCenter);
     public int registerGymCenter(String centerName, String centerLocation);

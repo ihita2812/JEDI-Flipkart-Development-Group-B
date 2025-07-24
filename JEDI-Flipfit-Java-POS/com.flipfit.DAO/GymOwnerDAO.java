@@ -9,4 +9,5 @@ public interface GymOwnerDAO {
     List<GymOwner> getAllOwners();
     void updateOwner(GymOwner owner);
     void removeOwner(int ownerId);*/
+    public List <Notification> viewOwnerNotifications(int ownerId);
 }

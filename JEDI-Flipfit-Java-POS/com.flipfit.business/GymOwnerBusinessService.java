@@ -41,9 +41,7 @@ public class GymOwnerBusinessService implements GymOwnerBusinessServiceInterface
         center.setCapacity(capacity);
         System.out.println("Slots and capacity added for center: " + center.getName());
     }
-    public List <Notification> viewNotifications(){
-        int ownerId = owner.getOwnerId();
-        
+    public List <Notification> viewNotifications(int ownerId){
         // iterate in notificationMap and store the Notification objects in a List which match the owner's ID
         List <Notification> notifications = viewOwnerNotifications(ownerId);
 

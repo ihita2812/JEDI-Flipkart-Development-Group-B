@@ -1,6 +1,10 @@
 package com.flipfit.dao;
 
-import com.flipfit.bean.GymCustomer;
+import com.flipfit.bean.*;
+import com.flipfit.DAO.GymUserDAOImpl.roleMap;
+import com.flipfit.DAO.GymUserDAOImpl.notificationMap;
+
+import java.util.*;
 
 public interface GymCustomerDAO {
     void registerCustomer(GymCustomer gymCustomer);
@@ -13,4 +17,5 @@ public interface GymCustomerDAO {
     void viewBookings(int customerId);
     void editProfile(GymCustomer gymCustomer);
     void addCustomer(GymCustomer gymCustomer);
+    public List <Notification> viewCustomerNotifications(int customerId);
 }
