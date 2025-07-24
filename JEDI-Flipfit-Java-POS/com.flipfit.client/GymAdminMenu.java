@@ -41,14 +41,27 @@ public class GymAdminMenu {
                 int gymChoice = scanner.nextInt();
                 scanner.nextLine();
                 boolean status = admin.verifyGymCenter(gymChoice);
-                if(status==true)
-                {System.out.println("Gym center with id "+ gymChoice+ " approved!");}
-                else
-                System.out.println("Gym center with id" + gymChoice+"rejected!");
+                if (status) {
+                    System.out.println("Gym center with id "+ gymChoice + " approved!");
+                } else {
+                    System.out.println("Gym center with id "+ gymChoice + " rejected!");
+                }
                 break;
             case 3:
-                System.out.println("Here are the payments!");
-                admin.viewPayments();
+                List<Payment> payments = admin.viewPayments();
+                if (payments.isEmpty()) {
+                    System.out.println("No payments found.");
+                } else {
+                    System.out.println("---------------------------------------------");
+                    System.out.println("Here are the payments!");
+                    for (Payment payment : payments) {
+                        System.out.println("---------------------------------------------");
+                        System.out.println("Payment ID: " + payment.getPaymentId());
+                        System.out.println("Customer ID: " + payment.getCustomerId());
+                        System.out.println("Amount: " + payment.getAmount());
+                        System.out.println("Date: " + payment.getPaymentDateTime());
+                    }
+                }
                 break;
             case 4:
                 System.out.println("Enter Role name to be added");

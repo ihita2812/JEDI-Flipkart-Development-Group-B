@@ -34,17 +34,8 @@ public class GymCustomerBusinessService implements GymCustomerBusinessServiceInt
         System.out.println("[Gym Center Viewed]");
     }
 
-    public List<Slot> viewSlot(int gymCenterId) {
-        if (GymUserDAOImpl.slotMap.isEmpty()) {
-            return Collections.emptyList();
-        }
-        List<Slot> newSlots = new ArrayList<>();
-        for (Slot slot : GymUserDAOImpl.slotMap.values()) {
-            if (slot.getCenterId() == gymCenterId) {
-                newSlots.add(slot);
-            }
-        }
-        return newSlots;
+    public List<> viewSlots(int centerId) {
+        return getSlotByCenterId(centerId);
     }
     public List <Notification> viewNotificationsByCustomerId(int customerId){
         // iterate in notificationMap and store the Notification objects in a List which match the owner's ID
@@ -53,12 +44,15 @@ public class GymCustomerBusinessService implements GymCustomerBusinessServiceInt
         return notifications;
     }
 
-    public void bookSlot(int slotId) {
-        System.out.println("[Slot " + slotId + " Booked]");
+    public int bookSlot(int customerId, int slotId) {
+        Booking booking = new Booking();
+        booking.setSlotId(slotId);
+        booking.setCustomerId(customerId);
+        booking.setStatus(0); // 0 for payment pending
+        return addBooking(booking);
     }
     public void cancelBooking(int bookingId){
         cancelBookingById(bookingId);
-        System.out.println("[Booking " + bookingId + " Cancelled]");
     }
 
     public void editBooking(int bookingId) {
@@ -66,9 +60,10 @@ public class GymCustomerBusinessService implements GymCustomerBusinessServiceInt
     }
 
     public void makePayment(int bookingId) {
-        System.out.println("[Payment made!]");
+        approvePayment(bookingId);
     }
-    public List<Booking> viewBookings(GymCustomer gymCustomer) {
+    
+    public List<> viewBookings(GymCustomer gymCustomer) {
         return getBookingsByCustomerId(gymCustomer.getCustomerId());
     }
 

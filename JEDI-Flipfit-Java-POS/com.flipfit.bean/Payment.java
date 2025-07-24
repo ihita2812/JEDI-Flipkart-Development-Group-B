@@ -1,9 +1,19 @@
 package com.flipfit.bean;
+import java.time.LocalDateTime;
 
 public class Payment {
     private int paymentId;
     private int customerId;
     private float amount;
+    private LocalDateTime paymentDateTime;
+
+    public LocalDateTime getPaymentDateTime() {
+        return this.paymentDateTime;
+    }
+
+    public void setPaymentDateTime(LocalDateTime paymentDateTime) {
+        this.paymentDateTime = paymentDateTime;
+    }
 
     public int getPaymentId() {
         return this.paymentId;

@@ -100,8 +100,59 @@ public class GymUserDAOImpl implements GymUserDAO {
         return results;
     }
 
+    public Booking getBookingByBookingId(int bookingId) {
+        return bookingMap.get(bookingId);
+    }
+
+    public void approvePayment(int bookingId) {
+        Booking booking = bookingMap.get(bookingId);
+        if (booking != null) {
+            booking.setStatus(1); // 1 for confirmed
+            bookingMap.put(bookingId, booking);
+            Payment payment = new Payment();
+            payment.setBookingId(bookingId);
+            payment.setAmount(100); // Assuming a fixed amount for simplicity
+            addPayment(payment);
+        } else {
+            // Handle case where booking does not exist
+        }
+    }
+
+    public void addPayment(Payment payment) {
+        int newPaymentId = Collections.max(paymentMap.keySet()) + 1;
+        payment.setPaymentId(newPaymentId);
+        paymentMap.put(newPaymentId, payment);
+    }
+
+    public List<Payment> getAllPayments() {
+        List<Payment> payments = new ArrayList<>(paymentMap.values());
+        return payments;
+    }
+
     public void cancelBookingById(int bookingId) {
         bookingMap.remove(bookingId);
+    }
+
+    public List<> getSlotByCenterId(int gymCenterId) {
+        List<Slot> slots = new ArrayList<>();
+        List<Integer> slotIds = new ArrayList<>();
+        for (Slot slot : GymUserDAOImpl.slotMap.values()) {
+            if (slot.getCenterId() == gymCenterId) {
+                slots.add(slot);
+                slotIds.add(slot.getSlotId());
+            }
+        }
+        List<> results = new ArrayList<>();
+        results.add(slotIds);
+        results.add(slots);
+        return results;
+    }
+
+    public int addBooking(Booking booking) {
+        int newBookingId = Collections.max(bookingMap.keySet()) + 1;
+        booking.setBookingId(newBookingId);
+        bookingMap.put(booking.getBookingId(), booking);
+        return newBookingId;
     }
     
     @Override
