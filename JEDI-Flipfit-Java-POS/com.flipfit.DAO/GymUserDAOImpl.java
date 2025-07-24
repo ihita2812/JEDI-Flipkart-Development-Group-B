@@ -82,22 +82,14 @@ public class GymUserDAOImpl implements GymUserDAO {
 
     }
 
-    public List<Object> getBookingsByCustomerId(int customerId) {
+    public List<Booking> getBookingsByCustomerId(int customerId) {
         List<Booking> bookings = new ArrayList<>();
-        List<Integer> bookingIds = new ArrayList<>();
-        List<Slot> slots = new ArrayList<>();
         for (Booking booking : bookingMap.values()) {
             if (booking.getCustomerId() == customerId) {
                 bookings.add(booking);
-                bookingIds.add(booking.getBookingId());
-                slots.add(slotMap.get(booking.getSlotId()));
             }
         }
-        List<Object> results = new ArrayList<>();
-        results.add(bookingIds);
-        results.add(bookings);
-        results.add(slots);
-        return results;
+        return bookings;
     }
 
     public Booking getBookingByBookingId(int bookingId) {
@@ -113,8 +105,6 @@ public class GymUserDAOImpl implements GymUserDAO {
             payment.setBookingId(bookingId);
             payment.setAmount(100); // Assuming a fixed amount for simplicity
             addPayment(payment);
-        } else {
-            // Handle case where booking does not exist
         }
     }
 
@@ -125,27 +115,40 @@ public class GymUserDAOImpl implements GymUserDAO {
     }
 
     public List<Payment> getAllPayments() {
-        List<Payment> payments = new ArrayList<>(paymentMap.values());
-        return payments;
+        return new ArrayList<>(paymentMap.values());
     }
 
     public void cancelBookingById(int bookingId) {
         bookingMap.remove(bookingId);
     }
 
-    public List<Object> getSlotByCenterId(int gymCenterId) {
+    public List<Slot> getSlotByCenterId(int gymCenterId) {
         List<Slot> slots = new ArrayList<>();
-        List<Integer> slotIds = new ArrayList<>();
-        for (Slot slot : GymUserDAOImpl.slotMap.values()) {
+        for (Slot slot : slotMap.values()) {
             if (slot.getCenterId() == gymCenterId) {
                 slots.add(slot);
-                slotIds.add(slot.getSlotId());
             }
         }
-        List<Object> results = new ArrayList<>();
-        results.add(slotIds);
-        results.add(slots);
-        return results;
+        return slots;
+    }
+
+    public Slot getSlotByBookingId(int bookingId) {
+        Booking booking = bookingMap.get(bookingId);
+        for (Slot slot : slotMap.values()) {
+            if (slot.getSlotId() == booking.getSlotId()) {
+                return slot;
+            }
+        }
+        return null;
+    }
+
+    public String getCenterNameByCenterId(int gymCenterId) {
+        for (GymCenter center : centerMap.values()) {
+            if (center.getCenterId() == gymCenterId) {
+                return center.getName();
+            }
+        }
+        return null;
     }
 
     public int addBooking(Booking booking) {
@@ -191,15 +194,5 @@ public class GymUserDAOImpl implements GymUserDAO {
     public Role getRole(int role) {
         return roleMap.get(role);
     }
-
-    // public boolean validateLogin(String username, String password) {
-    // for (GymUser user : userMap.values()) {
-    // if (user.getUserName().equals(username) &&
-    // user.getPassword().equals(password)) {
-    // return true;
-    // }
-    // }
-    // return false;
-    // }
 
 }

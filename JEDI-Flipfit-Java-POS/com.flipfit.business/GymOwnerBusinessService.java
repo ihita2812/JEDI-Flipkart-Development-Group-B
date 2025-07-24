@@ -60,7 +60,7 @@ public class GymOwnerBusinessService implements GymOwnerBusinessServiceInterface
         System.out.println("Payment details viewed");
     }
 
-    public List<Object> viewSlots(int centerId) {
+    public List<Slot> viewSlots(int centerId) {
         return userDAO.getSlotByCenterId(centerId);
     }
 

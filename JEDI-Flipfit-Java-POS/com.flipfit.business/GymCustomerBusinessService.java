@@ -5,22 +5,16 @@ import java.util.*;
 import com.flipfit.dao.*;
 
 public class GymCustomerBusinessService implements GymCustomerBusinessServiceInterface {
-    private GymCustomerDAO customerDAO = new GymCustomerDAOImpl();
-    private GymUserDAO userDAO = new GymUserDAOImpl();
+    private final GymCustomerDAO customerDAO = new GymCustomerDAOImpl();
+    private final GymUserDAO userDAO = new GymUserDAOImpl();
 
     public void registerCustomer(GymCustomer gymCustomer) {
         customerDAO.addCustomer(gymCustomer);
     }
 
-    // public int nextCustomerId() {
-    // int currMax = Collections.max(GymCustomerDAOImpl.customerMap.keySet());
-    // return (currMax + 1);
-    // }
-
     public GymCustomer createCustomerBean(String name, String password, int role, String userName, int age,
             String location, int gender, String email) {
         GymCustomer gymCustomer = new GymCustomer();
-        // gymCustomer.setCustomerId(cust);
         gymCustomer.setName(name);
         gymCustomer.setPassword(password);
         gymCustomer.setRole(userDAO.getRole(role));
@@ -36,16 +30,22 @@ public class GymCustomerBusinessService implements GymCustomerBusinessServiceInt
         System.out.println("[Gym Center Viewed]");
     }
 
-    public List<Object> viewSlots(int centerId) {
+    public List<Slot> viewSlotsFromCenter(int centerId) {
         return userDAO.getSlotByCenterId(centerId);
+    }
+
+    public Slot viewSlotFromBooking(int bookingId) {
+        return userDAO.getSlotByBookingId(bookingId);
+    }
+
+    public String viewCenterName(int centerId) {
+        return userDAO.getCenterNameByCenterId(centerId);
     }
 
     public List<Notification> viewNotificationsByCustomerId(int customerId) {
         // iterate in notificationMap and store the Notification objects in a List which
         // match the owner's ID
-        List<Notification> notifications = customerDAO.getNotificationsByCustomerId(customerId);
-
-        return notifications;
+        return customerDAO.getNotificationsByCustomerId(customerId);
     }
 
     public int bookSlot(int customerId, int slotId) {
@@ -68,8 +68,8 @@ public class GymCustomerBusinessService implements GymCustomerBusinessServiceInt
         userDAO.approvePayment(bookingId);
     }
 
-    public List<Object> viewBookings(GymCustomer gymCustomer) {
-        return userDAO.getBookingsByCustomerId(gymCustomer.getCustomerId());
+    public List<Booking> viewBookings(int customerId) {
+        return userDAO.getBookingsByCustomerId(customerId);
     }
 
     public void editProfile(GymCustomer gymCustomer) {

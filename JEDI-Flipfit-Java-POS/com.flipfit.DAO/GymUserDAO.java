@@ -16,15 +16,18 @@ public interface GymUserDAO {
 
     Role getRole(int role);
 
-    public List<Object> getSlotByCenterId(int gymCenterId);
+    List<Slot> getSlotByCenterId(int gymCenterId);
 
-    public List<Object> getBookingsByCustomerId(int customerId);
+    Slot getSlotByBookingId(int bookingId);
 
-    public void approvePayment(int bookingId);
+    String getCenterNameByCenterId(int gymCenterId);
 
-    public int addBooking(Booking booking);
+    List<Booking> getBookingsByCustomerId(int customerId);
 
-    public void cancelBookingById(int bookingId);
+    void approvePayment(int bookingId);
 
-    // boolean validateLogin(String username, String password);
+    int addBooking(Booking booking);
+
+    void cancelBookingById(int bookingId);
+
 }
