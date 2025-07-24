@@ -13,7 +13,7 @@ public class GymCustomerBusinessService implements GymCustomerBusinessServiceInt
     }
 
     public GymCustomer createCustomerBean(String name, String password, int role, String userName, int age,
-            String location, int gender, String email) {
+            String location, int gender, String email, int userId) {
         GymCustomer gymCustomer = new GymCustomer();
         gymCustomer.setName(name);
         gymCustomer.setPassword(password);
@@ -23,6 +23,7 @@ public class GymCustomerBusinessService implements GymCustomerBusinessServiceInt
         gymCustomer.setLocation(location);
         gymCustomer.setGender(gender);
         gymCustomer.setEmail(email);
+        gymCustomer.setUserId(userId);
         return gymCustomer;
     }
 

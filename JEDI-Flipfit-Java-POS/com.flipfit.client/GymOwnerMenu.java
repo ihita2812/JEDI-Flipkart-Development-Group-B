@@ -75,44 +75,44 @@ public class GymOwnerMenu {
                     break;
                 case 4:
                     System.out.println("---------------------------------------------");
-                    System.out.println("Enter Center Id:");
-                    int centerId1 = scanner.nextInt();
-                    scanner.nextLine();
-                    List<Object> slotResultsList = ownerBusiness.viewSlots(centerId1);
-                    if (slotResultsList.isEmpty()) {
-                        System.out.println("No slots available for the selected gym center.");
-                    } else {
-                        System.out.println("Here are the available slots!");
-                        List<Integer> slotIds = (List<Integer>) slotResultsList.get(0);
-                        List<Slot> slots = (List<Slot>) slotResultsList.get(1);
-                        for (int i = 0; i < slotIds.size(); i++) {
-                            System.out.println("Slot ID: " + slotIds.get(i));
-                            LocalTime slotStartTime = slots.get(i).getStartTime();
-                            LocalTime slotEndTime = slotStartTime.plusHours(1);
-                            LocalDate slotDate = slots.get(i).getDate();
-                            System.out.println("Slot: " + slotStartTime + " - " + slotEndTime + " on " + slotDate);
-                            System.out.println("---------------------------------------------");
-                        }
-                    }
-                    System.out.println("---------------------------------------------");
-                    System.out.println("Enter Slot ID to see bookings data or to exit enter -1");
-                    int slotId = scanner.nextInt();
-                    scanner.nextLine();
-                    if (slotId == -1) {
-                        System.out.println("Exiting slot view.");
-                        break;
-                    }
-                    List<Booking> bookings = ownerBusiness.viewBookingDetails(slotId);
-                    if (bookings.isEmpty()) {
-                        System.out.println("No bookings found for this slot.");
-                    } else {
-                        System.out.println("Bookings for this slot:");
-
-                        for (Booking booking : bookings) {
-                            System.out.println("Booking ID: " + booking.getBookingId() + ", Customer ID: "
-                                    + booking.getCustomerId() + ", Status: " + booking.getStatus());
-                        }
-                    }
+//                    System.out.println("Enter Center Id:");
+//                    int centerId1 = scanner.nextInt();
+//                    scanner.nextLine();
+//                    List<Object> slotResultsList = ownerBusiness.viewSlots(centerId1);
+//                    if (slotResultsList.isEmpty()) {
+//                        System.out.println("No slots available for the selected gym center.");
+//                    } else {
+//                        System.out.println("Here are the available slots!");
+//                        List<Integer> slotIds = (List<Integer>) slotResultsList.get(0);
+//                        List<Slot> slots = (List<Slot>) slotResultsList.get(1);
+//                        for (int i = 0; i < slotIds.size(); i++) {
+//                            System.out.println("Slot ID: " + slotIds.get(i));
+//                            LocalTime slotStartTime = slots.get(i).getStartTime();
+//                            LocalTime slotEndTime = slotStartTime.plusHours(1);
+//                            LocalDate slotDate = slots.get(i).getDate();
+//                            System.out.println("Slot: " + slotStartTime + " - " + slotEndTime + " on " + slotDate);
+//                            System.out.println("---------------------------------------------");
+//                        }
+//                    }
+//                    System.out.println("---------------------------------------------");
+//                    System.out.println("Enter Slot ID to see bookings data or to exit enter -1");
+//                    int slotId = scanner.nextInt();
+//                    scanner.nextLine();
+//                    if (slotId == -1) {
+//                        System.out.println("Exiting slot view.");
+//                        break;
+//                    }
+//                    List<Booking> bookings = ownerBusiness.viewBookingDetails(slotId);
+//                    if (bookings.isEmpty()) {
+//                        System.out.println("No bookings found for this slot.");
+//                    } else {
+//                        System.out.println("Bookings for this slot:");
+//
+//                        for (Booking booking : bookings) {
+//                            System.out.println("Booking ID: " + booking.getBookingId() + ", Customer ID: "
+//                                    + booking.getCustomerId() + ", Status: " + booking.getStatus());
+//                        }
+//                    }
                     break;
                 case 5:
                     System.out.println("Notifications:");

@@ -20,10 +20,7 @@ public class GymUserBusinessService implements GymUserBusinessServiceInterface {
             else {
                 switch (foundRole.getRoleId()) {
                     case 0: // Customer
-                        if (foundUser instanceof GymCustomer) {
-                            return ((GymCustomer) foundUser).getCustomerId();
-                        }
-                        break;
+                        return userDAO.getCustomerId(foundUser);
                     case 1: // Owner
                         if (foundUser instanceof GymOwner) {
                             return ((GymOwner) foundUser).getOwnerId();

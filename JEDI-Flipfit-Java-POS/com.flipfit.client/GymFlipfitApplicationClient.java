@@ -95,7 +95,8 @@ public class GymFlipfitApplicationClient {
                     System.out.println("Enter email:");
                     String email = scanner.nextLine();
                     scanner.nextLine();
-                    GymCustomer newCustomer = customerBusiness.createCustomerBean(name, pasword, 0, userName, age, loca, gender, email);
+                    int userId = newUser.getUserId();
+                    GymCustomer newCustomer = customerBusiness.createCustomerBean(name, pasword, 0, userName, age, loca, gender, email, userId);
                     customerBusiness.registerCustomer(newCustomer);
                     System.out.println("Customer registered successfully with ID: " + newCustomer.getCustomerId());
 
@@ -127,8 +128,8 @@ public class GymFlipfitApplicationClient {
                     System.out.println("Enter email:");
                     String emai = scanner.nextLine();
                     scanner.nextLine();
-
-                    GymOwner newOwner = ownerBusiness.createOwnerBean(name1, password1, 1, userName1, gende, emai);
+                    int userId1 = newUser1.getUserId();
+                    GymOwner newOwner = ownerBusiness.createOwnerBean(name1, password1, 1, userName1, gende, emai, userId1);
                     ownerBusiness.registerOwner(newOwner);
                     System.out.println("Owner registered successfully with ID: " + newOwner.getOwnerId());
                     break;

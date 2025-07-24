@@ -16,7 +16,7 @@ public class GymOwnerBusinessService implements GymOwnerBusinessServiceInterface
         ownerDAO.addOwner(gymOwner);
     }
 
-    public GymOwner createOwnerBean(String name, String password, int role, String userName, int gender, String email) {
+    public GymOwner createOwnerBean(String name, String password, int role, String userName, int gender, String email, int userId) {
         GymOwner gymOwner = new GymOwner();
         gymOwner.setName(name);
         gymOwner.setPassword(password);
@@ -24,6 +24,7 @@ public class GymOwnerBusinessService implements GymOwnerBusinessServiceInterface
         gymOwner.setUserName(userName);
         gymOwner.setGender(gender);
         gymOwner.setEmail(email);
+        gymOwner.setUserId(userId);
         return gymOwner;
     }
 
@@ -60,10 +61,10 @@ public class GymOwnerBusinessService implements GymOwnerBusinessServiceInterface
         System.out.println("Payment details viewed");
     }
 
-    public List<Slot> viewSlots(int centerId) {
-        return userDAO.getSlotByCenterId(centerId);
-    }
-
+//    public List<Slot> viewSlots(int centerId) {
+//        return userDAO.getSlotByCenterId(centerId);
+//    }
+//
     public GymCenter createGymCenterBean(String centerName, String centerLocation, int capacity, int numSlots,
             int ownerId) {
         GymCenter gymCenter = new GymCenter();

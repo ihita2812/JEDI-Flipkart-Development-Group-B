@@ -2,6 +2,9 @@ package com.flipfit.dao;
 
 import com.flipfit.bean.*;
 import java.util.*;
+import com.flipfit.dao.GymCustomerDAOImpl;
+import com.flipfit.dao.GymOwnerDAOImpl;
+import com.flipfit.dao.GymAdminDAOImpl;
 
 public class GymUserDAOImpl implements GymUserDAO {
 
@@ -80,6 +83,33 @@ public class GymUserDAOImpl implements GymUserDAO {
         customerUser1.setRole(customerRole);
         userMap.put(6, customerUser1);
 
+    }
+
+    public int getCustomerId(GymUser gymUser) {
+        for(GymCustomer customer : GymCustomerDAOImpl.customerMap.values()){
+            if(gymUser.getUserId() == customer.getUserId()){
+                return customer.getCustomerId();
+            }
+        }
+        return -1;
+    }
+
+    public int getOwnerId(GymUser gymUser) {
+        for(GymOwner owner : GymOwnerDAOImpl.ownerMap.values()){
+            if(gymUser.getUserId() == owner.getUserId()){
+                return owner.getOwnerId();
+            }
+        }
+        return -1;
+    }
+
+    public int getAdminId(GymUser gymUser) {
+        for(GymAdmin admin : GymAdminDAOImpl.adminMap.values()){
+            if(gymUser.getUserId() == admin.getUserId()){
+                return admin.getAdminId();
+            }
+        }
+        return -1;
     }
 
     public List<Booking> getBookingsByCustomerId(int customerId) {

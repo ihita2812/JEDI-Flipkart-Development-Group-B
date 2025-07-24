@@ -1,4 +1,4 @@
-package com.flipfit.DAO;
+package com.flipfit.dao;
 
 import com.flipfit.bean.*;
 import com.flipfit.dao.GymAdminDAO;

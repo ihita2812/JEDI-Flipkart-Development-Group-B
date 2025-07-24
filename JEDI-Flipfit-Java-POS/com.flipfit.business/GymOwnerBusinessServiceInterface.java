@@ -2,7 +2,7 @@ package com.flipfit.business;
 
 import com.flipfit.bean.*;
 import java.util.*;
-import com.flipfit.DAO.*;
+import com.flipfit.dao.*;
 
 public interface GymOwnerBusinessServiceInterface {
     public void registerOwner(GymOwner gymOwner);
@@ -17,7 +17,7 @@ public interface GymOwnerBusinessServiceInterface {
 
     public void viewPayment(GymCenter center);
 
-    public List<Object> viewSlots(int centerId);
+//    public List<Object> viewSlots(int centerId);
 
     public void registerGymCenter(GymCenter gymCenter);
 
@@ -26,5 +26,5 @@ public interface GymOwnerBusinessServiceInterface {
 
     public void editSlot(int slotID, String centerName);
 
-    public GymOwner createOwnerBean(String name, String password, int role, String userName, int gender, String email);
+    public GymOwner createOwnerBean(String name, String password, int role, String userName, int gender, String email, int userId);
 }

@@ -5,6 +5,16 @@ public class GymOwner extends GymUser{
     private int gender;
     private String email;
 
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    private int userId;
+
     public String getEmail() {
         return this.email;
     }
