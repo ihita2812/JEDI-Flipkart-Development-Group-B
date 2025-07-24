@@ -2,6 +2,7 @@ package com.flipfit.dao;
 
 import com.flipfit.bean.*;
 import com.flipfit.DAO.GymUserDAOImpl.roleMap;
+import com.flipfit.DAO.GymUserDAOImpl.notificationMap;
 
 import java.util.*;
 
@@ -38,6 +39,16 @@ public class GymCustomerDAOImpl implements GymCustomerDAO {
         customer2.setGender('F');
         customer2.setEmail("def@gaanmara.com");
         customerMap.put(customer2.getCustomerId(), customer2);
+    }
+
+    public List <Notification> viewCustomerNotifications(int customerId) {
+        List<Notification> notifications = new ArrayList<>();
+        for (Notification notification : notificationMap.values()) {
+            if (notification.getUserId() == customerId) {
+                notifications.add(notification);
+            }
+        }
+        return notifications;
     }
 
     /*

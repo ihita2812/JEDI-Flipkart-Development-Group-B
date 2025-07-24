@@ -2,6 +2,8 @@ package com.flipfit.dao;
 
 import com.flipfit.bean.GymOwner;
 import java.util.*;
+import com.flipfit.DAO.GymUserDAOImpl.roleMap;
+import com.flipfit.DAO.GymUserDAOImpl.notificationMap;
 
 public class GymOwnerDAOImpl implements GymOwnerDAO {
 
@@ -32,6 +34,16 @@ public class GymOwnerDAOImpl implements GymOwnerDAO {
         owner2.setGender('F');
         owner2.setEmail("owner1@gaanmara.com");
         ownerMap.put(owner2.getOwnerId(), owner2);
+    }
+
+    public List <Notification> viewOwnerNotifications(int ownerId) {
+        List <Notification> notifications = new ArrayList<>();
+        for (Notification notification : notificationMap.values()) {
+            if (notification.getUserId() == ownerId) {
+                notifications.add(notification);
+            }
+        }
+        return notifications;
     }
     /*
     @Override

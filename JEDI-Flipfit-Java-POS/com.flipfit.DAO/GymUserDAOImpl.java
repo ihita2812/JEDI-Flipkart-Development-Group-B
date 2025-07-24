@@ -100,6 +100,7 @@ public class GymUserDAOImpl implements GymUserDAO {
         return results;
     }
     
+    @Override
     public void addUser(GymUser user) {
         int newUserId = Collections.max(userMap.keySet()) + 1;
         user.setUserId(newUserId);
@@ -107,10 +108,12 @@ public class GymUserDAOImpl implements GymUserDAO {
         System.out.println("User added successfully with ID: " + newUserId);
     }
 
+    @Override
     public GymUser getUserById(int userId) {
         return userMap.get(userId);
     }
 
+    @Override
     public GymUser getUserByUsername(String username) {
         for (GymUser user : userMap.values()) {
             if (user.getUserName().equals(username)) {
@@ -120,14 +123,17 @@ public class GymUserDAOImpl implements GymUserDAO {
         return null;
     }
 
+    @Override
     public List<GymUser> getAllUsers() {
         return new ArrayList<>(userMap.values());
     }
 
+    @Override
     public void removeUser(int userId) {
         userMap.remove(userId);
     }
 
+    @Override
     public Role getRole(int role) {
         return roleMap.get(role);
     }
