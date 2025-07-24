@@ -23,4 +23,6 @@ public interface GymCustomerBusinessServiceInterface {
     void viewBookings();
 
     public void editProfile(GymCustomer gymCustomer);
+    public GymOwner createOwnerBean(String name, String password, int role, String userName, int gender, String email);
+    public List <Notification> viewNotificationsByCustomerId(int customerId);
 }

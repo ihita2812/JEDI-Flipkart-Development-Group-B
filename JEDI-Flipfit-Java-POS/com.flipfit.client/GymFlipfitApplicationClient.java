@@ -84,7 +84,7 @@ public class GymFlipfitApplicationClient {
                     String loca = scanner.nextLine();
                     scanner.nextLine();
                     System.out.println("Enter gender:");
-                    String gender = scanner.nextLine();
+                    int gender = scanner.nextInt();
                     scanner.nextLine();
                     System.out.println("Enter email:");
                     String email = scanner.nextLine();
@@ -118,7 +118,7 @@ public class GymFlipfitApplicationClient {
                     System.out.println("User registered successfully with ID: " + newUser1.getUserId());
                     // ---------------------------------------------------------------------------
                     System.out.println("Enter gender:");
-                    String gende = scanner.nextLine();
+                    int gende = scanner.nextInt();
                     scanner.nextLine();
                     System.out.println("Enter email:");
                     String emai = scanner.nextLine();
