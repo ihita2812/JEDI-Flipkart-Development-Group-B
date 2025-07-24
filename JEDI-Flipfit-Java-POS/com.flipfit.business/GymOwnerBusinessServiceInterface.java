@@ -1,6 +1,9 @@
 package com.flipfit.business;
 
 import com.flipfit.bean.*;
+
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.*;
 import com.flipfit.dao.*;
 
@@ -15,9 +18,11 @@ public interface GymOwnerBusinessServiceInterface {
 
     public List<Notification> viewNotificationsByOwnerId(int ownerId);
 
-    public void viewPayment(GymCenter center);
+    public List<Payment> viewAllPayments(int centerId);
 
-//    public List<Object> viewSlots(int centerId);
+    public Payment viewPaymentDetails(int bookingId);
+
+    public List<Slot> viewSlots(int centerId);
 
     public void registerGymCenter(GymCenter gymCenter);
 
@@ -27,4 +32,8 @@ public interface GymOwnerBusinessServiceInterface {
     public void editSlot(int slotID, String centerName);
 
     public GymOwner createOwnerBean(String name, String password, int role, String userName, int gender, String email, int userId);
+
+    public Slot createSlotBean(LocalTime startTime,LocalDate date, int centerId);
+
+    public void registerGymSlot(Slot slot);
 }

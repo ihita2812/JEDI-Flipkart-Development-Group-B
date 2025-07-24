@@ -24,4 +24,10 @@ public interface GymOwnerDAO {
     List<Booking> getBookingsBySlotId(int slotId);
 
     public List<Notification> getNotificationsByOwnerId(int ownerId);
+
+    public Payment getPaymentByBookingId(int bookingId);
+
+    public List<Payment> getAllPaymentsByCenterId(int centerId);
+
+    public void addGymSlot(Slot slot);
 }

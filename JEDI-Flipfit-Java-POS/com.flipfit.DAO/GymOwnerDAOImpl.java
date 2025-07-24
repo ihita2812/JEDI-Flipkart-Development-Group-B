@@ -35,6 +35,40 @@ public class GymOwnerDAOImpl implements GymOwnerDAO {
         ownerMap.put(owner2.getOwnerId(), owner2);
     }
 
+    public Payment getPaymentByBookingId(int bookingId)
+    {
+        for(Payment payment: GymUserDAOImpl.paymentMap.values())
+        {
+            if(payment.getBookingId() == bookingId)
+            {
+                return payment;
+            }
+        }
+        return null;
+    }
+
+    public List<Payment> getAllPaymentsByCenterId(int centerId)
+    {
+        List<Payment> payments = new ArrayList<>();
+        for(Slot s: GymUserDAOImpl.slotMap.values())
+        {
+            if(s.getCenterId() == centerId)
+            {
+                for (Booking booking : GymUserDAOImpl.bookingMap.values()) {
+                    if (booking.getSlotId() == s.getSlotId()) {
+                        for(Payment payment: GymUserDAOImpl.paymentMap.values())
+                        {
+                            if(payment.getBookingId() == booking.getBookingId())
+                            {
+                                 payments.add(payment);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return payments;
+    }
     public List<Notification> getNotificationsByOwnerId(int ownerId) {
         List<Notification> notifications = new ArrayList<>();
         for (Notification notification : GymUserDAOImpl.notificationMap.values()) {
@@ -110,9 +144,16 @@ public class GymOwnerDAOImpl implements GymOwnerDAO {
         // For now, we will just add it to the map.
         // GymUserDAOImpl.centermap.put(gymCenter.getCenterId(), gymCenter);
         // System.out.println("Gym Center Added: " + gymCenter.getName());
-        int newGymCenterId = Collections.max(GymUserDAOImpl.centerMap.keySet()) + 1;
+
+        int newGymCenterId =  GymUserDAOImpl.centerMap.isEmpty() ? 1 : Collections.max(GymUserDAOImpl.centerMap.keySet()) + 1;
         gymCenter.setCenterId(newGymCenterId);
         GymUserDAOImpl.centerMap.put(newGymCenterId, gymCenter);
         // System.out.println("User added successfully with ID: " + newGymCenterId);
+    }
+
+    public void addGymSlot(Slot slot) {
+        int newSlotId =  GymUserDAOImpl.slotMap.isEmpty() ? 1 : Collections.max(GymUserDAOImpl.slotMap.keySet()) + 1;
+        slot.setSlotId(newSlotId);
+        GymUserDAOImpl.slotMap.put(newSlotId, slot);
     }
 }

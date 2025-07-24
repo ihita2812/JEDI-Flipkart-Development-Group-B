@@ -3,9 +3,8 @@ package com.flipfit.business;
 import com.flipfit.bean.*;
 import com.flipfit.dao.*;
 
-import java.util.Collections;
-import java.util.List;
-
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.*;
 
 public class GymOwnerBusinessService implements GymOwnerBusinessServiceInterface {
@@ -61,10 +60,10 @@ public class GymOwnerBusinessService implements GymOwnerBusinessServiceInterface
         System.out.println("Payment details viewed");
     }
 
-//    public List<Slot> viewSlots(int centerId) {
-//        return userDAO.getSlotByCenterId(centerId);
-//    }
-//
+    public List<Slot> viewSlots(int centerId) {
+        return userDAO.getSlotByCenterId(centerId);
+    }
+
     public GymCenter createGymCenterBean(String centerName, String centerLocation, int capacity, int numSlots,
             int ownerId) {
         GymCenter gymCenter = new GymCenter();
@@ -87,5 +86,29 @@ public class GymOwnerBusinessService implements GymOwnerBusinessServiceInterface
 
     public void editSlot(int slotID, String centerName) {
         System.out.println("Your slot has been edited");
+    }
+
+    @Override
+    public List<Payment> viewAllPayments(int centerId) {
+        return ownerDAO.getAllPaymentsByCenterId(centerId);
+    }
+
+    public Payment viewPaymentDetails(int bookingId)
+    {
+        return ownerDAO.getPaymentByBookingId(bookingId);
+    }
+    public Slot createSlotBean(LocalTime startTime, LocalDate date, int centerId)
+    {
+        Slot slot = new Slot();
+        slot.setStartTime(startTime);
+        slot.setDate(date);
+        slot.setCenterId(centerId);
+        slot.setBookedSeats(0);
+        // The DAO will set the user ID when the user is added to the database.
+        return slot;
+    }
+
+    public void registerGymSlot(Slot slot) {
+        ownerDAO.addGymSlot(slot);
     }
 }

@@ -4,6 +4,9 @@ import com.flipfit.bean.*;
 import com.flipfit.dao.GymUserDAO;
 import com.flipfit.dao.GymUserDAOImpl;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 public class GymUserBusinessService implements GymUserBusinessServiceInterface {
 
     private GymUserDAO userDAO = new GymUserDAOImpl();
