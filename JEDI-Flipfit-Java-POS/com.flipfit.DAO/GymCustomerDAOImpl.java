@@ -50,6 +50,12 @@ public class GymCustomerDAOImpl implements GymCustomerDAO {
         return notifications;
     }
 
+    public void addCustomer(GymCustomer customer) {
+        int newCustomerId = Collections.max(customerMap.keySet()) + 1;
+        customer.setCustomerId(newCustomerId);
+        customerMap.put(newCustomerId, customer);
+    }
+
     /*
      * private GymUserDAO userDAO = new GymUserDAOImpl();
      * 
@@ -89,7 +95,15 @@ public class GymCustomerDAOImpl implements GymCustomerDAO {
      * }
      * 
      * 
-     * 
+     * public void viewSlot(int gymCenterId) {
+     * System.out.println("Slots at center ID: " + gymCenterId);
+     * for (Slot slot : slotMap.values()) {
+     * if (slot.getCenterId() == gymCenterId) {
+     * System.out.println("Slot ID: " + slot.getSlotId() + ", Time: " +
+     * slot.getStartTime() + ", Date: " + slot.getDate());
+     * }
+     * }
+     * }
      * 
      * 
      * public void bookSlot(int slotId) {

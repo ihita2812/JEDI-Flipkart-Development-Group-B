@@ -15,6 +15,7 @@ public interface GymCustomerDAO {
     // void makePayment(int bookingId);
     // void viewBookings(int customerId);
     // void editProfile(GymCustomer gymCustomer);
-    // void addCustomer(GymCustomer gymCustomer);
-    public List <Notification> getNotificationsByCustomerId(int customerId);
+    void addCustomer(GymCustomer gymCustomer);
+
+    public List<Notification> getNotificationsByCustomerId(int customerId);
 }

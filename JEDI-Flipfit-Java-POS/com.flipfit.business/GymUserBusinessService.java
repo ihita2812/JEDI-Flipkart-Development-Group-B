@@ -8,14 +8,33 @@ public class GymUserBusinessService implements GymUserBusinessServiceInterface {
 
     private GymUserDAO userDAO = new GymUserDAOImpl();
 
-    public boolean loginUser(GymUser user) {
-        GymUser foundUser = userDAO.getUserByUsername(user.getUserName());
-        if (foundUser != null && foundUser.getPassword().equals(user.getPassword())) {
-            System.out.println("Login successful! Welcome " + foundUser.getName());
-            return true;
+    // login user takes username and password and checks if user exists
+    // if user exists, it gets the role and returns role specific id
+    // otherwise returns -1
+    public int loginUser(String username, String password, int role) {
+        GymUser foundUser = userDAO.getUserByUsername(username);
+        if (foundUser != null && foundUser.getPassword().equals(password)) {
+            Role foundRole = foundUser.getRole();
+            if (foundRole != userDAO.getRole(role)) // check if the role matches
+                return -2;
+            else {
+                switch (foundRole.getRoleId()) {
+                    case 0: // Customer
+                        if (foundUser instanceof GymCustomer) {
+                            return ((GymCustomer) foundUser).getCustomerId();
+                        }
+                        break;
+                    case 1: // Owner
+                        if (foundUser instanceof GymOwner) {
+                            return ((GymOwner) foundUser).getOwnerId();
+                        }
+                        break;
+                    case 2: // Admin
+                        return ((GymAdmin) foundUser).getAdminId();
+                }
+            }
         }
-        System.out.println("Invalid username or password.");
-        return false;
+        return -1;
     }
 
     public Notification[] viewNotifications(GymUser user) {

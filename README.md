@@ -7,6 +7,7 @@
 ## DAY-3 : DAO
 
 ### menu:
+
 - ~~view booking (customer)~~
 - ~~do booking (customer)~~
 - ~~cancel booking (customer)~~
@@ -18,10 +19,12 @@
 - ~~view payments (admin)~~
 
 ### login:
+
 - authenticate
 - return role specific id
 
 ### registration:
+
 ??? what is update idk
 
 ## DAY-4 : MYSQL

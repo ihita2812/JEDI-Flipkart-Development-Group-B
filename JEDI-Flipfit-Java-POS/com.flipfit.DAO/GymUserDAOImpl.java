@@ -154,7 +154,7 @@ public class GymUserDAOImpl implements GymUserDAO {
         bookingMap.put(booking.getBookingId(), booking);
         return newBookingId;
     }
-    
+
     @Override
     public void addUser(GymUser user) {
         int newUserId = Collections.max(userMap.keySet()) + 1;
@@ -188,7 +188,6 @@ public class GymUserDAOImpl implements GymUserDAO {
         userMap.remove(userId);
     }
 
-    @Override
     public Role getRole(int role) {
         return roleMap.get(role);
     }
