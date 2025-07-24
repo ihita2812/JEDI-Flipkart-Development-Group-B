@@ -33,9 +33,14 @@ public class GymCustomerMenu {
             case 1:
                 System.out.println("---------------------------------------------");
                 System.out.println("Here are the centers near you!");
-                customerBusiness.viewGymCenter(null);
-                for (int i = 1; i < 5; i++) {
-                    System.out.println("GYM CENTER " + i);
+                List<GymCenter> centerList = customerBusiness.viewGymCenter();
+                List<Integer> centerIds = new ArrayList<>();
+                for (GymCenter gymCenter : centerList) {
+                    centerIds.add(gymCenter.getCenterId());
+                    System.out.println("Center Id: " + gymCenter.getCenterId());
+                    System.out.println("Name: " + gymCenter.getName());
+                    System.out.println("Location: " + gymCenter.getLocation());
+                    System.out.println("---------------------------------------------");
                 }
                 System.out.println("---------------------------------------------");
                 System.out.println("You can enter the gym center number to view available slots!");
@@ -47,57 +52,61 @@ public class GymCustomerMenu {
                 if (choice2 == 0) {
                     break;
                 } else {
-                    System.out.println("---------------------------------------------");
-                    List<Slot> slotResultsList = customerBusiness.viewSlotsFromCenter(choice2);
-                    List<Integer> slotIds = new ArrayList<>();
-                    if (slotResultsList.isEmpty()) {
-                        System.out.println("No slots available for the selected gym center.");
-                    } else {
-                        System.out.println("Here are the available slots!");
-                        for (Slot slot : slotResultsList) {
-                            slotIds.add(slot.getSlotId());
-                        }
-                        for (int i = 0; i < slotResultsList.size(); i++) {
-                            System.out.println("Slot ID: " + slotIds.get(i));
-                            LocalTime slotStartTime = slotResultsList.get(i).getStartTime();
-                            LocalTime slotEndTime = slotStartTime.plusHours(1);
-                            LocalDate slotDate = slotResultsList.get(i).getDate();
-                            System.out.println("Slot: " + slotStartTime + " - " + slotEndTime + " on " + slotDate);
-                            System.out.println("---------------------------------------------");
-                        }
-                    }
-                    System.out.println("---------------------------------------------");
-                    System.out.println("You can enter the slot number to book it!");
-                    System.out.println("Enter 0 to go to home page!");
-
-                    int choice3 = scanner.nextInt();
-                    scanner.nextLine();
-
-                    if (choice3 == 0) {
-                        break;
-                    } else {
-                        if (slotIds.contains(choice3)) {
-                            System.out.println("---------------------------------------------");
-                            int bookingId = customerBusiness.bookSlot(customerId, choice3);
-                            System.out.println("Slot booked successfully! Your booking ID is: " + bookingId);
-                            System.out.println("You can make payment now or later.");
-                            System.out.println("Make payment at least 6 hours before the slot timing to confirm!");
-                            System.out.println("Enter 1 to pay now, 0 to pay later and go to home page!");
-
-                            int choice4 = scanner.nextInt();
-                            scanner.nextLine();
-
-                            if (choice4 == 1) {
-                                System.out.println("---------------------------------------------");
-                                customerBusiness.makePayment(bookingId);
-                                System.out.println("Payment made successfully! Your booking (Booking ID:" + bookingId + ") is confirmed.");
-                            } else {
-                                more = false;
-                            }
+                    if (centerIds.contains(choice2)) {
+                        System.out.println("---------------------------------------------");
+                        List<Slot> slotResultsList = customerBusiness.viewSlotsFromCenter(choice2);
+                        List<Integer> slotIds = new ArrayList<>();
+                        if (slotResultsList.isEmpty()) {
+                            System.out.println("No slots available for the selected gym center.");
                         } else {
-                            System.out.println("Invalid Slot ID. Breaking to main menu.");
-                            break;
+                            System.out.println("Here are the available slots!");
+                            for (Slot slot : slotResultsList) {
+                                slotIds.add(slot.getSlotId());
+                            }
+                            for (int i = 0; i < slotResultsList.size(); i++) {
+                                System.out.println("Slot ID: " + slotIds.get(i));
+                                LocalTime slotStartTime = slotResultsList.get(i).getStartTime();
+                                LocalTime slotEndTime = slotStartTime.plusHours(1);
+                                LocalDate slotDate = slotResultsList.get(i).getDate();
+                                System.out.println("Slot: " + slotStartTime + " - " + slotEndTime + " on " + slotDate);
+                                System.out.println("---------------------------------------------");
+                            }
                         }
+                        System.out.println("---------------------------------------------");
+                        System.out.println("You can enter the slot number to book it!");
+                        System.out.println("Enter 0 to go to home page!");
+
+                        int choice3 = scanner.nextInt();
+                        scanner.nextLine();
+
+                        if (choice3 == 0) {
+                            break;
+                        } else {
+                            if (slotIds.contains(choice3)) {
+                                System.out.println("---------------------------------------------");
+                                int bookingId = customerBusiness.bookSlot(customerId, choice3);
+                                System.out.println("Slot booked successfully! Your booking ID is: " + bookingId);
+                                System.out.println("You can make payment now or later.");
+                                System.out.println("Make payment at least 6 hours before the slot timing to confirm!");
+                                System.out.println("Enter 1 to pay now, 0 to pay later and go to home page!");
+
+                                int choice4 = scanner.nextInt();
+                                scanner.nextLine();
+
+                                if (choice4 == 1) {
+                                    System.out.println("---------------------------------------------");
+                                    customerBusiness.makePayment(bookingId);
+                                    System.out.println("Payment made successfully! Your booking (Booking ID:" + bookingId + ") is confirmed.");
+                                } else {
+                                    more = false;
+                                }
+                            } else {
+                                System.out.println("Invalid Slot ID. Breaking to main menu.");
+                                break;
+                            }
+                        }
+                    } else {
+                        System.out.println("Invalid Center ID. Breaking to main menu.");
                     }
                 }
             break;

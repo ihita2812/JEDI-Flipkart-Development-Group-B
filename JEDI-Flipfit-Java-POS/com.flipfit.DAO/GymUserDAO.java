@@ -30,6 +30,8 @@ public interface GymUserDAO {
 
     void cancelBookingById(int bookingId);
 
+    List<GymCenter> getAllCenters();
+
     int getCustomerId(GymUser gymUser);
 
     int getAdminId(GymUser gymUser);

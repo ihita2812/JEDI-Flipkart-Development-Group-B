@@ -27,8 +27,8 @@ public class GymCustomerBusinessService implements GymCustomerBusinessServiceInt
         return gymCustomer;
     }
 
-    public void viewGymCenter(String location) {
-        System.out.println("[Gym Center Viewed]");
+    public List<GymCenter> viewGymCenter() {
+        return userDAO.getAllCenters();
     }
 
     public List<Slot> viewSlotsFromCenter(int centerId) {

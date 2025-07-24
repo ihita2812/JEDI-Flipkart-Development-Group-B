@@ -211,6 +211,10 @@ public class GymUserDAOImpl implements GymUserDAO {
         return null;
     }
 
+    public List<GymCenter> getAllCenters() {
+        return new ArrayList<>(centerMap.values());
+    }
+
     @Override
     public List<GymUser> getAllUsers() {
         return new ArrayList<>(userMap.values());
