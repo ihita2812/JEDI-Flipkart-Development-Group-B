@@ -28,7 +28,7 @@ public class GymCustomerBusinessService implements GymCustomerBusinessServiceInt
     }
 
     public List<GymCenter> viewGymCenter() {
-        return userDAO.getAllCenters();
+        return userDAO.getAllValidCenters();
     }
 
     public List<Slot> viewSlotsFromCenter(int centerId) {
