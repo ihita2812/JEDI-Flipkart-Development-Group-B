@@ -1,8 +1,7 @@
 package com.flipfit.dao;
 
 import com.flipfit.bean.*;
-import com.flipfit.DAO.GymUserDAOImpl.roleMap;
-import com.flipfit.DAO.GymUserDAOImpl.notificationMap;
+import com.flipfit.dao.GymUserDAOImpl;
 
 import java.util.*;
 
