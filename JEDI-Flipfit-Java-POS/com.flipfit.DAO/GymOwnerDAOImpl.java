@@ -35,8 +35,8 @@ public class GymOwnerDAOImpl implements GymOwnerDAO {
         ownerMap.put(owner2.getOwnerId(), owner2);
     }
 
-    public List <Notification> getNotificationsByOwnerId(int ownerId) {
-        List <Notification> notifications = new ArrayList<>();
+    public List<Notification> getNotificationsByOwnerId(int ownerId) {
+        List<Notification> notifications = new ArrayList<>();
         for (Notification notification : GymUserDAOImpl.notificationMap.values()) {
             if (notification.getUserId() == ownerId) {
                 notifications.add(notification);
@@ -45,14 +45,18 @@ public class GymOwnerDAOImpl implements GymOwnerDAO {
         return notifications;
     }
 
-     public List <GymCenter> getAllCentersByOwnerId(int ownerId) {
-        List <GymCenter> gymCenters = new ArrayList<>();
+    public List<GymCenter> getAllCentersByOwnerId(int ownerId) {
+        List<GymCenter> gymCenters = new ArrayList<>();
         for (GymCenter gymCenter : GymUserDAOImpl.centerMap.values()) {
             if (gymCenter.getOwnerId() == ownerId) {
                 gymCenters.add(gymCenter);
             }
         }
         return gymCenters;
+    }
+
+    public GymCenter getCenterById(int centerId) {
+        return GymUserDAOImpl.centerMap.get(centerId);
     }
 
     @Override
@@ -64,7 +68,7 @@ public class GymOwnerDAOImpl implements GymOwnerDAO {
                 return;
             }
         }
-      
+
         int newOwnerId = Collections.max(ownerMap.keySet()) + 1;
         gymOwner.setOwnerId(newOwnerId);
         ownerMap.put(newOwnerId, gymOwner);
@@ -90,7 +94,7 @@ public class GymOwnerDAOImpl implements GymOwnerDAO {
     public void removeOwner(int ownerId) {
         ownerMap.remove(ownerId);
     }
-    
+
     public void addGymCenter(GymCenter gymCenter) {
         // This method would typically save the gym center to a database.
         // For now, we will just add it to the map.

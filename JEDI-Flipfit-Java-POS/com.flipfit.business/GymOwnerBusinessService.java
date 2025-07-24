@@ -39,11 +39,11 @@ public class GymOwnerBusinessService implements GymOwnerBusinessServiceInterface
         System.out.println("Booking Details Viewed");
     }
 
-    public void addSlotsAndCapacity(GymCenter center, int numSlots, int capacity) {
+    public void addSlotsAndCapacity(int centerId, int numSlots, int capacity) {
         // updating the database with the new slot information.
+        GymCenter center = ownerDAO.getCenterById(centerId);
         center.setNumSlots(numSlots);
         center.setCapacity(capacity);
-        System.out.println("Slots and capacity added for center: " + center.getName());
     }
 
     public List<Notification> viewNotificationsByOwnerId(int ownerId) {
