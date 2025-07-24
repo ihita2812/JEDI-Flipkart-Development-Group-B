@@ -24,7 +24,7 @@ public interface GymUserDAO {
 
     List<Booking> getBookingsByCustomerId(int customerId);
 
-    void approvePayment(int bookingId);
+    boolean approvePayment(int bookingId);
 
     int addBooking(Booking booking);
 

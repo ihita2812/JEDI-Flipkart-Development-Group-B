@@ -57,7 +57,7 @@ public class GymCustomerMenu {
                         List<Slot> slotResultsList = customerBusiness.viewSlotsFromCenter(choice2);
                         List<Integer> slotIds = new ArrayList<>();
                         if (slotResultsList.isEmpty()) {
-                            System.out.println("No slots available for the selected gym center.");
+                            System.out.println("No slots for the selected gym center.");
                         } else {
                             System.out.println("Here are the available slots!");
                             for (Slot slot : slotResultsList) {
@@ -95,8 +95,12 @@ public class GymCustomerMenu {
 
                                 if (choice4 == 1) {
                                     System.out.println("---------------------------------------------");
-                                    customerBusiness.makePayment(bookingId);
-                                    System.out.println("Payment made successfully! Your booking (Booking ID:" + bookingId + ") is confirmed.");
+                                    boolean slotBooked = customerBusiness.makePayment(bookingId);
+                                    if  (slotBooked) {
+                                        System.out.println("Payment made successfully! Your booking (Booking ID:" + bookingId + ") is confirmed.");
+                                    } else {
+                                        System.out.println("Payment not made; slot already filled! Try another slot.");
+                                    }
                                 } else {
                                     more = false;
                                 }

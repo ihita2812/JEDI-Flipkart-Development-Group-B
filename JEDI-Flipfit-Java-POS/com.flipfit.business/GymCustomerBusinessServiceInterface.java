@@ -21,7 +21,7 @@ public interface GymCustomerBusinessServiceInterface {
 
     void editBooking(int bookingId);
 
-    void makePayment(int bookingId);
+    boolean makePayment(int bookingId);
     
     List<Booking> viewBookings(int customerId);
 

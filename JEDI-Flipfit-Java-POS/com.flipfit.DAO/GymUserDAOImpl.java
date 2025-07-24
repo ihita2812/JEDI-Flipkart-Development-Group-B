@@ -126,15 +126,23 @@ public class GymUserDAOImpl implements GymUserDAO {
         return bookingMap.get(bookingId);
     }
 
-    public void approvePayment(int bookingId) {
+    public boolean approvePayment(int bookingId) {
         Booking booking = bookingMap.get(bookingId);
-        if (booking != null) {
-            booking.setStatus(1); // 1 for confirmed
-            bookingMap.put(bookingId, booking);
-            Payment payment = new Payment();
-            payment.setBookingId(bookingId);
-            payment.setAmount(100); // Assuming a fixed amount for simplicity
-            addPayment(payment);
+        Slot bookingSlot = slotMap.get(booking.getSlotId());
+        booking.setStatus(1); // 1 for confirmed
+        bookingMap.put(bookingId, booking);
+        Payment payment = new Payment();
+        payment.setBookingId(bookingId);
+        payment.setAmount(100); // Assuming a fixed amount for simplicity
+        addPayment(payment);
+        int currSeats = bookingSlot.getBookedSeats();
+        int capacity = centerMap.get(bookingSlot.getCenterId()).getCapacity();
+        if  (currSeats < capacity) {
+            bookingSlot.setBookedSeats(currSeats + 1);
+            slotMap.put(bookingSlot.getSlotId(), bookingSlot);
+            return true;
+        } else {
+            return false;
         }
     }
 

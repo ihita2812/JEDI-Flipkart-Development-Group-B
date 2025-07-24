@@ -65,8 +65,8 @@ public class GymCustomerBusinessService implements GymCustomerBusinessServiceInt
         System.out.println("[Booking " + bookingId + " Edited]");
     }
 
-    public void makePayment(int bookingId) {
-        userDAO.approvePayment(bookingId);
+    public boolean makePayment(int bookingId) {
+        return userDAO.approvePayment(bookingId);
     }
 
     public List<Booking> viewBookings(int customerId) {
