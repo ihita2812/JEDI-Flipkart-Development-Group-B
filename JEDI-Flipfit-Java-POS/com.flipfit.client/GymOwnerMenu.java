@@ -5,7 +5,7 @@ import com.flipfit.business.*;
 import java.util.*;
 
 public class GymOwnerMenu {
-    public static void ownerMenu() {
+    public static void ownerMenu(int ownerId) {
         GymOwnerBusinessServiceInterface ownerBusiness = new GymOwnerBusinessService();
         Boolean isRunning = true;
 
@@ -42,8 +42,8 @@ public class GymOwnerMenu {
                 break;
             case 5:
                 System.out.println("Notifications:");
-                // Assuming viewNotifications returns a list of notifications
-                List <Notificaton> notifications = ownerBusiness.viewNotifications();
+                
+                List <Notificaton> notifications = ownerBusiness.viewNotifications(ownerId);
                 for (Notificaton notification : notifications) {
                     System.out.println(notification.getMessage());
                 }

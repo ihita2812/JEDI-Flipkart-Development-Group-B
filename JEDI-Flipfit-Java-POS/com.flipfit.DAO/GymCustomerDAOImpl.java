@@ -39,6 +39,16 @@ public class GymCustomerDAOImpl implements GymCustomerDAO {
         customerMap.put(customer2.getCustomerId(), customer2);
     }
 
+    public List<Notification> viewCustomerNotifications(int customerId) {
+        List<Notification> notifications = new ArrayList<>();
+        for (Notification notification : notificationMap.values()) {
+            if (notification.getUserId() == customerId) {
+                notifications.add(notification);
+            }
+        }
+        return notifications;
+    }
+
     /*
      * private GymUserDAO userDAO = new GymUserDAOImpl();
      * 

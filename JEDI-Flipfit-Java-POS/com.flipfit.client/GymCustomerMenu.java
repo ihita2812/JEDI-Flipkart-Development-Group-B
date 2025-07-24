@@ -1,6 +1,7 @@
 package com.flipfit.client;
 
 import java.util.*;
+import java.util.*;
 import com.flipfit.business.*;
 import com.flipfit.bean.*;
 import java.time.LocalTime;
@@ -21,7 +22,8 @@ public class GymCustomerMenu {
             System.out.println("\t1\tView gym centers near you");
             System.out.println("\t2\tView your bookings");
             System.out.println("\t3\tEdit Profile");
-            System.out.println("\t4\tLogout");
+            System.out.println("\t4\tView Notifications");
+            System.out.println("\t5\tLogout");
 
             int choice = scanner.nextInt();
             scanner.nextLine(); // consume newline

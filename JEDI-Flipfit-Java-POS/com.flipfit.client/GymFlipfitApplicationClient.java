@@ -2,9 +2,7 @@ package com.flipfit.client;
 
 import java.util.Scanner;
 
-import com.flipfit.bean.GymCustomer;
-import com.flipfit.bean.GymOwner;
-import com.flipfit.bean.GymUser;
+import com.flipfit.bean.*;
 import com.flipfit.business.GymCustomerBusinessService;
 import com.flipfit.business.GymOwnerBusinessService;
 import com.flipfit.business.GymUserBusinessService;
@@ -47,7 +45,7 @@ public class GymFlipfitApplicationClient {
                                 GymCustomerMenu.customerMenu(0);
                                 break;
                             case 1:
-                                GymOwnerMenu.ownerMenu();
+                                GymOwnerMenu.ownerMenu(0);
                                 break;
                             case 2:
                                 GymAdminMenu.adminMenu(0);
