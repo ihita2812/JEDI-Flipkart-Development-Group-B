@@ -82,7 +82,6 @@ public class GymUserDAOImpl implements GymUserDAO {
 
     }
 
-<<<<<<< HEAD
     public List<Booking> getBookingsByCustomerId(int customerId) {
         List<Booking> bookings = new ArrayList<>();
         for (Booking booking : bookingMap.values()) {
@@ -92,13 +91,7 @@ public class GymUserDAOImpl implements GymUserDAO {
         }
         return bookings;
     }
-
-
-
-    /*
-    @Override
-=======
->>>>>>> 14ddfb19a79053e20e40bf3d9935edf605ddcd2a
+    
     public void addUser(GymUser user) {
         int newUserId = Collections.max(userMap.keySet()) + 1;
         user.setUserId(newUserId);

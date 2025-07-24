@@ -86,6 +86,15 @@ public class GymCustomerMenu {
                 System.out.println("---------------------------------------------");
                 System.out.println("Here are your bookings!");
                 List<Booking> customerBookings = customer.viewBookings();
+                if (customerBookings.isEmpty()) {
+                    System.out.println("No bookings found.");
+                } else {
+                    for (Booking booking : customerBookings) {
+                        System.out.println("Booking ID: " + booking.getBookingId());
+                    }
+                }
+                // list of booking ids
+                // booking to slot info
                 System.out.println("---------------------------------------------");
                 System.out.println("You can enter the booking number number to CANCEL or EDIT it!");
                 System.out.println("Enter 0 to go back!");
