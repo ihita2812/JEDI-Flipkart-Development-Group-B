@@ -19,7 +19,7 @@ public interface GymOwnerDAO {
 
     void updateOwner(GymOwner owner);
 
-    void removeOwner(int ownerId);
+    public boolean removeOwner(int ownerId);
 
     List<Booking> getBookingsBySlotId(int slotId);
 

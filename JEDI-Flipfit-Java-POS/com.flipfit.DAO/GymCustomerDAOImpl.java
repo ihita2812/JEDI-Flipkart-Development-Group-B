@@ -56,6 +56,14 @@ public class GymCustomerDAOImpl implements GymCustomerDAO {
         customerMap.put(newCustomerId, customer);
     }
 
+    public boolean removeCustomer(int customerId){
+        if(customerMap.containsKey(customerId)){
+            customerMap.remove(customerId);
+            return true;
+        }
+        return false;
+    }
+
     /*
      * private GymUserDAO userDAO = new GymUserDAOImpl();
      * 

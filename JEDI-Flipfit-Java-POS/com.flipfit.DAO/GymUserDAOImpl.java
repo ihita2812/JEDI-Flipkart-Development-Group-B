@@ -1,6 +1,9 @@
 package com.flipfit.dao;
 
 import com.flipfit.bean.*;
+
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.*;
 import com.flipfit.dao.GymCustomerDAOImpl;
 import com.flipfit.dao.GymOwnerDAOImpl;
@@ -76,6 +79,93 @@ public class GymUserDAOImpl implements GymUserDAO {
         customerGym.setLocation("Kol");
         GymCustomerDAOImpl.customerMap.put(3, customerGym);
 
+
+        GymCenter dummyCenter = new GymCenter();
+        dummyCenter.setCenterId(1);
+        dummyCenter.setName("Dummy Gym Center");
+        dummyCenter.setOwnerId(1);
+        dummyCenter.setCapacity(100);
+        dummyCenter.setApprovalStatus(1); // Approved
+        centerMap.put(1, dummyCenter);
+
+        GymCenter dummyCenter2 = new GymCenter();
+        dummyCenter2.setCenterId(2);
+        dummyCenter2.setName("Dummy Gym Center 2");
+        dummyCenter2.setOwnerId(1);
+        dummyCenter2.setCapacity(50);
+        dummyCenter2.setApprovalStatus(2); //pending
+        centerMap.put(2, dummyCenter2);
+
+        GymCenter dummyCenter3 = new GymCenter();
+        dummyCenter3.setCenterId(3);
+        dummyCenter3.setName("Dummy Gym Center 3");
+        dummyCenter3.setOwnerId(1);
+        dummyCenter3.setCapacity(75);
+        dummyCenter3.setApprovalStatus(2); //pending
+        centerMap.put(3, dummyCenter3);
+
+        GymCenter dummyCenter4 = new GymCenter();
+        dummyCenter4.setCenterId(4);
+        dummyCenter4.setName("Dummy Gym Center 4");
+        dummyCenter4.setOwnerId(1);
+        dummyCenter4.setCapacity(120);
+        dummyCenter4.setApprovalStatus(0); // rejected
+        centerMap.put(4, dummyCenter4);
+
+
+        // ... after dummyCenter4 is added to centerMap
+        // ... after dummyCenter4 is added to centerMap
+
+        // Dummy Slot Data
+        Slot slot1 = new Slot();
+        slot1.setSlotId(1);
+        slot1.setCenterId(1); // For the approved "Dummy Gym Center"
+        slot1.setStartTime(LocalTime.parse("09:00"));
+        slot1.setDate(java.time.LocalDate.now()); // Added for data completeness
+        slot1.setBookedSeats(1);
+        slotMap.put(1, slot1);
+
+        Slot slot2 = new Slot();
+        slot2.setSlotId(2);
+        slot2.setCenterId(1); // For the approved "Dummy Gym Center"
+        slot2.setStartTime(LocalTime.parse("10:00"));
+        slot2.setDate(java.time.LocalDate.now()); // Added for data completeness
+        slot2.setBookedSeats(1);
+        slotMap.put(2, slot2);
+
+        // Dummy Booking Data
+        Booking booking1 = new Booking();
+        booking1.setBookingId(1);
+        booking1.setCustomerId(1); // For "Gym Customer" (customerId is 1)
+        booking1.setSlotId(1);     // For slot 1
+        booking1.setStatus(1);     // 1 for confirmed
+        bookingMap.put(1, booking1);
+
+        Booking booking2 = new Booking();
+        booking2.setBookingId(2);
+        booking2.setCustomerId(1); // For "Gym Customer"
+        booking2.setSlotId(2);     // For slot 2
+        booking2.setStatus(1);     // 1 for confirmed
+        bookingMap.put(2, booking2);
+
+        // Dummy Payment Data
+        Payment payment1 = new Payment();
+        payment1.setPaymentId(1);
+        payment1.setBookingId(1);
+        payment1.setCustomerId(1);
+        payment1.setAmount(500.00f);
+        // FIX: Corrected syntax error and used the direct method
+        payment1.setPaymentDateTime(LocalDateTime.now());
+        paymentMap.put(1, payment1);
+
+        Payment payment2 = new Payment();
+        payment2.setPaymentId(2);
+        payment2.setBookingId(2);
+        payment2.setCustomerId(1);
+        payment2.setAmount(550.00f);
+        // FIX: Replaced the parsing logic with the direct, correct method
+        payment2.setPaymentDateTime(LocalDateTime.now());
+        paymentMap.put(2, payment2);
     }
 
     public int getCustomerId(GymUser gymUser) {
@@ -213,6 +303,10 @@ public class GymUserDAOImpl implements GymUserDAO {
         return null;
     }
 
+
+    public List<GymCenter> getAllCenters(){
+        return new ArrayList<>(centerMap.values());
+    }
     public List<GymCenter> getAllValidCenters() {
         List<GymCenter> centers = new ArrayList<>();
         for (GymCenter center : centerMap.values()) {
@@ -222,12 +316,38 @@ public class GymUserDAOImpl implements GymUserDAO {
         }
         return centers;
     }
+    public List<GymCenter> getAllCentersByOwnerId(int ownerId) {
+        List<GymCenter> gymCenters = new ArrayList<>();
+        for (GymCenter gymCenter : centerMap.values()) {
+            if (gymCenter.getOwnerId() == ownerId) {
+                gymCenters.add(gymCenter);
+            }
+        }
+        return gymCenters;
+    }
 
+    public List<Booking> getBookingsBySlotId(int slotId) {
+        List<Booking> bookings = new ArrayList<>();
+        for (Booking booking : GymUserDAOImpl.bookingMap.values()) {
+            if (booking.getSlotId() == slotId) {
+                bookings.add(booking);
+            }
+        }
+        return bookings;
+    }
+    public Payment getPaymentByBookingId(int bookingId) {
+        for(Payment payment: GymUserDAOImpl.paymentMap.values()) {
+            if(payment.getBookingId() == bookingId) {
+                return payment;
+            }
+        }
+        return null;
+    }
     @Override
     public List<GymUser> getAllUsers() {
         return new ArrayList<>(userMap.values());
     }
-
+    public List<GymOwner> getAllOwners() {return new ArrayList<>(GymOwnerDAOImpl.ownerMap.values());}
     @Override
     public void removeUser(int userId) {
         userMap.remove(userId);
