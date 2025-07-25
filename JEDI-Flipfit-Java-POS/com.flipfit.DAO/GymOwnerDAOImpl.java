@@ -119,15 +119,17 @@ public class GymOwnerDAOImpl implements GymOwnerDAO {
 
     @Override
     public void addOwner(GymOwner gymOwner) {
-        // Check if username already exists
-//        for (GymOwner existing : ownerMap.values()) {
-//            if (existing.getUserName().equals(gymOwner.getUserName())) {
-//                System.out.println("Username already exists!");
-//                return;
-//            }
-//        }
-
-        int newOwnerId = Collections.max(ownerMap.keySet()) + 1;
+        int newOwnerId = -1;
+        try (Connection db = DBConnection.getConnection();
+             PreparedStatement preparedStatement = db.prepareStatement("SELECT IFNULL(MAX(ownerId), 0) + 1 FROM Flipfit.GymOwner")) {
+            ResultSet rs = preparedStatement.executeQuery();
+            if (rs.next()) {
+                newOwnerId = rs.getInt(1);
+            }
+        }
+        catch(SQLException e) {
+            e.printStackTrace();
+        }
         gymOwner.setOwnerId(newOwnerId);
         ownerMap.put(newOwnerId, gymOwner);
 

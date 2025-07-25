@@ -57,7 +57,17 @@ public class GymCustomerDAOImpl implements GymCustomerDAO {
     }
 
     public void addCustomer(GymCustomer customer) {
-        int newCustomerId = Collections.max(customerMap.keySet()) + 1;
+        int newCustomerId = -1;
+        try (Connection db = DBConnection.getConnection();
+             PreparedStatement preparedStatement = db.prepareStatement("SELECT IFNULL(MAX(customerId), 0) + 1 FROM Flipfit.GymCustomer")) {
+            ResultSet rs = preparedStatement.executeQuery();
+            if (rs.next()) {
+                newCustomerId = rs.getInt(1);
+            }
+        }
+        catch(SQLException e) {
+            e.printStackTrace();
+        }
         customer.setCustomerId(newCustomerId);
         customerMap.put(newCustomerId, customer);
 

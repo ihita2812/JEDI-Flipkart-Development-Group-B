@@ -342,15 +342,29 @@ public class GymUserDAOImpl implements GymUserDAO {
     }
 
     @Override
-    public void addUser(GymUser user) {
-        int newUserId = Collections.max(userMap.keySet()) + 1;
+    public void addUser(GymUser user){
+        int newUserId = -1;
+        try (Connection db = DBConnection.getConnection();
+             PreparedStatement preparedStatement = db.prepareStatement("SELECT IFNULL(MAX(userId), 0) + 1 FROM Flipfit.GymUser")) {
+            ResultSet rs = preparedStatement.executeQuery();
+            if (rs.next()) {
+                newUserId = rs.getInt(1);
+            }
+        }
+        catch(SQLException e) {
+            e.printStackTrace();
+        }
+
+
         user.setUserId(newUserId);
         userMap.put(newUserId, user);
+
+        System.out.println("User " + newUserId + " has been added.");
 
         try (Connection db = DBConnection.getConnection();
              PreparedStatement preparedStatement = db.prepareStatement("INSERT INTO Flipfit.GymUser (userId, userName, roleId, password, name) VALUES (?, ?, ?, ?, ?);")) {
 
-            preparedStatement.setInt(1, user.getUserId());
+            preparedStatement.setInt(1, newUserId);
             preparedStatement.setString(2, user.getUserName());
             preparedStatement.setInt(3, user.getRole().getRoleId()+1);
             preparedStatement.setString(4, user.getPassword());
