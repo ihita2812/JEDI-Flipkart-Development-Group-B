@@ -3,6 +3,15 @@ package com.flipfit.bean;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+
+/*
+ *@author: Kashif, Ihita, Zaid
+ *@ClassName: Slot
+ *@Exceptions: No
+ *@version: 1.0
+ *@See :GymCustomer, GymOwner, Registration
+ */
+
 public class Slot {
     private int slotId;
     private LocalTime startTime;

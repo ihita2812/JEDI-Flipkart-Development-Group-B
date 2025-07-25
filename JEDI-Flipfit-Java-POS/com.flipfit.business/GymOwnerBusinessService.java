@@ -7,6 +7,12 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.*;
 
+/*
+ *@author:Ihita, Ritesh, Kashif
+ *@ClassName:GymOwnerBusinessService
+ *@version:1.0
+ *@See :GymOwnerBusinessServiceInterface
+ */
 public class GymOwnerBusinessService implements GymOwnerBusinessServiceInterface {
     private GymOwnerDAO ownerDAO = new GymOwnerDAOImpl();
     private GymUserDAO userDAO = new GymUserDAOImpl();

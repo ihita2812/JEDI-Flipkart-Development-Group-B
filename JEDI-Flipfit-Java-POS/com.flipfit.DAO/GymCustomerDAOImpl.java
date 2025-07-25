@@ -10,6 +10,13 @@ import java.util.*;
 import java.sql.ResultSet;
 import com.flipfit.dao.GymUserDAOImpl;
 
+/*
+ *@author:Ihita, Kashif, Zaid
+ *@ClassName:GymCustomerDAOImpl
+ *@Exceptions: SQL Exception
+ *@version:1.0
+ *@See :GymCustomerDAO
+ */
 public class GymCustomerDAOImpl implements GymCustomerDAO {
 
     public static Map<Integer, GymCustomer> customerMap = new HashMap<>();

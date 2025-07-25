@@ -4,6 +4,13 @@ import com.flipfit.bean.*;
 import java.util.*;
 import com.flipfit.dao.*;
 
+
+/*
+ *@author: Ritesh, Ritesh, Zaid
+ *@ClassName:GysCustomerBusinessService
+ *@version:1.0
+ *@See :GymCustomerBusinessServiceInterface
+ */
 public class GymCustomerBusinessService implements GymCustomerBusinessServiceInterface {
     private final GymCustomerDAO customerDAO = new GymCustomerDAOImpl();
     private final GymUserDAO userDAO = new GymUserDAOImpl();

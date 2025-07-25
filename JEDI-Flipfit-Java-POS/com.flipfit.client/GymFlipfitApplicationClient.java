@@ -9,6 +9,13 @@ import com.flipfit.business.GymUserBusinessService;
 import com.flipfit.dao.*;
 
 
+/*
+ *@author: Aryan, Ihita, Kashif
+ *@ClassName:GymFlipfitApplicationClient
+ *@version:1.0
+ *@See :GymCustomerBusinessService, GymOwnerBusinessService, GymUserBusinessService
+ */
+
 public class GymFlipfitApplicationClient {
     public static void main(String[] args) {
 

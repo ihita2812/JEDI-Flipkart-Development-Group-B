@@ -7,6 +7,7 @@ import java.time.LocalTime;
 import java.util.*;
 import com.flipfit.dao.*;
 
+
 public interface GymOwnerBusinessServiceInterface {
     public void registerOwner(GymOwner gymOwner);
 

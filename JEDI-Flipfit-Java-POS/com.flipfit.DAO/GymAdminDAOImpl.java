@@ -5,6 +5,14 @@ import com.flipfit.dao.GymAdminDAO;
 import java.util.*;
 import com.flipfit.dao.GymUserDAOImpl;
 
+
+/*
+ *@author:Ritesh, Ihita
+ *@ClassName:GymAdminDAOImpl
+ *@Exceptions:
+ *@version:1.0
+ *@See :GymAdminDAO
+ */
 public class GymAdminDAOImpl implements GymAdminDAO {
 
     public static Map<Integer, GymAdmin> adminMap = new HashMap<>();

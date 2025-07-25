@@ -1,5 +1,14 @@
 package com.flipfit.bean;
 
+
+/*
+ *@author: Eshwar, Ritesh, Kashif
+ *@ClassName: Notification
+ *@Exceptions: No
+ *@version: 1.0
+ *@See :GymCustomer, GymOwner
+ */
+
 public class Notification {
     private int notifId;
     private String message;

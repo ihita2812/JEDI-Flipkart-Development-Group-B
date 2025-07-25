@@ -1,5 +1,14 @@
 package com.flipfit.bean;
 
+
+/*
+ *@author: Aryan, Ihita, Kashif
+ *@ClassName: GymOwner
+ *@Exceptions: No
+ *@version: 1.0
+ *@See :GymUser, Role, GymCenter
+ */
+
 public class GymOwner extends GymUser{
     private int ownerId;
     private int gender;

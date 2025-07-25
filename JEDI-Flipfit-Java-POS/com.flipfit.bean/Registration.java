@@ -1,5 +1,14 @@
 package com.flipfit.bean;
 
+
+/*
+ *@author: Kashif
+ *@ClassName: Registration
+ *@Exceptions: No
+ *@version: 1.0
+ *@See :GymCustomer, GymOwner, GymAdmin
+ */
+
 public class Registration {
     private String name;
     private String userName;

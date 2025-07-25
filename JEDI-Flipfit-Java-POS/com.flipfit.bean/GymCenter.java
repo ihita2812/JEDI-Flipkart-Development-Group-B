@@ -1,5 +1,14 @@
 package com.flipfit.bean;
 
+
+
+/*
+ * @autho: Ritesh
+ * @ClassName: GymCenter
+ * @Exceptions: No
+ * @Version: 1.0
+ * @See:GymUser, GymOwner
+ */
 public class GymCenter{
     private int centerId;
     private String name;

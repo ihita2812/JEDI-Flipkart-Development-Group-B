@@ -1,5 +1,14 @@
 package com.flipfit.bean;
 
+
+/*
+ *@author: Zaid, Ritesh
+ *@ClassName: Role
+ *@Exceptions: No
+ *@version: 1.0
+ *@See :GymUser, GymAdmin, GymOwner, GymCustomer
+ */
+
 public class Role {
     private int roleId;
     private String roleName;

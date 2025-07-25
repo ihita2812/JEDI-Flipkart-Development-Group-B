@@ -1,6 +1,12 @@
 package com.flipfit.bean;
 
-
+/*
+ * @author: Ritesh, Zaid
+ * @ClassName: GymCustomer
+ * @Exceptions: No
+ * @Version: 1.0
+ * @See:GymUser, Payment, Registration, Slot
+ */
 public class GymCustomer extends GymUser{
     private int customerId;
     private int age;

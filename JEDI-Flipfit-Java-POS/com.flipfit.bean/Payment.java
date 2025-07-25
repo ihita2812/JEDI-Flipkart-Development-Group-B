@@ -1,6 +1,14 @@
 package com.flipfit.bean;
 import java.time.LocalDateTime;
 
+/*
+ *@author: Eshwar, Ihita, Zaid
+ *@ClassName: Payment
+ *@Exceptions: No
+ *@version: 1.0
+ *@See :GymOwner, GymCustomer, Booking
+ */
+
 public class Payment {
     private int paymentId;
     private int customerId;

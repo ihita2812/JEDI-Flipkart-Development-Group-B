@@ -3,6 +3,8 @@ package com.flipfit.business;
 import com.flipfit.bean.*;
 
 import java.util.*;
+
+
 public interface GymAdminBusinessServiceInterface {
 	
 	// here we need to declare all the services of the customer

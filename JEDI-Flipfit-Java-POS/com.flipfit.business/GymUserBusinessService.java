@@ -7,6 +7,13 @@ import com.flipfit.dao.GymUserDAOImpl;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+
+/*
+ *@author:Aryan, Ihita, Kashif
+ *@ClassName:GymUserBusinessService
+ *@version:1.0
+ *@See :GymUserBusinessServiceInterface
+ */
 public class GymUserBusinessService implements GymUserBusinessServiceInterface {
 
     private GymUserDAO userDAO = new GymUserDAOImpl();

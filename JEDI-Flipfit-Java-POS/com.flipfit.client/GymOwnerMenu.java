@@ -8,6 +8,13 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+
+/*
+ *@author:Eshwar, Ritesh, Zaid
+ *@ClassName:GymOwnerMenu
+ *@version:1.0
+ *@See :GymOwnerBusinessServiceInterface
+ */
 public class GymOwnerMenu {
     public static void ownerMenu(int ownerId) {
         GymOwnerBusinessServiceInterface ownerBusiness = new GymOwnerBusinessService();

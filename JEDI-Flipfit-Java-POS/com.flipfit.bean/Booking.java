@@ -1,5 +1,12 @@
 package com.flipfit.bean;
 
+/*
+ * @author: Ihita, Kashif
+ * @ClassName: Booking
+ * @Exceptions: No
+ * @Version: 1.0
+ * @See:GymCustomer,
+ */
 public class Booking {
     private int bookingId;
     private int customerId;

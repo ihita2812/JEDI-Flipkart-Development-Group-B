@@ -1,5 +1,13 @@
 package com.flipfit.bean;
 
+
+/*
+ * @author: Ihita, Zaid
+ * @ClassName: GymAdmin
+ * @Exceptions: No
+ * @Version: 1.0
+ * @See:GymUser
+ */
 public class GymAdmin extends GymUser {
     private int adminId;
 

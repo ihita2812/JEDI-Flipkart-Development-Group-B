@@ -5,6 +5,13 @@ import com.flipfit.dao.*;
 
 import java.util.*;
 
+
+/*
+ *@author: Zaid, Ihita
+ *@ClassName: GymAdminBusinessService
+ *@version: 1.0
+ *@See :GymAdminBusinessServiceInterface, GymOwnerBusinessService, GymUserBusinessService, GymCustomerBusinessService
+ */
 public class GymAdminBusinessService implements GymAdminBusinessServiceInterface
 {
     GymUserDAO gymUserDAO = new GymUserDAOImpl();

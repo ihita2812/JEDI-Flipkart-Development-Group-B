@@ -13,6 +13,13 @@ import com.flipfit.dao.GymAdminDAOImpl;
 
 import static com.flipfit.dao.GymOwnerDAOImpl.ownerMap;
 
+/*
+ *@author:Zaid, Ihita, Kashif
+ *@ClassName:GymUserDAOImpl
+ *@Exceptions:SQL Exception
+ *@version:1.0
+ *@See :GymUserDAO
+ */
 public class GymUserDAOImpl implements GymUserDAO {
 
     public static Map<Integer, GymUser> userMap = new HashMap<>();

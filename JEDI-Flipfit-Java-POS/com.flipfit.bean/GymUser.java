@@ -1,5 +1,14 @@
 package com.flipfit.bean;
 
+
+/*
+ *@author: Aryan, Zaid
+ *@ClassName: GymUser
+ *@Exceptions: No
+ *@version: 1.0
+ *@See :GymCustomer, GymOwner, GymAdmin
+ */
+
 public class GymUser {
     private int userId;
     private String userName;

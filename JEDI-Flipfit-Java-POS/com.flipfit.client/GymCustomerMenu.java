@@ -6,6 +6,12 @@ import com.flipfit.bean.*;
 import java.time.LocalTime;
 import java.time.LocalDate;
 
+/*
+ *@author:Kashif, Zaid
+ *@ClassName:GymCustomerMenu
+ *@version:1.0
+ *@See :GymCustomerBusinessServiceInterface
+ */
 public class GymCustomerMenu {
 
     public static void customerMenu(int customerId) {

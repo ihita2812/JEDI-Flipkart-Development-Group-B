@@ -3,6 +3,13 @@ package com.flipfit.client;
 import com.flipfit.business.*;
 import java.util.*;
 import com.flipfit.bean.*;
+
+/*
+ *@author:Ritesh, Ritesh, Kashif
+ *@ClassName:GymAdminMenu
+ *@version:1.0
+ *@See :GymAdminBusinessServiceInterface, GymUserBusinessServiceInterface
+ */
 public class GymAdminMenu {
         public static void adminMenu(int adminId) {
         
