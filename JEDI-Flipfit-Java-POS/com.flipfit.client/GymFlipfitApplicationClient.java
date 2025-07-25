@@ -95,7 +95,7 @@ public class GymFlipfitApplicationClient {
 
                     int roleSpecificId = userBusiness.loginUser(username, password, role);
 
-                    if (roleSpecificId > 0) { // Successful login returns a positive ID
+                    if (roleSpecificId >= 0) { // Successful login returns a positive ID
                         System.out.println("\n[SUCCESS] Login successful. Welcome, " + username + "!");
                         switch (role) {
                             case 0:
