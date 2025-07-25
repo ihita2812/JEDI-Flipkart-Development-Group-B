@@ -311,11 +311,11 @@ public class GymUserDAOImpl implements GymUserDAO {
         userMap.put(newUserId, user);
 
         try (Connection db = DBConnection.getConnection();
-             PreparedStatement preparedStatement = db.prepareStatement("INSERT INTO Gymuser (userId, userName, roleId, password, name) VALUES (?, ?, ?,?,?);")) {
+             PreparedStatement preparedStatement = db.prepareStatement("INSERT INTO Flipfit.GymUser (userId, userName, roleId, password, name) VALUES (?, ?, ?, ?, ?);")) {
 
             preparedStatement.setInt(1, user.getUserId());
             preparedStatement.setString(2, user.getUserName());
-            preparedStatement.setInt(3, user.getRole().getRoleId());
+            preparedStatement.setInt(3, user.getRole().getRoleId()+1);
             preparedStatement.setString(4, user.getPassword());
             preparedStatement.setString(5, user.getName());
 
