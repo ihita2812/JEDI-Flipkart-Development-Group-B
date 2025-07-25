@@ -173,11 +173,6 @@ public class GymUserDAOImpl implements GymUserDAO {
     }
 
     public int getCustomerId(GymUser gymUser) {
-//        for(GymCustomer customer : GymCustomerDAOImpl.customerMap.values()){
-//            if(gymUser.getUserId() == customer.getUserId()){
-//                return customer.getCustomerId();
-//            }
-//        }
         try (Connection db = DBConnection.getConnection();
              PreparedStatement preparedStatement = db.prepareStatement("SELECT customerId FROM Flipfit.GymCustomer WHERE userId = ?")) {
 
@@ -228,12 +223,31 @@ public class GymUserDAOImpl implements GymUserDAO {
     }
 
     public int getAdminId(GymUser gymUser) {
-        for(GymAdmin admin : GymAdminDAOImpl.adminMap.values()){
-            if(gymUser.getUserId() == admin.getUserId()){
-                return admin.getAdminId();
+        // SQL query to find the adminId by matching the userId
+        String sql = "SELECT adminId FROM Flipfit.GymAdmin WHERE userId = ?";
+
+        // Use a try-with-resources block for automatic resource management
+        try (Connection db = DBConnection.getConnection();
+             PreparedStatement preparedStatement = db.prepareStatement(sql)) {
+
+            // Set the userId from the input GymUser object as the query parameter
+            preparedStatement.setInt(1, gymUser.getUserId());
+
+            // Execute the query and get the result set
+            ResultSet rs = preparedStatement.executeQuery();
+
+            // Check if the result set contains any rows
+            if (rs.next()) {
+                // If a match is found, retrieve the adminId from the result and return it
+                return rs.getInt("adminId");
             }
+
+        } catch (SQLException e) {
+            System.err.println("Error fetching adminId for userId: " + gymUser.getUserId());
+            e.printStackTrace();
         }
 
+        // If no admin record is found for the given userId or if a database error occurs, return -1
         return -1;
     }
 
@@ -294,13 +308,54 @@ public class GymUserDAOImpl implements GymUserDAO {
     }
 
     public void addNotification(Notification notification) {
-        int newNotificationId = notificationMap.isEmpty() ? 1 : Collections.max(notificationMap.keySet()) + 1;
+        int newNotificationId = -1;
+        try (Connection db = DBConnection.getConnection();
+             PreparedStatement preparedStatement = db.prepareStatement("SELECT IFNULL(MAX(notifiId), 0) + 1 FROM Flipfit.Notification")) {
+            ResultSet rs = preparedStatement.executeQuery();
+            if (rs.next()) {
+                newNotificationId = rs.getInt(1);
+            }
+        }
+        catch(SQLException e) {
+            e.printStackTrace();
+        }
         notification.setNotifId(newNotificationId);
         notificationMap.put(newNotificationId, notification);
+
+        try (Connection db = DBConnection.getConnection();
+                PreparedStatement insertStatement = db.prepareStatement("INSERT INTO Flipfit.Notification (notifiId, message, userId) VALUES (?,?,?)")) {
+            // Set the parameters for the INSERT query from the notification object
+            insertStatement.setInt(1, notification.getNotifId());
+            insertStatement.setString(2, notification.getMessage());
+            insertStatement.setInt(3, notification.getUserId());
+
+            // Execute the insert operation
+            int rowsAffected = insertStatement.executeUpdate();
+
+            if (rowsAffected > 0) {
+                System.out.println("Notification was successfully added to the database.");
+            } else {
+                System.err.println("Failed to add the notification to the database.");
+            }
+        } // insertStatement is auto-closed here.
+        catch (SQLException e) {
+            System.err.println("A database error occurred while adding the notification.");
+            e.printStackTrace();
+        }
     }
 
     public void addPayment(Payment payment) {
-        int newPaymentId = Collections.max(paymentMap.keySet()) + 1;
+        int newPaymentId = -1;
+        try (Connection db = DBConnection.getConnection();
+             PreparedStatement preparedStatement = db.prepareStatement("SELECT IFNULL(MAX(paymentId), 0) + 1 FROM Flipfit.Payment")) {
+            ResultSet rs = preparedStatement.executeQuery();
+            if (rs.next()) {
+                newPaymentId = rs.getInt(1);
+            }
+        }
+        catch(SQLException e) {
+            e.printStackTrace();
+        }
         payment.setPaymentId(newPaymentId);
         paymentMap.put(newPaymentId, payment);
 
@@ -368,7 +423,17 @@ public class GymUserDAOImpl implements GymUserDAO {
     }
 
     public int addBooking(Booking booking) {
-        int newBookingId = Collections.max(bookingMap.keySet()) + 1;
+        int newBookingId = -1;
+        try (Connection db = DBConnection.getConnection();
+             PreparedStatement preparedStatement = db.prepareStatement("SELECT IFNULL(MAX(bookingId), 0) + 1 FROM Flipfit.Booking")) {
+            ResultSet rs = preparedStatement.executeQuery();
+            if (rs.next()) {
+                newBookingId = rs.getInt(1);
+            }
+        }
+        catch(SQLException e) {
+            e.printStackTrace();
+        }
         booking.setBookingId(newBookingId);
         bookingMap.put(booking.getBookingId(), booking);
 
@@ -466,7 +531,40 @@ public class GymUserDAOImpl implements GymUserDAO {
 
 
     public List<GymCenter> getAllCenters(){
-        return new ArrayList<>(centerMap.values());
+        List<GymCenter> gymCenters = new ArrayList<>();
+
+        // The SQL query to select all records from the GymCenter table
+        String sql = "SELECT * FROM Flipfit.GymCenter";
+
+        // Use a try-with-resources block to ensure database resources are closed automatically
+        try (Connection db = DBConnection.getConnection();
+             PreparedStatement preparedStatement = db.prepareStatement(sql);
+             ResultSet rs = preparedStatement.executeQuery()) {
+
+            // Iterate through each row of the result set
+            while (rs.next()) {
+                // For each row, create a new GymCenter object
+                GymCenter center = new GymCenter();
+
+                // Populate the object's fields using data from the current row
+                center.setCenterId(rs.getInt("centerId"));
+                center.setName(rs.getString("name"));
+                center.setLocation(rs.getString("location"));
+                center.setCapacity(rs.getInt("capacity"));
+                center.setNumSlots(rs.getInt("numSlots"));
+                center.setOwnerId(rs.getInt("ownerId"));
+                center.setApprovalStatus(rs.getInt("approvalStatus"));
+
+                // Add the fully populated object to the list
+                gymCenters.add(center);
+            }
+        } catch (SQLException e) {
+            System.err.println("Error fetching gym centers from the database.");
+            e.printStackTrace();
+        }
+
+        // Return the list of gym centers. It will be empty if no records were found or if an error occurred.
+        return gymCenters;
     }
     public List<GymCenter> getAllValidCenters() {
         List<GymCenter> centers = new ArrayList<>();
@@ -505,14 +603,107 @@ public class GymUserDAOImpl implements GymUserDAO {
         return null;
     }
     public List<GymUser> getAllUsers() {
-        return new ArrayList<>(userMap.values());
+        List<GymUser> userList = new ArrayList<>();
+        String sql = "SELECT * FROM Flipfit.GymUser";
+
+        try (Connection db = DBConnection.getConnection();
+             PreparedStatement preparedStatement = db.prepareStatement(sql);
+             ResultSet rs = preparedStatement.executeQuery()) {
+
+            while (rs.next()) {
+                GymUser user = new GymUser();
+                user.setUserId(rs.getInt("userId"));
+                user.setUserName(rs.getString("userName"));
+                user.setPassword(rs.getString("password"));
+                user.setName(rs.getString("name"));
+
+                // Assuming roleId in the database is 1-based (1, 2, 3)
+                // and getRole() expects 0-based (0, 1, 2)
+                int roleId = rs.getInt("roleId") - 1;
+                user.setRole(getRole(roleId));
+
+                userList.add(user);
+            }
+        } catch (SQLException e) {
+            System.err.println("Error fetching all users from database.");
+            e.printStackTrace();
+        }
+        return userList;
     }
     public List<GymOwner> getAllOwners() {
-        return new ArrayList<>(GymOwnerDAOImpl.ownerMap.values());
+        List<GymOwner> ownerList = new ArrayList<>();
+        // SQL JOIN to combine data from GymUser and GymOwner tables into a single result
+        String sql = "SELECT u.userId, u.userName, u.password, u.name, u.roleId, o.ownerId, o.gender, o.email " +
+                "FROM Flipfit.GymUser u JOIN Flipfit.GymOwner o ON u.userId = o.userId";
+
+        try (Connection db = DBConnection.getConnection();
+             PreparedStatement preparedStatement = db.prepareStatement(sql);
+             ResultSet rs = preparedStatement.executeQuery()) {
+
+            while (rs.next()) {
+                GymOwner owner = new GymOwner();
+
+                // Populate fields from the GymUser part of the result
+                owner.setUserId(rs.getInt("userId"));
+                owner.setUserName(rs.getString("userName"));
+                owner.setPassword(rs.getString("password"));
+                owner.setName(rs.getString("name"));
+
+                // Populate fields from the GymOwner part of the result
+                owner.setOwnerId(rs.getInt("ownerId"));
+                owner.setGender(rs.getInt("gender"));
+                owner.setEmail(rs.getString("email"));
+
+                // Set the role
+                int roleId = rs.getInt("roleId") - 1;
+                owner.setRole(getRole(roleId));
+
+                ownerList.add(owner);
+            }
+        } catch (SQLException e) {
+            System.err.println("Error fetching all owners from database.");
+            e.printStackTrace();
+        }
+        return ownerList;
     }
 
     public List<GymCustomer> getAllCustomers(){
-        return new ArrayList<>(GymCustomerDAOImpl.customerMap.values());
+        List<GymCustomer> customerList = new ArrayList<>();
+        // SQL JOIN to combine data from GymUser and GymCustomer tables
+        String sql = "SELECT u.userId, u.userName, u.password, u.name, u.roleId, c.customerId, c.age, c.location, c.gender, c.email " +
+                "FROM Flipfit.GymUser u JOIN Flipfit.GymCustomer c ON u.userId = c.userId";
+
+        try (Connection db = DBConnection.getConnection();
+             PreparedStatement preparedStatement = db.prepareStatement(sql);
+             ResultSet rs = preparedStatement.executeQuery()) {
+
+            while (rs.next()) {
+                GymCustomer customer = new GymCustomer();
+
+                // Populate fields from the GymUser part of the result
+                customer.setUserId(rs.getInt("userId"));
+                customer.setUserName(rs.getString("userName"));
+                customer.setPassword(rs.getString("password"));
+                customer.setName(rs.getString("name"));
+
+                // Populate fields from the GymCustomer part of the result
+                customer.setCustomerId(rs.getInt("customerId"));
+                customer.setAge(rs.getInt("age"));
+                customer.setLocation(rs.getString("location"));
+                customer.setGender(rs.getInt("gender"));
+                customer.setEmail(rs.getString("email"));
+
+                // Set the role
+                int roleId = rs.getInt("roleId") - 1;
+                customer.setRole(getRole(roleId));
+
+                customerList.add(customer);
+            }
+        } catch (SQLException e) {
+            System.err.println("Error fetching all customers from database.");
+            e.printStackTrace();
+        }
+        return customerList;
     }
     public void removeUser(int userId) {
         userMap.remove(userId);
@@ -530,7 +721,10 @@ public class GymUserDAOImpl implements GymUserDAO {
     }
 
     public Role getRole(int role) {
-        return roleMap.get(role);
+        if (roleMap.containsKey(role)) {
+            return roleMap.get(role);
+        }
+        return null;
     }
 
     public void updateUserPassword(String username, String newPassword) {
@@ -538,6 +732,55 @@ public class GymUserDAOImpl implements GymUserDAO {
         if (userToUpdate != null) {
             userToUpdate.setPassword(newPassword);
         }
+    }
+
+    public boolean updateGymCenterApprovalStatus(int gymCenterId, int approvalStatus) {
+        String sql = "UPDATE Flipfit.GymCenter SET approvalStatus = ? WHERE centerId = ?";
+
+        try (Connection db = DBConnection.getConnection();
+             PreparedStatement preparedStatement = db.prepareStatement(sql)) {
+
+            preparedStatement.setInt(1, approvalStatus);
+            preparedStatement.setInt(2, gymCenterId);
+
+            // executeUpdate() returns the number of rows affected.
+            int rowsAffected = preparedStatement.executeUpdate();
+
+            // Return true if the update changed at least one row, false otherwise.
+            return rowsAffected > 0;
+
+        } catch (SQLException e) {
+            System.err.println("Error updating approval status for Gym Center ID: " + gymCenterId);
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public GymCenter getCenterById(int gymCenterId) {
+        String sql = "SELECT * FROM Flipfit.GymCenter WHERE centerId = ?";
+        GymCenter center = null;
+
+        try (Connection db = DBConnection.getConnection();
+             PreparedStatement preparedStatement = db.prepareStatement(sql)) {
+
+            preparedStatement.setInt(1, gymCenterId);
+            ResultSet rs = preparedStatement.executeQuery();
+
+            if (rs.next()) {
+                center = new GymCenter();
+                center.setCenterId(rs.getInt("centerId"));
+                center.setName(rs.getString("name"));
+                center.setLocation(rs.getString("location"));
+                center.setCapacity(rs.getInt("capacity"));
+                center.setNumSlots(rs.getInt("numSlots"));
+                center.setOwnerId(rs.getInt("ownerId"));
+                center.setApprovalStatus(rs.getInt("approvalStatus"));
+            }
+        } catch (SQLException e) {
+            System.err.println("Error fetching Gym Center by ID: " + gymCenterId);
+            e.printStackTrace();
+        }
+        return center;
     }
 
 }

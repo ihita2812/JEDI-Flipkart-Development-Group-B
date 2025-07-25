@@ -71,37 +71,48 @@ public class GymAdminBusinessService implements GymAdminBusinessServiceInterface
         return viewPendingGymCenters;
     }
 
-    public int verifyGymCenter(int gymCenter, int approvalStatus) {
-        // admin will view details of gym and approve or reject.
-        List<GymCenter> viewPendingGymCenters = viewPendingGymCenters();
-        for(GymCenter center : viewPendingGymCenters) {
-            if(center.getCenterId() == gymCenter)
-            {
-                if(approvalStatus == 1) {
-                    Notification verifyNotification = new Notification();
-                    verifyNotification.setMessage("Gym Center " + gymCenter + " is approved!");
-                    int ownerId = center.getOwnerId();
-                    int userId = gymUserDAO.getUserIdFromOwnerId(ownerId);
-                    verifyNotification.setUserId(userId);
-                    gymUserDAO.addNotification(verifyNotification);
-                    center.setApprovalStatus(1); // Approve
-                    return 1;
-                } else if(approvalStatus == 0) {
-                    Notification verifyNotification = new Notification();
-                    verifyNotification.setMessage("Gym Center " + gymCenter + " is rejected :/");
-                    int ownerId = center.getOwnerId();
-                    int userId = gymUserDAO.getUserIdFromOwnerId(ownerId);
-                    verifyNotification.setUserId(userId);
-                    gymUserDAO.addNotification(verifyNotification);
-                    center.setApprovalStatus(0); // Reject
-                    return 0;
-                } else {
-                    return -1; // Invalid status
-                }
-            }
+    public int verifyGymCenter(int gymCenterId, int approvalStatus) {
+        // 1. Validate the input status
+        if (approvalStatus != 0 && approvalStatus != 1) {
+            return -1; // Invalid approval status code
         }
 
-        return -2;
+        // 2. Fetch the gym center details to get the owner's ID for notification
+        GymCenter centerToVerify = gymUserDAO.getCenterById(gymCenterId);
+
+        // Check if the gym center exists and is actually pending
+        if (centerToVerify == null || centerToVerify.getApprovalStatus() != 2) { // Assuming 2 is 'pending'
+            return -2; // Gym not found or not in a pending state
+        }
+
+        // 3. Call the DAO to update the status in the database
+        boolean updateSuccess = gymUserDAO.updateGymCenterApprovalStatus(gymCenterId, approvalStatus);
+
+        if (updateSuccess) {
+            // 4. If the update was successful, create and send a notification
+            String message;
+            if (approvalStatus == 1) {
+                message = "Congratulations! Your Gym Center '" + centerToVerify.getName() + "' (ID: " + gymCenterId + ") has been approved.";
+            } else {
+                message = "We regret to inform you that your Gym Center '" + centerToVerify.getName() + "' (ID: " + gymCenterId + ") has been rejected.";
+            }
+
+            Notification ownerNotification = new Notification();
+            ownerNotification.setMessage(message);
+
+            // Get the userId of the owner to send the notification
+            int ownerId = centerToVerify.getOwnerId();
+            int userId = gymUserDAO.getUserIdFromOwnerId(ownerId);
+            ownerNotification.setUserId(userId);
+
+            gymUserDAO.addNotification(ownerNotification);
+
+            // Return the status that was successfully set
+            return approvalStatus;
+        }
+
+        // This would happen if the DB update failed for some reason
+        return -3; // Generic update failure
     }
 
     public void addNewRole(String roleName, String roleDesc) {

@@ -17,6 +17,7 @@ public class GymUserBusinessService implements GymUserBusinessServiceInterface {
     public int loginUser(String username, String password, int role) {
         GymUser foundUser = userDAO.getUserByUsername(username);
         if (foundUser != null && foundUser.getPassword().equals(password)) {
+            System.out.printf("%n****************** LOGGED USER ******************%n");
             Role foundRole = foundUser.getRole();
             if (foundRole != userDAO.getRole(role)) // check if the role matches
                 return -2;

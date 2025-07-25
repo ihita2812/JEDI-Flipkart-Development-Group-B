@@ -240,13 +240,13 @@ public class GymOwnerDAOImpl implements GymOwnerDAO {
             e.printStackTrace();
         }
 
-        for (GymAdmin admin : adminMap.values()) {
-            int userId = admin.getUserId();
-            Notification newCenterNotification = new Notification();
-            newCenterNotification.setMessage("New gym center " + newGymCenterId + " is waiting for approval!");
-            newCenterNotification.setUserId(userId);
-            addNotification(newCenterNotification);
-        }
+//        for (GymAdmin admin : adminMap.values()) {
+//            int userId = admin.getUserId();
+//            Notification newCenterNotification = new Notification();
+//            newCenterNotification.setMessage("New gym center " + newGymCenterId + " is waiting for approval!");
+//            newCenterNotification.setUserId(userId);
+//            addNotification(newCenterNotification);
+//        }
 
 
         // System.out.println("User added successfully with ID: " + newGymCenterId);

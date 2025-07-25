@@ -48,4 +48,6 @@ public interface GymUserDAO {
     int getUserIdFromOwnerId(int ownerId);
 
     void updateUserPassword(String username, String newPassword);
+    boolean updateGymCenterApprovalStatus(int gymCenterId, int approvalStatus);
+    GymCenter getCenterById(int gymCenterId);
 }

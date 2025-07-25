@@ -53,36 +53,6 @@ public class GymFlipfitApplicationClient {
 
             switch (choice) {
                 case 1:
-//                    System.out.print("Enter Username: ");
-//                    String username = scanner.nextLine();
-//                    System.out.print("Enter Password: ");
-//                    String password = scanner.nextLine();
-//                    System.out.print("Enter Role (0: Customer, 1: Owner, 2: Admin): ");
-//                    int role = scanner.nextInt();
-//                    scanner.nextLine(); // consume newline
-//                    // check the implementation of loginUser
-//
-//                    int roleSpecificId = userBusiness.loginUser(username, password,role);
-//
-//                    if (roleSpecificId != -1 && roleSpecificId != -2) {
-//                        switch (role) {
-//                            case 0:
-//                                GymCustomerMenu.customerMenu(roleSpecificId);
-//                                break;
-//                            case 1: // check for approval before login
-//                                GymOwnerMenu.ownerMenu(roleSpecificId);
-//                                break;
-//                            case 2:
-//                                GymAdminMenu.adminMenu(roleSpecificId);
-//                                break;
-//                        }
-//                    } else if (roleSpecificId == -2) {
-//                        System.out.println("role is invalid. Please enter correct role.");
-//                    }
-//                    else{
-//                        System.out.println("Invalid credentials. Try again.");
-//                    }
-//                    break;
                     System.out.printf("%n********************* ACCOUNT LOGIN *********************%n");
                     System.out.print("> Enter Username: ");
                     String username = scanner.nextLine();
@@ -97,7 +67,7 @@ public class GymFlipfitApplicationClient {
                     int roleSpecificId = userBusiness.loginUser(username, password, role);
 
                     if (roleSpecificId >= 0) { // Successful login returns a positive ID
-                        System.out.println("\n[SUCCESS] Login successful. Welcome, " + username + "!");
+                        System.out.println("\n[SUCCESS] Login s1uccessful. Welcome, " + username + "!");
                         switch (role) {
                             case 0:
                                 GymCustomerMenu.customerMenu(roleSpecificId);
