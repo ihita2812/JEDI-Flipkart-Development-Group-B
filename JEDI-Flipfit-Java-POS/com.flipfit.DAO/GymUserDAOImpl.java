@@ -56,35 +56,35 @@ public class GymUserDAOImpl implements GymUserDAO {
         adminGym.setUserId(1);
         GymAdminDAOImpl.adminMap.put(1, adminGym);
 
-//        GymUser ownerUser = new GymUser();
-//        ownerUser.setUserId(2);
-//        ownerUser.setUserName("owner");
-//        ownerUser.setPassword("owner");
-//        ownerUser.setName("Gym Owner");
-//        ownerUser.setRole(ownerRole);
-//        userMap.put(2, ownerUser);
-//        GymOwner ownerGym = new GymOwner();
-//        ownerGym.setUserId(2);
-//        ownerGym.setOwnerId(1);
-//        ownerGym.setEmail("owner");
-//        ownerGym.setGender(0);
-//        GymOwnerDAOImpl.ownerMap.put(1, ownerGym);
-//
-//        GymUser customerUser = new GymUser();
-//        customerUser.setUserId(3);
-//        customerUser.setUserName("customer");
-//        customerUser.setPassword("customer");
-//        customerUser.setName("Gym Customer");
-//        customerUser.setRole(customerRole);
-//        userMap.put(3, customerUser);
-//        GymCustomer customerGym = new GymCustomer();
-//        customerGym.setUserId(3);
-//        customerGym.setCustomerId(1);
-//        customerGym.setEmail("customer");
-//        customerGym.setGender(0);
-//        customerGym.setAge(21);
-//        customerGym.setLocation("Kol");
-//        GymCustomerDAOImpl.customerMap.put(3, customerGym);
+        GymUser ownerUser = new GymUser();
+        ownerUser.setUserId(2);
+        ownerUser.setUserName("owner");
+        ownerUser.setPassword("owner");
+        ownerUser.setName("Gym Owner");
+        ownerUser.setRole(ownerRole);
+        userMap.put(2, ownerUser);
+        GymOwner ownerGym = new GymOwner();
+        ownerGym.setUserId(2);
+        ownerGym.setOwnerId(1);
+        ownerGym.setEmail("owner");
+        ownerGym.setGender(0);
+        GymOwnerDAOImpl.ownerMap.put(1, ownerGym);
+
+        GymUser customerUser = new GymUser();
+        customerUser.setUserId(3);
+        customerUser.setUserName("customer");
+        customerUser.setPassword("customer");
+        customerUser.setName("Gym Customer");
+        customerUser.setRole(customerRole);
+        userMap.put(3, customerUser);
+        GymCustomer customerGym = new GymCustomer();
+        customerGym.setUserId(3);
+        customerGym.setCustomerId(1);
+        customerGym.setEmail("customer");
+        customerGym.setGender(0);
+        customerGym.setAge(21);
+        customerGym.setLocation("Kol");
+        GymCustomerDAOImpl.customerMap.put(3, customerGym);
 
 
         GymCenter dummyCenter = new GymCenter();

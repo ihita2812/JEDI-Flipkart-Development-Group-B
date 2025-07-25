@@ -15,27 +15,27 @@ public class GymOwnerDAOImpl implements GymOwnerDAO {
         Role ownerRole = GymUserDAOImpl.roleMap.get(1);
         // Role ownerRole = roleMap.get(1);
 
-        GymOwner owner1 = new GymOwner();
-        owner1.setUserId(2);
-        owner1.setUserName("owner");
-        owner1.setPassword("owner");
-        owner1.setName("Gym Owner");
-        owner1.setRole(ownerRole);
-        owner1.setOwnerId(1);
-        owner1.setGender('M');
-        owner1.setEmail("owner@gaanmara.com");
-        ownerMap.put(owner1.getOwnerId(), owner1);
-
-        GymOwner owner2 = new GymOwner();
-        owner2.setUserId(5);
-        owner2.setUserName("owner1");
-        owner2.setPassword("owner");
-        owner2.setName("Gym Owner hu mai");
-        owner2.setRole(ownerRole);
-        owner2.setOwnerId(2);
-        owner2.setGender('F');
-        owner2.setEmail("owner1@gaanmara.com");
-        ownerMap.put(owner2.getOwnerId(), owner2);
+//        GymOwner owner1 = new GymOwner();
+//        owner1.setUserId(2);
+//        owner1.setUserName("owner");
+//        owner1.setPassword("owner");
+//        owner1.setName("Gym Owner");
+//        owner1.setRole(ownerRole);
+//        owner1.setOwnerId(1);
+//        owner1.setGender('M');
+//        owner1.setEmail("owner@gaanmara.com");
+//        ownerMap.put(owner1.getOwnerId(), owner1);
+//
+//        GymOwner owner2 = new GymOwner();
+//        owner2.setUserId(5);
+//        owner2.setUserName("owner1");
+//        owner2.setPassword("owner");
+//        owner2.setName("Gym Owner hu mai");
+//        owner2.setRole(ownerRole);
+//        owner2.setOwnerId(2);
+//        owner2.setGender('F');
+//        owner2.setEmail("owner1@gaanmara.com");
+//        ownerMap.put(owner2.getOwnerId(), owner2);
     }
 
     public Payment getPaymentByBookingId(int bookingId)
