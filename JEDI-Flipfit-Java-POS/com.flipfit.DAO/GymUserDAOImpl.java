@@ -306,8 +306,6 @@ public class GymUserDAOImpl implements GymUserDAO {
 
     @Override
     public void addUser(GymUser user) {
-
-
         int newUserId = Collections.max(userMap.keySet()) + 1;
         user.setUserId(newUserId);
         userMap.put(newUserId, user);
