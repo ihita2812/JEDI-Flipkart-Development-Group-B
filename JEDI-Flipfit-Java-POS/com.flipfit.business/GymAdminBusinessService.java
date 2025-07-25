@@ -78,9 +78,21 @@ public class GymAdminBusinessService implements GymAdminBusinessServiceInterface
             if(center.getCenterId() == gymCenter)
             {
                 if(approvalStatus == 1) {
+                    Notification verifyNotification = new Notification();
+                    verifyNotification.setMessage("Gym Center " + gymCenter + " is approved!");
+                    int ownerId = center.getOwnerId();
+                    int userId = gymUserDAO.getUserIdFromOwnerId(ownerId);
+                    verifyNotification.setUserId(userId);
+                    gymUserDAO.addNotification(verifyNotification);
                     center.setApprovalStatus(1); // Approve
                     return 1;
                 } else if(approvalStatus == 0) {
+                    Notification verifyNotification = new Notification();
+                    verifyNotification.setMessage("Gym Center " + gymCenter + " is rejected :/");
+                    int ownerId = center.getOwnerId();
+                    int userId = gymUserDAO.getUserIdFromOwnerId(ownerId);
+                    verifyNotification.setUserId(userId);
+                    gymUserDAO.addNotification(verifyNotification);
                     center.setApprovalStatus(0); // Reject
                     return 0;
                 } else {

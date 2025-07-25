@@ -212,6 +212,11 @@ public class GymUserDAOImpl implements GymUserDAO {
         return bookingMap.get(bookingId);
     }
 
+    public int getUserIdFromOwnerId(int ownerId) {
+        GymOwner owner =  ownerMap.get(ownerId);
+        return owner.getUserId();
+    }
+
     public boolean approvePayment(int bookingId) {
         Booking booking = bookingMap.get(bookingId);
         Slot bookingSlot = slotMap.get(booking.getSlotId());
@@ -361,8 +366,13 @@ public class GymUserDAOImpl implements GymUserDAO {
     public List<GymUser> getAllUsers() {
         return new ArrayList<>(userMap.values());
     }
-    public List<GymOwner> getAllOwners() {return new ArrayList<>(GymOwnerDAOImpl.ownerMap.values());}
-    public List<GymCustomer> getAllCustomers(){return new ArrayList<>(GymCustomerDAOImpl.customerMap.values());}
+    public List<GymOwner> getAllOwners() {
+        return new ArrayList<>(GymOwnerDAOImpl.ownerMap.values());
+    }
+
+    public List<GymCustomer> getAllCustomers(){
+        return new ArrayList<>(GymCustomerDAOImpl.customerMap.values());
+    }
     @Override
     public void removeUser(int userId) {
         userMap.remove(userId);

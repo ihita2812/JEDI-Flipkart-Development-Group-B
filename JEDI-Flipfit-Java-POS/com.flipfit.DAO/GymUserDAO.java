@@ -36,6 +36,7 @@ public interface GymUserDAO {
     List<Booking> getBookingsBySlotId(int slotId);
     Payment getPaymentByBookingId(int bookingId);
     List<GymCenter> getAllValidCenters();
+    List<GymCustomer> getAllCustomers();
     int getCustomerId(GymUser gymUser);
 
     int getAdminId(GymUser gymUser);
@@ -43,6 +44,8 @@ public interface GymUserDAO {
     void addNotification(Notification notification);
 
     int getOwnerId(GymUser gymUser);
+
+    int getUserIdFromOwnerId(int ownerId);
 
 
 }
