@@ -47,5 +47,5 @@ public interface GymUserDAO {
 
     int getUserIdFromOwnerId(int ownerId);
 
-
+    void updateUserPassword(String username, String newPassword);
 }

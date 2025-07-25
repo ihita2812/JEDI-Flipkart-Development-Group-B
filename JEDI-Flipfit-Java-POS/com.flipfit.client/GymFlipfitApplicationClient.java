@@ -42,7 +42,7 @@ public class GymFlipfitApplicationClient {
             System.out.println("  3. Register as a New Gym Owner");
 
             System.out.println("\n--- System ---");
-            System.out.println("  4. Edit Password");
+            System.out.println("  4. Change My Password");
             System.out.println("  5. Exit Application");
 
             System.out.print("\nEnter your choice -> ");
@@ -269,7 +269,29 @@ public class GymFlipfitApplicationClient {
                     break;
 
                 case 4:
-                    System.out.println("Password Saved. (dummy)");
+                    System.out.printf("%n********************* CHANGE PASSWORD *********************%n");
+                    System.out.print("> To continue, please confirm your Username: ");
+                    String adminUsername = scanner.nextLine();
+
+                    System.out.print("> Enter your CURRENT password: ");
+                    String oldPassword = scanner.nextLine();
+
+                    System.out.print("> Enter your NEW password: ");
+                    String newPassword1 = scanner.nextLine();
+
+                    System.out.print("> Confirm your NEW password: ");
+                    String newPassword2 = scanner.nextLine();
+
+                    if (!newPassword1.equals(newPassword2)) {
+                        System.out.println("\n[ERROR] The new passwords do not match. Please try again.\n");
+                        break;
+                    }
+
+                    if (userBusiness.changePassword(adminUsername, oldPassword, newPassword1)) {
+                        System.out.println("\n[SUCCESS] Your password has been changed successfully.\n");
+                    } else {
+                        System.out.println("\n[ERROR] Password change failed. Please check your username and current password.\n");
+                    }
                     break;
 
                 case 5:

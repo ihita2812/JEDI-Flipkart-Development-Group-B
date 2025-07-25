@@ -57,4 +57,18 @@ public class GymUserBusinessService implements GymUserBusinessServiceInterface {
         userDAO.addUser(user);
     }
 
+    public boolean changePassword(String username, String oldPassword, String newPassword) {
+        GymUser user = userDAO.getUserByUsername(username);
+
+        // Check if user exists and if the provided old password is correct
+        if (user != null && user.getPassword().equals(oldPassword)) {
+            // If both are true, call the DAO to update the password
+            userDAO.updateUserPassword(username, newPassword);
+            return true; // Return true indicating success
+        }
+
+        // If user does not exist or old password was incorrect, return false
+        return false;
+    }
+
 }

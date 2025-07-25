@@ -402,4 +402,11 @@ public class GymUserDAOImpl implements GymUserDAO {
         return roleMap.get(role);
     }
 
+    public void updateUserPassword(String username, String newPassword) {
+        GymUser userToUpdate = getUserByUsername(username);
+        if (userToUpdate != null) {
+            userToUpdate.setPassword(newPassword);
+        }
+    }
+
 }
