@@ -1,6 +1,11 @@
 package com.flipfit.dao;
 
 import com.flipfit.bean.*;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.*;
 import com.flipfit.dao.GymUserDAOImpl;
 
@@ -10,7 +15,7 @@ import static com.flipfit.dao.GymUserDAOImpl.notificationMap;
 public class GymOwnerDAOImpl implements GymOwnerDAO {
 
     public static Map<Integer, GymOwner> ownerMap = new HashMap<>();
-
+    GymUserDAOImpl gymUserDAOImpl = new GymUserDAOImpl();
     public GymOwnerDAOImpl() {
         Role ownerRole = GymUserDAOImpl.roleMap.get(1);
         // Role ownerRole = roleMap.get(1);
@@ -141,9 +146,39 @@ public class GymOwnerDAOImpl implements GymOwnerDAO {
     public boolean removeOwner(int ownerId) {
         if(ownerMap.containsKey(ownerId)){
             ownerMap.remove(ownerId);
-            return  true;
         }
-        return false;
+        int userId1=-1;
+        try (Connection db = DBConnection.getConnection();
+             PreparedStatement getAdminIdStatement = db.prepareStatement("SELECT userId FROM Flipfit.GymOwner WHERE ownerId = ?")) {
+
+            getAdminIdStatement.setInt(1, ownerId);
+            ResultSet customerResult = getAdminIdStatement.executeQuery();
+
+            // *** THE FIX IS HERE: Call next() before accessing data ***
+            if (customerResult.next()) { // Move the cursor to the first (and likely only) row
+                userId1 = customerResult.getInt("userId");
+            }
+        } catch (SQLException e) {
+            // Handle SQL exceptions
+            System.err.println("SQL Error: " + e.getMessage());
+            e.printStackTrace();
+        }
+
+        System.out.println(userId1);
+
+        try (Connection db = DBConnection.getConnection();
+             PreparedStatement preparedStatement = db.prepareStatement("DELETE FROM Flipfit.GymOwner WHERE ownerId = ?")) {
+
+            preparedStatement.setInt(1, ownerId);
+
+            int rowsAffected = preparedStatement.executeUpdate();
+            System.out.println(rowsAffected + " row(s) deleted.");
+            gymUserDAOImpl.removeUser(userId1);
+            return  true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
     public void addGymCenter(GymCenter gymCenter) {

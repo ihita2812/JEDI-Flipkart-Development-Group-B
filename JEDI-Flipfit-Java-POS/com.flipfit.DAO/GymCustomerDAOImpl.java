@@ -3,11 +3,17 @@ package com.flipfit.dao;
 import com.flipfit.bean.*;
 import com.flipfit.dao.GymUserDAOImpl;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.*;
+import java.sql.ResultSet;
+import com.flipfit.dao.GymUserDAOImpl;
 
 public class GymCustomerDAOImpl implements GymCustomerDAO {
 
     public static Map<Integer, GymCustomer> customerMap = new HashMap<>();
+    GymUserDAOImpl gymUserDAOImpl = new GymUserDAOImpl();
 
     public GymCustomerDAOImpl() {
 
@@ -57,11 +63,52 @@ public class GymCustomerDAOImpl implements GymCustomerDAO {
     }
 
     public boolean removeCustomer(int customerId){
+
         if(customerMap.containsKey(customerId)){
             customerMap.remove(customerId);
-            return true;
         }
-        return false;
+
+        int userId1 = -1;
+//        try (Connection db = DBConnection.getConnection();
+//             PreparedStatement getAdminIdStatement = db.prepareStatement("SELECT userId FROM Flipfit.GymCustomer WHERE CustomerId = ?")) {
+//            getAdminIdStatement.setInt(1, customerId);
+//            ResultSet customerResult = getAdminIdStatement.executeQuery();
+//            userId1 = customerResult.getInt("userId");
+//
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+        try (Connection db = DBConnection.getConnection();
+             PreparedStatement getAdminIdStatement = db.prepareStatement("SELECT userId FROM Flipfit.GymCustomer WHERE CustomerId = ?")) {
+
+            getAdminIdStatement.setInt(1, customerId);
+            ResultSet customerResult = getAdminIdStatement.executeQuery();
+
+            // *** THE FIX IS HERE: Call next() before accessing data ***
+            if (customerResult.next()) { // Move the cursor to the first (and likely only) row
+                userId1 = customerResult.getInt("userId");
+            }
+        } catch (SQLException e) {
+            // Handle SQL exceptions
+            System.err.println("SQL Error: " + e.getMessage());
+            e.printStackTrace();
+        }
+
+        System.out.println(userId1);
+
+        try (Connection db = DBConnection.getConnection();
+             PreparedStatement preparedStatement = db.prepareStatement("DELETE FROM Flipfit.GymCustomer WHERE customerId = ?")) {
+
+            preparedStatement.setInt(1, customerId);
+
+            int rowsAffected = preparedStatement.executeUpdate();
+            System.out.println(rowsAffected + " row(s) deleted.");
+            gymUserDAOImpl.removeUser(userId1);
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
     /*

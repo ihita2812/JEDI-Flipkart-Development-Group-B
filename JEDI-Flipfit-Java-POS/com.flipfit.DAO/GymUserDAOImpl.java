@@ -266,6 +266,16 @@ public class GymUserDAOImpl implements GymUserDAO {
 
     public void cancelBookingById(int bookingId) {
         bookingMap.remove(bookingId);
+        try (Connection db = DBConnection.getConnection();
+             PreparedStatement preparedStatement = db.prepareStatement("DELETE FROM Flipfit.Booking WHERE bookingId = ?")) {
+
+            preparedStatement.setInt(1, bookingId);
+
+            int rowsAffected = preparedStatement.executeUpdate();
+            System.out.println(rowsAffected + " row(s) deleted.");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public List<Slot> getSlotByCenterId(int gymCenterId) {
@@ -327,12 +337,10 @@ public class GymUserDAOImpl implements GymUserDAO {
         System.out.println("User added successfully with ID: " + newUserId);
     }
 
-    @Override
     public GymUser getUserById(int userId) {
         return userMap.get(userId);
     }
 
-    @Override
     public GymUser getUserByUsername(String username) {
         for (GymUser user : userMap.values()) {
             if (user.getUserName().equals(username)) {
@@ -382,7 +390,6 @@ public class GymUserDAOImpl implements GymUserDAO {
         }
         return null;
     }
-    @Override
     public List<GymUser> getAllUsers() {
         return new ArrayList<>(userMap.values());
     }
@@ -393,9 +400,19 @@ public class GymUserDAOImpl implements GymUserDAO {
     public List<GymCustomer> getAllCustomers(){
         return new ArrayList<>(GymCustomerDAOImpl.customerMap.values());
     }
-    @Override
     public void removeUser(int userId) {
         userMap.remove(userId);
+
+        try (Connection db = DBConnection.getConnection();
+             PreparedStatement preparedStatement = db.prepareStatement("DELETE FROM Flipfit.GymUser WHERE userId = ?")) {
+
+            preparedStatement.setInt(1, userId);
+
+            int rowsAffected = preparedStatement.executeUpdate();
+            System.out.println(rowsAffected + " row(s) deleted.");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public Role getRole(int role) {
