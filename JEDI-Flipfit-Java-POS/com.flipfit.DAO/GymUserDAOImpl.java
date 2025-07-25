@@ -9,6 +9,8 @@ import com.flipfit.dao.GymCustomerDAOImpl;
 import com.flipfit.dao.GymOwnerDAOImpl;
 import com.flipfit.dao.GymAdminDAOImpl;
 
+import static com.flipfit.dao.GymOwnerDAOImpl.ownerMap;
+
 public class GymUserDAOImpl implements GymUserDAO {
 
     public static Map<Integer, GymUser> userMap = new HashMap<>();
@@ -61,7 +63,7 @@ public class GymUserDAOImpl implements GymUserDAO {
         ownerGym.setOwnerId(1);
         ownerGym.setEmail("owner");
         ownerGym.setGender(0);
-        GymOwnerDAOImpl.ownerMap.put(1, ownerGym);
+        ownerMap.put(1, ownerGym);
 
         GymUser customerUser = new GymUser();
         customerUser.setUserId(3);
@@ -178,7 +180,7 @@ public class GymUserDAOImpl implements GymUserDAO {
     }
 
     public int getOwnerId(GymUser gymUser) {
-        for(GymOwner owner : GymOwnerDAOImpl.ownerMap.values()){
+        for(GymOwner owner : ownerMap.values()){
             if(gymUser.getUserId() == owner.getUserId()){
                 return owner.getOwnerId();
             }
@@ -224,10 +226,22 @@ public class GymUserDAOImpl implements GymUserDAO {
         if  (currSeats < capacity) {
             bookingSlot.setBookedSeats(currSeats + 1);
             slotMap.put(bookingSlot.getSlotId(), bookingSlot);
+            Notification bookingNotification = new Notification();
+            bookingNotification.setMessage("Customer " + booking.getCustomerId() + " just booked slot " + bookingSlot.getSlotId());
+            GymCenter bookingCenter = centerMap.get(bookingSlot.getCenterId());
+            GymOwner bookingOwner = ownerMap.get(bookingCenter.getOwnerId());
+            bookingNotification.setUserId(bookingOwner.getUserId());
+            addNotification(bookingNotification);
             return true;
         } else {
             return false;
         }
+    }
+
+    public void addNotification(Notification notification) {
+        int newNotificationId = notificationMap.isEmpty() ? 1 : Collections.max(notificationMap.keySet()) + 1;
+        notification.setNotifId(newNotificationId);
+        notificationMap.put(newNotificationId, notification);
     }
 
     public void addPayment(Payment payment) {
@@ -347,7 +361,7 @@ public class GymUserDAOImpl implements GymUserDAO {
     public List<GymUser> getAllUsers() {
         return new ArrayList<>(userMap.values());
     }
-    public List<GymOwner> getAllOwners() {return new ArrayList<>(GymOwnerDAOImpl.ownerMap.values());}
+    public List<GymOwner> getAllOwners() {return new ArrayList<>(ownerMap.values());}
     @Override
     public void removeUser(int userId) {
         userMap.remove(userId);

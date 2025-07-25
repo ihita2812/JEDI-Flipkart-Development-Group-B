@@ -30,15 +30,17 @@ public interface GymUserDAO {
 
     void cancelBookingById(int bookingId);
 
-    public List<GymCenter> getAllCenters();
-    public List<GymOwner> getAllOwners();
-    public List<GymCenter> getAllCentersByOwnerId(int ownerId);
-    public List<Booking> getBookingsBySlotId(int slotId);
-    public Payment getPaymentByBookingId(int bookingId);
-    public List<GymCenter> getAllValidCenters();
+    List<GymCenter> getAllCenters();
+    List<GymOwner> getAllOwners();
+    List<GymCenter> getAllCentersByOwnerId(int ownerId);
+    List<Booking> getBookingsBySlotId(int slotId);
+    Payment getPaymentByBookingId(int bookingId);
+    List<GymCenter> getAllValidCenters();
     int getCustomerId(GymUser gymUser);
 
     int getAdminId(GymUser gymUser);
+
+    void addNotification(Notification notification);
 
     int getOwnerId(GymUser gymUser);
 

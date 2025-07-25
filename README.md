@@ -16,3 +16,8 @@
 ## DAY-4 : MYSQL
 
 done, but not checked
+
+notifs-
+- owner : gym center approval/rejected (admin)
+- admin : new gym center registered (owner)
+- ~~owner : slot booked (customer)~~
