@@ -1,9 +1,6 @@
 package com.flipfit.business;
 
-import com.flipfit.bean.Booking;
-import com.flipfit.bean.GymAdmin;
-import com.flipfit.bean.GymCenter;
-import com.flipfit.bean.Payment;
+import com.flipfit.bean.*;
 
 import java.util.*;
 public interface GymAdminBusinessServiceInterface {
@@ -20,4 +17,6 @@ public interface GymAdminBusinessServiceInterface {
     public boolean removeGymCustomer(int customerId);
     public void addGymOwner(String userName,String ownerName, String password, int gender, String ownerEmail, String ownerPhone);
     public boolean removeGymOwner(int ownerId);
+    public List<GymOwner> getAllOwners();
+    public List<GymCustomer> getAllCustomer();
 }

@@ -127,5 +127,11 @@ public class GymAdminBusinessService implements GymAdminBusinessServiceInterface
         return gymOwnerDAO.removeOwner(ownerId);
 
     }
+    public List<GymOwner> getAllOwners(){
+        return gymUserDAO.getAllOwners();
+    }
+    public List<GymCustomer> getAllCustomer(){
+        return gymUserDAO.getAllCustomers();
+    }
 
 }

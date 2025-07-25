@@ -21,11 +21,13 @@ public class GymAdminMenu {
         System.out.println("\t2\tView pending gym center approvals");
         System.out.println("\t3\tView all payments");
 //        System.out.println("\t4\tAdd Roles");
-        System.out.println("\t4\tAdd Gym Customer");
-        System.out.println("\t5\tRemove Gym Customer");
-        System.out.println("\t6\tAdd Gym Owner");
-        System.out.println("\t7\tRemove Gym Owner");
-        System.out.println("\t8\tLogout");
+        System.out.println("\t4\tView all Owners");
+        System.out.println("\t5\tView all Customers");
+        System.out.println("\t6\tAdd Gym Customer");
+        System.out.println("\t7\tRemove Gym Customer");
+        System.out.println("\t8\tAdd Gym Owner");
+        System.out.println("\t9\tRemove Gym Owner");
+        System.out.println("\t0\tLogout");
 
         int choice = scanner.nextInt();
         scanner.nextLine();
@@ -110,6 +112,23 @@ public class GymAdminMenu {
                 }
                 break;
             case 4:
+                List<GymOwner> allOwners= admin.getAllOwners();
+                for(GymOwner owner : allOwners) {
+                    System.out.println("---------------------------------------------");
+                    System.out.println("Owner ID: " + owner.getOwnerId());
+                    System.out.println("Owner Name: " + owner.getName());
+                }
+                break;
+            case 5:
+                List<GymCustomer> allCustomer= admin.getAllCustomer();
+                for(GymCustomer customer : allCustomer){
+                    System.out.println("---------------------------------------------");
+                    System.out.println("Customer ID: " + customer.getCustomerId());
+                    System.out.println("Customer Name: " + customer.getName());
+                }
+                break;
+
+            case 6:
                 System.out.println("Enter Gym Customer Username to be added");
                 String customerUsername = scanner.nextLine();
                 scanner.nextLine();
@@ -144,7 +163,7 @@ public class GymAdminMenu {
                 System.out.println("Gym Customer " + customerName + " added.");
                 System.out.println("---------------------------------------------");
                 break;
-            case 5:
+            case 7:
                 System.out.println("Enter Gym Customer ID to be removed");
                 int customerId = scanner.nextInt();
                 scanner.nextLine();
@@ -152,7 +171,7 @@ public class GymAdminMenu {
                 System.out.println("Gym Customer with ID " + customerId + " removed.");
                 else System.out.println("Gym Customer with ID " + customerId + " not found.");
                 break;
-            case 6:
+            case 8:
                 System.out.println("Enter Gym Owner Username to be added");
                 String userName = scanner.nextLine();
                 if(user.userNameExists(userName)) {
@@ -182,7 +201,7 @@ public class GymAdminMenu {
                 admin.addGymOwner(userName,ownerName, Ownerpassword,ownerGender, ownerEmail,ownerPhone); // Assuming this method exists
                 System.out.println("Gym Owner " + ownerName + " added.");
                 break;
-            case 7:
+            case 9:
                 System.out.println("Enter Gym Owner ID to be removed");
                 int ownerId = scanner.nextInt();
                 scanner.nextLine();
@@ -190,7 +209,7 @@ public class GymAdminMenu {
                 System.out.println("Gym Owner with ID " + ownerId + " removed.");
                 else System.out.println("Gym Owner with ID " + ownerId + " not found.");
                 break;
-            case 8:
+            case 0:
                 System.out.println("See you again!");
                 return;
             default:
