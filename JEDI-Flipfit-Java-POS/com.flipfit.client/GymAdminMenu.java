@@ -202,122 +202,298 @@ public class GymAdminMenu {
                     }
                 }
                 break;
+//            case 3:
+//                List<Payment> payments = admin.viewPayments();
+//                if (payments.isEmpty()) {
+//                    System.out.println("No payments found.");
+//                } else {
+//                    System.out.println("---------------------------------------------");
+//                    System.out.println("Here are the payments!");
+//                    for (Payment payment : payments) {
+//                        System.out.println("---------------------------------------------");
+//                        System.out.println("Payment ID: " + payment.getPaymentId());
+//                        System.out.println("Customer ID: " + payment.getCustomerId());
+//                        System.out.println("Amount: " + payment.getAmount());
+//                        System.out.println("Date: " + payment.getPaymentDateTime());
+//                    }
+//                }
+//                break;
             case 3:
                 List<Payment> payments = admin.viewPayments();
+
+                System.out.printf("%n********************* ALL PLATFORM PAYMENTS *********************%n");
+
                 if (payments.isEmpty()) {
-                    System.out.println("No payments found.");
+                    System.out.println("\n-- No payments have been recorded on the platform yet. --\n");
                 } else {
-                    System.out.println("---------------------------------------------");
-                    System.out.println("Here are the payments!");
+                    System.out.printf("-----------------------------------------------------------------------%n");
+                    System.out.printf("| %-12s | %-12s | %-12s | %-25s |%n", "PAYMENT ID", "CUSTOMER ID", "AMOUNT", "DATE & TIME");
+                    System.out.printf("-----------------------------------------------------------------------%n");
+
                     for (Payment payment : payments) {
-                        System.out.println("---------------------------------------------");
-                        System.out.println("Payment ID: " + payment.getPaymentId());
-                        System.out.println("Customer ID: " + payment.getCustomerId());
-                        System.out.println("Amount: " + payment.getAmount());
-                        System.out.println("Date: " + payment.getPaymentDateTime());
+                        System.out.printf("| %-12d | %-12d | %-12.2f | %-25s |%n",
+                                payment.getPaymentId(),
+                                payment.getCustomerId(),
+                                payment.getAmount(),
+                                payment.getPaymentDateTime().toString());
                     }
+                    System.out.printf("-----------------------------------------------------------------------%n");
                 }
                 break;
+//            case 4:
+//                List<GymOwner> allOwners= admin.getAllOwners();
+//                for(GymOwner owner : allOwners) {
+//                    System.out.println("---------------------------------------------");
+//                    System.out.println("Owner ID: " + owner.getOwnerId());
+//                    System.out.println("Owner Name: " + owner.getName());
+//                }
+//                break;
             case 4:
-                List<GymOwner> allOwners= admin.getAllOwners();
-                for(GymOwner owner : allOwners) {
-                    System.out.println("---------------------------------------------");
-                    System.out.println("Owner ID: " + owner.getOwnerId());
-                    System.out.println("Owner Name: " + owner.getName());
+                List<GymOwner> allOwners = admin.getAllOwners();
+
+                System.out.printf("%n**************************************** ALL GYM OWNERS ****************************************%n");
+
+                if (allOwners.isEmpty()) {
+                    System.out.println("\n-- There are no gym owners registered on the platform. --\n");
+                } else {
+                    System.out.printf("------------------------------------------------------------------------------------------------%n");
+                    System.out.printf("| %-12s | %-20s | %-25s | %-30s |%n", "OWNER ID", "USERNAME", "NAME", "EMAIL");
+                    System.out.printf("------------------------------------------------------------------------------------------------%n");
+
+                    for (GymOwner owner : allOwners) {
+                        System.out.printf("| %-12d | %-20s | %-25s | %-30s |%n",
+                                owner.getOwnerId(),
+                                owner.getUserName(),
+                                owner.getName(),
+                                owner.getEmail());
+                    }
+                    System.out.printf("------------------------------------------------------------------------------------------------%n");
                 }
                 break;
+//            case 5:
+//                List<GymCustomer> allCustomer= admin.getAllCustomer();
+//                for(GymCustomer customer : allCustomer){
+//                    System.out.println("---------------------------------------------");
+//                    System.out.println("Customer ID: " + customer.getCustomerId());
+//                    System.out.println("Customer Name: " + customer.getName());
+//                }
+//                break;
             case 5:
-                List<GymCustomer> allCustomer= admin.getAllCustomer();
-                for(GymCustomer customer : allCustomer){
-                    System.out.println("---------------------------------------------");
-                    System.out.println("Customer ID: " + customer.getCustomerId());
-                    System.out.println("Customer Name: " + customer.getName());
+                List<GymCustomer> allCustomers = admin.getAllCustomer();
+
+                System.out.printf("%n************************************** ALL CUSTOMERS **************************************%n");
+
+                if (allCustomers.isEmpty()) {
+                    System.out.println("\n-- There are no customers registered on the platform. --\n");
+                } else {
+                    System.out.printf("----------------------------------------------------------------------------------------%n");
+                    System.out.printf("| %-12s | %-20s | %-25s | %-15s |%n", "CUSTOMER ID", "USERNAME", "NAME", "LOCATION");
+                    System.out.printf("----------------------------------------------------------------------------------------%n");
+
+                    for (GymCustomer customer : allCustomers) {
+                        System.out.printf("| %-12d | %-20s | %-25s | %-15s |%n",
+                                customer.getCustomerId(),
+                                customer.getUserName(),
+                                customer.getName(),
+                                customer.getLocation());
+                    }
+                    System.out.printf("----------------------------------------------------------------------------------------%n");
                 }
                 break;
 
+
+//            case 6:
+//                System.out.println("Enter Gym Customer Username to be added");
+//                String customerUsername = scanner.nextLine();
+//                scanner.nextLine();
+//
+//                if(user.userNameExists(customerUsername)) {
+//                    System.out.println("Username already exists. Please choose a different username.");
+//                    break;
+//                }
+//                System.out.println("Enter Gym Customer Name to be added");
+//                String customerName = scanner.nextLine();
+//                scanner.nextLine();
+//                System.out.println("Enter Gym Customer Password to be added");
+//                String password = scanner.nextLine();
+//                scanner.nextLine();
+//                System.out.println("Enter Gym Customer Age to be added");
+//                int age = scanner.nextInt();
+//                scanner.nextLine();
+//                System.out.println("Enter Gym Customer Location to be added");
+//                String location = scanner.nextLine();
+//                scanner.nextLine();
+//                System.out.println("Enter Gym Customer Gender to be added");
+//                int gender = scanner.nextInt();
+//                scanner.nextLine();
+//                System.out.println("Enter Gym Customer Email to be added");
+//                String customerEmail = scanner.nextLine();
+//                scanner.nextLine();
+//
+//                System.out.println("Enter Gym Customer Phone to be added");
+//                String customerPhone = scanner.nextLine();
+//                scanner.nextLine();
+//                admin.addGymCustomer(customerUsername,  customerName,  password,  age,  location,  gender,  customerEmail,  customerPhone);
+//                System.out.println("Gym Customer " + customerName + " added.");
+//                System.out.println("---------------------------------------------");
+//                break;
             case 6:
-                System.out.println("Enter Gym Customer Username to be added");
+                System.out.printf("%n********************* ADD NEW GYM CUSTOMER *********************%n");
+
+                System.out.print("> Enter Username: ");
                 String customerUsername = scanner.nextLine();
-                scanner.nextLine();
 
                 if(user.userNameExists(customerUsername)) {
-                    System.out.println("Username already exists. Please choose a different username.");
+                    System.out.println("\n[ERROR] Username '" + customerUsername + "' already exists. Please choose a different username.\n");
                     break;
                 }
-                System.out.println("Enter Gym Customer Name to be added");
+
+                System.out.print("> Enter Full Name: ");
                 String customerName = scanner.nextLine();
-                scanner.nextLine();
-                System.out.println("Enter Gym Customer Password to be added");
-                String password = scanner.nextLine();
-                scanner.nextLine();
-                System.out.println("Enter Gym Customer Age to be added");
-                int age = scanner.nextInt();
-                scanner.nextLine();
-                System.out.println("Enter Gym Customer Location to be added");
-                String location = scanner.nextLine();
-                scanner.nextLine();
-                System.out.println("Enter Gym Customer Gender to be added");
-                int gender = scanner.nextInt();
-                scanner.nextLine();
-                System.out.println("Enter Gym Customer Email to be added");
-                String customerEmail = scanner.nextLine();
-                scanner.nextLine();
 
-                System.out.println("Enter Gym Customer Phone to be added");
+                System.out.print("> Enter Password: ");
+                String password = scanner.nextLine();
+
+                System.out.print("> Enter Age: ");
+                int age = scanner.nextInt();
+                scanner.nextLine(); // Consume newline
+
+                System.out.print("> Enter Location: ");
+                String location = scanner.nextLine();
+
+                System.out.print("> Enter Gender (0 for Male, 1 for Female): ");
+                int gender = scanner.nextInt();
+                scanner.nextLine(); // Consume newline
+
+                System.out.print("> Enter Email Address: ");
+                String customerEmail = scanner.nextLine();
+
+                System.out.print("> Enter Phone Number: ");
                 String customerPhone = scanner.nextLine();
-                scanner.nextLine();
-                admin.addGymCustomer(customerUsername,  customerName,  password,  age,  location,  gender,  customerEmail,  customerPhone);
-                System.out.println("Gym Customer " + customerName + " added.");
-                System.out.println("---------------------------------------------");
+
+                admin.addGymCustomer(customerUsername, customerName, password, age, location, gender, customerEmail, customerPhone);
+
+                System.out.printf("\n[SUCCESS] Gym Customer '%s' has been added successfully.\n", customerName);
                 break;
+//            case 7:
+//                System.out.println("Enter Gym Customer ID to be removed");
+//                int customerId = scanner.nextInt();
+//                scanner.nextLine();
+//                if(admin.removeGymCustomer(customerId)) // Assuming this method exists
+//                System.out.println("Gym Customer with ID " + customerId + " removed.");
+//                else System.out.println("Gym Customer with ID " + customerId + " not found.");
+//                break;
             case 7:
-                System.out.println("Enter Gym Customer ID to be removed");
+                System.out.printf("%n********************* REMOVE GYM CUSTOMER *********************%n");
+                System.out.print("> Enter the Customer ID of the user you wish to remove: ");
                 int customerId = scanner.nextInt();
-                scanner.nextLine();
-                if(admin.removeGymCustomer(customerId)) // Assuming this method exists
-                System.out.println("Gym Customer with ID " + customerId + " removed.");
-                else System.out.println("Gym Customer with ID " + customerId + " not found.");
+                scanner.nextLine(); // Consume newline
+
+                // Optional: Add a confirmation step to prevent accidental deletion
+                System.out.print("> Are you sure you want to remove customer " + customerId + "? (Y/N): ");
+                String confirmation = scanner.nextLine();
+
+                if (confirmation.equalsIgnoreCase("Y")) {
+                    if (admin.removeGymCustomer(customerId)) {
+                        System.out.printf("\n[SUCCESS] Gym Customer with ID %d has been removed.\n", customerId);
+                    } else {
+                        System.out.printf("\n[ERROR] Gym Customer with ID %d could not be found.\n", customerId);
+                    }
+                } else {
+                    System.out.println("\n[INFO] Action cancelled. The customer was not removed.\n");
+                }
                 break;
+//            case 8:
+//                System.out.println("Enter Gym Owner Username to be added");
+//                String userName = scanner.nextLine();
+//                if(user.userNameExists(userName)) {
+//                    System.out.println("Username already exists. Please choose a different username.");
+//                    break;
+//                }
+//                scanner.nextLine();
+//
+//                System.out.println("Enter Gym Owner Name to be added");
+//                String ownerName = scanner.nextLine();
+//                scanner.nextLine();
+//
+//                System.out.println("Enter Gym Owner Password to be added");
+//                String Ownerpassword = scanner.nextLine();
+//                scanner.nextLine();
+//
+//                System.out.println("Enter Gym Owner Gender to be added");
+//                int ownerGender = scanner.nextInt();
+//                scanner.nextLine();
+//                System.out.println("Enter Gym Owner Email to be added");
+//                String ownerEmail = scanner.nextLine();
+//                scanner.nextLine();
+//
+//                System.out.println("Enter Gym Owner Phone to be added");
+//                String ownerPhone = scanner.nextLine();
+//                scanner.nextLine();
+//                admin.addGymOwner(userName,ownerName, Ownerpassword,ownerGender, ownerEmail,ownerPhone); // Assuming this method exists
+//                System.out.println("Gym Owner " + ownerName + " added.");
+//                break;
             case 8:
-                System.out.println("Enter Gym Owner Username to be added");
+                System.out.printf("%n********************* ADD NEW GYM OWNER *********************%n");
+
+                System.out.print("> Enter Username: ");
                 String userName = scanner.nextLine();
-                if(user.userNameExists(userName)) {
-                    System.out.println("Username already exists. Please choose a different username.");
+
+                if (user.userNameExists(userName)) {
+                    System.out.println("\n[ERROR] Username '" + userName + "' already exists. Please choose a different username.\n");
                     break;
                 }
-                scanner.nextLine();
 
-                System.out.println("Enter Gym Owner Name to be added");
+                System.out.print("> Enter Full Name: ");
                 String ownerName = scanner.nextLine();
-                scanner.nextLine();
 
-                System.out.println("Enter Gym Owner Password to be added");
-                String Ownerpassword = scanner.nextLine();
-                scanner.nextLine();
+                System.out.print("> Enter Password: ");
+                String ownerPassword = scanner.nextLine();
 
-                System.out.println("Enter Gym Owner Gender to be added");
+                System.out.print("> Enter Gender (0 for Male, 1 for Female): ");
                 int ownerGender = scanner.nextInt();
-                scanner.nextLine();
-                System.out.println("Enter Gym Owner Email to be added");
-                String ownerEmail = scanner.nextLine();
-                scanner.nextLine();
+                scanner.nextLine(); // Consume newline
 
-                System.out.println("Enter Gym Owner Phone to be added");
+                System.out.print("> Enter Email Address: ");
+                String ownerEmail = scanner.nextLine();
+
+                System.out.print("> Enter Phone Number: ");
                 String ownerPhone = scanner.nextLine();
-                scanner.nextLine();
-                admin.addGymOwner(userName,ownerName, Ownerpassword,ownerGender, ownerEmail,ownerPhone); // Assuming this method exists
-                System.out.println("Gym Owner " + ownerName + " added.");
+
+                admin.addGymOwner(userName, ownerName, ownerPassword, ownerGender, ownerEmail, ownerPhone);
+
+                System.out.printf("\n[SUCCESS] Gym Owner '%s' has been added successfully.\n", ownerName);
                 break;
+//            case 9:
+//                System.out.println("Enter Gym Owner ID to be removed");
+//                int ownerId = scanner.nextInt();
+//                scanner.nextLine();
+//                if(admin.removeGymOwner(ownerId)) // Assuming this method exists
+//                System.out.println("Gym Owner with ID " + ownerId + " removed.");
+//                else System.out.println("Gym Owner with ID " + ownerId + " not found.");
+//                break;
             case 9:
-                System.out.println("Enter Gym Owner ID to be removed");
+                System.out.printf("%n********************* REMOVE GYM OWNER *********************%n");
+                System.out.print("> Enter the Owner ID of the user you wish to remove: ");
                 int ownerId = scanner.nextInt();
-                scanner.nextLine();
-                if(admin.removeGymOwner(ownerId)) // Assuming this method exists
-                System.out.println("Gym Owner with ID " + ownerId + " removed.");
-                else System.out.println("Gym Owner with ID " + ownerId + " not found.");
+                scanner.nextLine(); // Consume newline
+
+                // Add a confirmation step to prevent accidental deletion
+                System.out.print("> Are you sure you want to remove owner " + ownerId + "? This action cannot be undone. (Y/N): ");
+                String ownerConfirmation = scanner.nextLine();
+
+                if (ownerConfirmation.equalsIgnoreCase("Y")) {
+                    if (admin.removeGymOwner(ownerId)) {
+                        System.out.printf("\n[SUCCESS] Gym Owner with ID %d has been removed.\n", ownerId);
+                    } else {
+                        System.out.printf("\n[ERROR] Gym Owner with ID %d could not be found.\n", ownerId);
+                    }
+                } else {
+                    System.out.println("\n[INFO] Action cancelled. The owner was not removed.\n");
+                }
                 break;
             case 0:
-                System.out.println("See you again!");
+                System.out.println("Logging out , See you again!!!");
                 return;
             default:
                 System.out.println("Invalid choice.");
