@@ -60,6 +60,22 @@ public class GymCustomerDAOImpl implements GymCustomerDAO {
         int newCustomerId = Collections.max(customerMap.keySet()) + 1;
         customer.setCustomerId(newCustomerId);
         customerMap.put(newCustomerId, customer);
+
+        try (Connection db = DBConnection.getConnection();
+             PreparedStatement preparedStatement = db.prepareStatement("INSERT INTO Flipfit.GymCustomer (customerId, age, location, gender, email, userId) VALUES (?, ?, ?, ?, ?, ?);")) {
+
+            preparedStatement.setInt(1, customer.getCustomerId());
+            preparedStatement.setInt(2, customer.getAge());
+            preparedStatement.setString(3, customer.getLocation());
+            preparedStatement.setInt(4, customer.getGender());
+            preparedStatement.setString(5, customer.getEmail());
+            preparedStatement.setInt(6, customer.getUserId());
+
+            int rowsAffected = preparedStatement.executeUpdate();
+            System.out.println(rowsAffected + " row(s) inserted.");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public boolean removeCustomer(int customerId){

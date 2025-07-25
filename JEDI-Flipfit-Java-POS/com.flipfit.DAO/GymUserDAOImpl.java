@@ -2,13 +2,10 @@ package com.flipfit.dao;
 
 import com.flipfit.bean.*;
 
+import java.sql.*;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.*;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 
 import com.flipfit.dao.GymCustomerDAOImpl;
 import com.flipfit.dao.GymOwnerDAOImpl;
@@ -258,6 +255,21 @@ public class GymUserDAOImpl implements GymUserDAO {
         int newPaymentId = Collections.max(paymentMap.keySet()) + 1;
         payment.setPaymentId(newPaymentId);
         paymentMap.put(newPaymentId, payment);
+
+        try (Connection db = DBConnection.getConnection();
+             PreparedStatement preparedStatement = db.prepareStatement("INSERT INTO Flipfit.Payment (bookingId, customerId, amount, paymentDateTime, paymentId) VALUES (?, ?, ?, ?, ?);")) {
+
+            preparedStatement.setInt(1, payment.getBookingId());
+            preparedStatement.setInt(2, payment.getCustomerId());
+            preparedStatement.setFloat(3, payment.getAmount());
+            preparedStatement.setTimestamp(4, Timestamp.valueOf(payment.getPaymentDateTime()));
+            preparedStatement.setInt(5, payment.getPaymentId());
+
+            int rowsAffected = preparedStatement.executeUpdate();
+            System.out.println(rowsAffected + " row(s) inserted.");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public List<Payment> getAllPayments() {
@@ -311,6 +323,21 @@ public class GymUserDAOImpl implements GymUserDAO {
         int newBookingId = Collections.max(bookingMap.keySet()) + 1;
         booking.setBookingId(newBookingId);
         bookingMap.put(booking.getBookingId(), booking);
+
+
+        try (Connection db = DBConnection.getConnection();
+             PreparedStatement preparedStatement = db.prepareStatement("INSERT INTO Flipfit.Booking (bookingId, customerID, slotId, status) VALUES (?, ?, ?, ?);")) {
+
+            preparedStatement.setInt(1, booking.getBookingId());
+            preparedStatement.setInt(2, booking.getCustomerId());
+            preparedStatement.setInt(3, booking.getSlotId());
+            preparedStatement.setInt(4, booking.getStatus());
+
+            int rowsAffected = preparedStatement.executeUpdate();
+            System.out.println(rowsAffected + " row(s) inserted.");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return newBookingId;
     }
 

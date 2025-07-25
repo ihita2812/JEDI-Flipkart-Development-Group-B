@@ -6,6 +6,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.Time;
+import java.sql.Date;
 import java.util.*;
 import com.flipfit.dao.GymUserDAOImpl;
 
@@ -124,6 +130,20 @@ public class GymOwnerDAOImpl implements GymOwnerDAO {
         int newOwnerId = Collections.max(ownerMap.keySet()) + 1;
         gymOwner.setOwnerId(newOwnerId);
         ownerMap.put(newOwnerId, gymOwner);
+
+        try (Connection db = DBConnection.getConnection();
+             PreparedStatement preparedStatement = db.prepareStatement("INSERT INTO Flipfit.GymOwner (ownerId, gender, email, userId) VALUES (?, ?, ?, ?);")) {
+
+            preparedStatement.setInt(1, gymOwner.getOwnerId());
+            preparedStatement.setInt(2, gymOwner.getGender());
+            preparedStatement.setString(3, gymOwner.getEmail());
+            preparedStatement.setInt(4, gymOwner.getUserId());
+
+            int rowsAffected = preparedStatement.executeUpdate();
+            System.out.println(rowsAffected + " row(s) inserted.");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         // System.out.println("Owner added successfully with ID: " + newOwnerId);
     }
 
@@ -191,6 +211,23 @@ public class GymOwnerDAOImpl implements GymOwnerDAO {
         gymCenter.setCenterId(newGymCenterId);
         GymUserDAOImpl.centerMap.put(newGymCenterId, gymCenter);
 
+        try (Connection db = DBConnection.getConnection();
+             PreparedStatement preparedStatement = db.prepareStatement("INSERT INTO Flipfit.GymCenter (centerId, name, location, capacity, numSlots, ownerId, approvalStatus) VALUES (?, ?, ?, ?, ?, ?, ?);")) {
+
+            preparedStatement.setInt(1, gymCenter.getCenterId());
+            preparedStatement.setString(2, gymCenter.getName());
+            preparedStatement.setString(3, gymCenter.getLocation());
+            preparedStatement.setInt(4, gymCenter.getCapacity());
+            preparedStatement.setInt(5, gymCenter.getNumSlots());
+            preparedStatement.setInt(6, gymCenter.getOwnerId());
+            preparedStatement.setInt(7, gymCenter.getApprovalStatus());
+
+            int rowsAffected = preparedStatement.executeUpdate();
+            System.out.println(rowsAffected + " row(s) inserted.");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
         for (GymAdmin admin : adminMap.values()) {
             int userId = admin.getUserId();
             Notification newCenterNotification = new Notification();
@@ -207,11 +244,39 @@ public class GymOwnerDAOImpl implements GymOwnerDAO {
         int newNotificationId = notificationMap.isEmpty() ? 1 : Collections.max(notificationMap.keySet()) + 1;
         notification.setNotifId(newNotificationId);
         notificationMap.put(newNotificationId, notification);
+
+        try (Connection db = DBConnection.getConnection();
+             PreparedStatement preparedStatement = db.prepareStatement("INSERT INTO Flipfit.Notification (notifId, message, userId) VALUES (?, ?, ?);")) {
+
+            preparedStatement.setInt(1, notification.getNotifId());
+            preparedStatement.setString(2, notification.getMessage());
+            preparedStatement.setInt(3, notification.getUserId());
+
+            int rowsAffected = preparedStatement.executeUpdate();
+            System.out.println(rowsAffected + " row(s) inserted.");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public void addGymSlot(Slot slot) {
         int newSlotId =  GymUserDAOImpl.slotMap.isEmpty() ? 1 : Collections.max(GymUserDAOImpl.slotMap.keySet()) + 1;
         slot.setSlotId(newSlotId);
         GymUserDAOImpl.slotMap.put(newSlotId, slot);
+
+        try (Connection db = DBConnection.getConnection();
+             PreparedStatement preparedStatement = db.prepareStatement("INSERT INTO Flipfit.Slot (slotId, startTime, date, bookedSeats, centerId) VALUES (?, ?, ?, ?, ?);")) {
+
+            preparedStatement.setInt(1, slot.getSlotId());
+            preparedStatement.setTime(2, Time.valueOf(slot.getStartTime()));
+            preparedStatement.setDate(3, Date.valueOf(slot.getDate()));
+            preparedStatement.setInt(4, slot.getBookedSeats());
+            preparedStatement.setInt(5, slot.getCenterId());
+
+            int rowsAffected = preparedStatement.executeUpdate();
+            System.out.println(rowsAffected + " row(s) inserted.");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }
