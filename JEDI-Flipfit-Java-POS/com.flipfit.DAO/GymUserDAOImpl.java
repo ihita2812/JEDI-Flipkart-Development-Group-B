@@ -173,20 +173,57 @@ public class GymUserDAOImpl implements GymUserDAO {
     }
 
     public int getCustomerId(GymUser gymUser) {
-        for(GymCustomer customer : GymCustomerDAOImpl.customerMap.values()){
-            if(gymUser.getUserId() == customer.getUserId()){
-                return customer.getCustomerId();
+//        for(GymCustomer customer : GymCustomerDAOImpl.customerMap.values()){
+//            if(gymUser.getUserId() == customer.getUserId()){
+//                return customer.getCustomerId();
+//            }
+//        }
+        try (Connection db = DBConnection.getConnection();
+             PreparedStatement preparedStatement = db.prepareStatement("SELECT customerId FROM Flipfit.GymCustomer WHERE userId = ?")) {
+
+            // Set the userId from the GymUser object as the parameter for the query
+            preparedStatement.setInt(1, gymUser.getUserId());
+
+            ResultSet rs = preparedStatement.executeQuery();
+
+            // Check if a result was returned
+            if (rs.next()) {
+                // If a match is found, return the customerId
+                return rs.getInt("customerId");
             }
+
+        } catch (SQLException e) {
+            System.err.println("Error fetching customerId for userId: " + gymUser.getUserId());
+            e.printStackTrace();
         }
         return -1;
     }
 
     public int getOwnerId(GymUser gymUser) {
-        for(GymOwner owner : ownerMap.values()){
-            if(gymUser.getUserId() == owner.getUserId()){
-                return owner.getOwnerId();
+        // The query must find the owner record by matching the 'userId'
+        String sql = "SELECT ownerId FROM Flipfit.GymOwner WHERE userId = ?";
+
+        try (Connection db = DBConnection.getConnection();
+             PreparedStatement preparedStatement = db.prepareStatement(sql)) {
+
+            // Set the userId from the GymUser object as the parameter for the query
+            preparedStatement.setInt(1, gymUser.getUserId());
+
+            ResultSet rs = preparedStatement.executeQuery();
+
+            // Check if a result was returned
+            if (rs.next()) {
+                // If a match is found, return the ownerId
+                return rs.getInt("ownerId");
             }
+
+        } catch (SQLException e) {
+            // Corrected the error message to be specific to this method
+            System.err.println("Error fetching ownerId for userId: " + gymUser.getUserId());
+            e.printStackTrace();
         }
+
+        // If no owner is found for that userId or an error occurs, return -1
         return -1;
     }
 
@@ -215,8 +252,19 @@ public class GymUserDAOImpl implements GymUserDAO {
     }
 
     public int getUserIdFromOwnerId(int ownerId) {
-        GymOwner owner =  ownerMap.get(ownerId);
-        return owner.getUserId();
+        try (Connection db = DBConnection.getConnection();
+             PreparedStatement getUserIdStatement = db.prepareStatement("SELECT USERID FROM Flipfit.GymOwner WHERE OWNERID = ?")) {
+            getUserIdStatement.setInt(1, ownerId);
+            ResultSet userIdResult = getUserIdStatement.executeQuery();
+            if(userIdResult.next()) {
+                return userIdResult.getInt("userId");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return -1;
     }
 
     public boolean approvePayment(int bookingId) {
@@ -383,10 +431,35 @@ public class GymUserDAOImpl implements GymUserDAO {
     }
 
     public GymUser getUserByUsername(String username) {
-        for (GymUser user : userMap.values()) {
-            if (user.getUserName().equals(username)) {
+//        for (GymUser user : userMap.values()) {
+//            if (user.getUserName().equals(username)) {
+//                return user;
+//            }
+//        }
+        try (Connection db = DBConnection.getConnection();
+             PreparedStatement getUserStatement = db.prepareStatement("SELECT * FROM Flipfit.GymUser WHERE userName = ?")) {
+
+            getUserStatement.setString(1, username);
+            ResultSet userResult = getUserStatement.executeQuery();
+            if(userResult.next()) {
+//                System.out.println(userResult.getString("userName"));
+
+                GymUser user = new GymUser();
+                user.setUserId(userResult.getInt("userId"));
+                user.setUserName(userResult.getString("userName"));
+                user.setPassword(userResult.getString("password"));
+                user.setName(userResult.getString("name"));
+
+                //            System.out.println("UserId" + user.getUserId());
+
+                int roleId = userResult.getInt("roleId") - 1;
+                user.setRole(getRole(roleId));
+
                 return user;
             }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         return null;
     }

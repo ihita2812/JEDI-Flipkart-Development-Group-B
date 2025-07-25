@@ -209,7 +209,17 @@ public class GymOwnerDAOImpl implements GymOwnerDAO {
         // GymUserDAOImpl.centermap.put(gymCenter.getCenterId(), gymCenter);
         // System.out.println("Gym Center Added: " + gymCenter.getName());
 
-        int newGymCenterId =  GymUserDAOImpl.centerMap.isEmpty() ? 1 : Collections.max(GymUserDAOImpl.centerMap.keySet()) + 1;
+        int newGymCenterId = -1;
+        try (Connection db = DBConnection.getConnection();
+             PreparedStatement preparedStatement = db.prepareStatement("SELECT IFNULL(MAX(centerId), 0) + 1 FROM Flipfit.GymCenter")) {
+            ResultSet rs = preparedStatement.executeQuery();
+            if (rs.next()) {
+                newGymCenterId = rs.getInt(1);
+            }
+        }
+        catch(SQLException e) {
+            e.printStackTrace();
+        }
         gymCenter.setCenterId(newGymCenterId);
         GymUserDAOImpl.centerMap.put(newGymCenterId, gymCenter);
 
@@ -243,12 +253,22 @@ public class GymOwnerDAOImpl implements GymOwnerDAO {
     }
 
     public void addNotification(Notification notification) {
-        int newNotificationId = notificationMap.isEmpty() ? 1 : Collections.max(notificationMap.keySet()) + 1;
+        int newNotificationId = -1;
+        try (Connection db = DBConnection.getConnection();
+             PreparedStatement preparedStatement = db.prepareStatement("SELECT IFNULL(MAX(notifiId), 0) + 1 FROM Flipfit.Notification")) {
+            ResultSet rs = preparedStatement.executeQuery();
+            if (rs.next()) {
+                newNotificationId = rs.getInt(1);
+            }
+        }
+        catch(SQLException e) {
+            e.printStackTrace();
+        }
         notification.setNotifId(newNotificationId);
         notificationMap.put(newNotificationId, notification);
 
         try (Connection db = DBConnection.getConnection();
-             PreparedStatement preparedStatement = db.prepareStatement("INSERT INTO Flipfit.Notification (notifId, message, userId) VALUES (?, ?, ?);")) {
+             PreparedStatement preparedStatement = db.prepareStatement("INSERT INTO Flipfit.Notification (notifiId, message, userId) VALUES (?, ?, ?);")) {
 
             preparedStatement.setInt(1, notification.getNotifId());
             preparedStatement.setString(2, notification.getMessage());
@@ -262,7 +282,17 @@ public class GymOwnerDAOImpl implements GymOwnerDAO {
     }
 
     public void addGymSlot(Slot slot) {
-        int newSlotId =  GymUserDAOImpl.slotMap.isEmpty() ? 1 : Collections.max(GymUserDAOImpl.slotMap.keySet()) + 1;
+        int newSlotId = -1;
+        try (Connection db = DBConnection.getConnection();
+             PreparedStatement preparedStatement = db.prepareStatement("SELECT IFNULL(MAX(slotId), 0) + 1 FROM Flipfit.Slot")) {
+            ResultSet rs = preparedStatement.executeQuery();
+            if (rs.next()) {
+                newSlotId = rs.getInt(1);
+            }
+        }
+        catch(SQLException e) {
+            e.printStackTrace();
+        }
         slot.setSlotId(newSlotId);
         GymUserDAOImpl.slotMap.put(newSlotId, slot);
 

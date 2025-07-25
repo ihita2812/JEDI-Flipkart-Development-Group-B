@@ -5,6 +5,6 @@ import java.sql.SQLException;
 
 public class DBConnection {
     public static Connection getConnection() throws SQLException {
-            return DriverManager.getConnection("jdbc:mysql://localhost:3306/Flipfit","root","flip@123");
+            return DriverManager.getConnection("jdbc:mysql://localhost:3306/Flipfit","root","26june03");
 }
 }
