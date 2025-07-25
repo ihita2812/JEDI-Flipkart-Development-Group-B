@@ -32,6 +32,7 @@ public interface GymUserDAO {
 
     public List<GymCenter> getAllCenters();
     public List<GymOwner> getAllOwners();
+    public List<GymCustomer> getAllCustomers();
     public List<GymCenter> getAllCentersByOwnerId(int ownerId);
     public List<Booking> getBookingsBySlotId(int slotId);
     public Payment getPaymentByBookingId(int bookingId);
