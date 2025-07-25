@@ -31,18 +31,19 @@ public class GymCustomerMenu {
             switch (choice) {
 
             case 1:
-                System.out.println("---------------------------------------------");
-                System.out.println("Here are the centers near you!");
+                System.out.printf("--------------------------------------------------%n");
+                System.out.printf("                Gym centers for you               %n");
+                System.out.printf("--------------------------------------------------%n");
+                System.out.printf("| %-9s | %-16s | %15s |%n", "CENTER ID", "NAME", "LOCATION");
+                System.out.printf("--------------------------------------------------%n");
+
                 List<GymCenter> centerList = customerBusiness.viewGymCenter();
                 List<Integer> centerIds = new ArrayList<>();
                 for (GymCenter gymCenter : centerList) {
                     centerIds.add(gymCenter.getCenterId());
-                    System.out.println("Center Id: " + gymCenter.getCenterId());
-                    System.out.println("Name: " + gymCenter.getName());
-                    System.out.println("Location: " + gymCenter.getLocation());
-                    System.out.println("---------------------------------------------");
+                    System.out.printf("| %09d | %-16s | %-15s |%n", gymCenter.getCenterId(), gymCenter.getName(), gymCenter.getLocation());
+                    System.out.printf("--------------------------------------------------%n");
                 }
-                System.out.println("---------------------------------------------");
                 System.out.println("You can enter the gym center number to view available slots!");
                 System.out.println("Enter 0 to go to home page!");
 

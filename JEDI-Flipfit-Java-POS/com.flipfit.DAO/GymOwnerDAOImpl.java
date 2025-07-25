@@ -4,6 +4,9 @@ import com.flipfit.bean.*;
 import java.util.*;
 import com.flipfit.dao.GymUserDAOImpl;
 
+import static com.flipfit.dao.GymAdminDAOImpl.adminMap;
+import static com.flipfit.dao.GymUserDAOImpl.notificationMap;
+
 public class GymOwnerDAOImpl implements GymOwnerDAO {
 
     public static Map<Integer, GymOwner> ownerMap = new HashMap<>();
@@ -71,7 +74,7 @@ public class GymOwnerDAOImpl implements GymOwnerDAO {
     }
     public List<Notification> getNotificationsByOwnerId(int ownerId) {
         List<Notification> notifications = new ArrayList<>();
-        for (Notification notification : GymUserDAOImpl.notificationMap.values()) {
+        for (Notification notification : notificationMap.values()) {
             if (notification.getUserId() == ownerId) {
                 notifications.add(notification);
             }
@@ -136,7 +139,7 @@ public class GymOwnerDAOImpl implements GymOwnerDAO {
 
     @Override
     public boolean removeOwner(int ownerId) {
-        if(ownerMap.containsValue(ownerId)){
+        if(ownerMap.containsKey(ownerId)){
             ownerMap.remove(ownerId);
             return  true;
         }
@@ -152,7 +155,23 @@ public class GymOwnerDAOImpl implements GymOwnerDAO {
         int newGymCenterId =  GymUserDAOImpl.centerMap.isEmpty() ? 1 : Collections.max(GymUserDAOImpl.centerMap.keySet()) + 1;
         gymCenter.setCenterId(newGymCenterId);
         GymUserDAOImpl.centerMap.put(newGymCenterId, gymCenter);
+
+        for (GymAdmin admin : adminMap.values()) {
+            int userId = admin.getUserId();
+            Notification newCenterNotification = new Notification();
+            newCenterNotification.setMessage("New gym center " + newGymCenterId + " is waiting for approval!");
+            newCenterNotification.setUserId(userId);
+            addNotification(newCenterNotification);
+        }
+
+
         // System.out.println("User added successfully with ID: " + newGymCenterId);
+    }
+
+    public void addNotification(Notification notification) {
+        int newNotificationId = notificationMap.isEmpty() ? 1 : Collections.max(notificationMap.keySet()) + 1;
+        notification.setNotifId(newNotificationId);
+        notificationMap.put(newNotificationId, notification);
     }
 
     public void addGymSlot(Slot slot) {
