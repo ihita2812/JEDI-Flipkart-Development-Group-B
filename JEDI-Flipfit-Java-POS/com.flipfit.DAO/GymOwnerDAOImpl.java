@@ -106,12 +106,12 @@ public class GymOwnerDAOImpl implements GymOwnerDAO {
     @Override
     public void addOwner(GymOwner gymOwner) {
         // Check if username already exists
-        for (GymOwner existing : ownerMap.values()) {
-            if (existing.getUserName().equals(gymOwner.getUserName())) {
-                System.out.println("Username already exists!");
-                return;
-            }
-        }
+//        for (GymOwner existing : ownerMap.values()) {
+//            if (existing.getUserName().equals(gymOwner.getUserName())) {
+//                System.out.println("Username already exists!");
+//                return;
+//            }
+//        }
 
         int newOwnerId = Collections.max(ownerMap.keySet()) + 1;
         gymOwner.setOwnerId(newOwnerId);
