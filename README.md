@@ -4,20 +4,12 @@
 
 ## DAY-2 : SKELETON : DONE
 
-## DAY-3 : DAO
+## DAY-3 : DAO : DONE
 
-- customer menu: DONE
-- admin menu: ESHWAR
-- owner menu: RITESH
-- login: DONE
-- registration: I THINK DONE? 
-- dummy data: ARYAN
+## DAY-4 : JDBC, PRETTY PRINT
 
-## DAY-4 : MYSQL
+- mysql tables : DONE
+- JDBC connection : doing now
+- print pretty : not started
 
-done, but not checked
-
-notifs-
-- owner : gym center approval/rejected (admin)
-- admin : new gym center registered (owner)
-- ~~owner : slot booked (customer)~~
+## DAY-5 : EXCEPTIONS

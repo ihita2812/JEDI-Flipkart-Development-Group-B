@@ -19,15 +19,17 @@ public interface GymOwnerDAO {
 
     void updateOwner(GymOwner owner);
 
-    public boolean removeOwner(int ownerId);
+    boolean removeOwner(int ownerId);
 
     List<Booking> getBookingsBySlotId(int slotId);
 
-    public List<Notification> getNotificationsByOwnerId(int ownerId);
+    List<Notification> getNotificationsByOwnerId(int ownerId);
 
-    public Payment getPaymentByBookingId(int bookingId);
+    Payment getPaymentByBookingId(int bookingId);
 
-    public List<Payment> getAllPaymentsByCenterId(int centerId);
+    List<Payment> getAllPaymentsByCenterId(int centerId);
 
-    public void addGymSlot(Slot slot);
+    void addGymSlot(Slot slot);
+
+    void addNotification(Notification notification);
 }
