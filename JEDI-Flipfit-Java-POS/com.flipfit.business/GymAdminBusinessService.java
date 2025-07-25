@@ -1,35 +1,95 @@
 package com.flipfit.business;
 
 import com.flipfit.bean.*;
-import com.flipfit.dao.GymUserDAOImpl;
+import com.flipfit.dao.*;
+
 import java.util.*;
 
 public class GymAdminBusinessService implements GymAdminBusinessServiceInterface
 {
+    GymUserDAO gymUserDAO = new GymUserDAOImpl();
+    GymCustomerDAO gymCustomerDAO = new GymCustomerDAOImpl();
+    GymOwnerDAO gymOwnerDAO = new GymOwnerDAOImpl();
+    GymUserBusinessService userBusiness = new GymUserBusinessService();
+    GymOwnerBusinessService ownerBusiness = new GymOwnerBusinessService();
+    GymCustomerBusinessService customerBusiness = new GymCustomerBusinessService();
     public void createAdmin(GymAdmin gymAdmin){
         System.out.println("Creating Admin");
     }
 
-    public void viewRegisteredGyms(){
-        System.out.println("[Viewed Registered Gyms]");
+    public List<GymCenter> viewRegisteredGyms()
+    {
+        List<GymCenter> gymCenters = gymUserDAO.getAllCenters();
+        if (gymCenters.isEmpty()) {
+            return Collections.emptyList(); // Return empty list if no gyms are registered
+        }
+       return gymCenters;
     }
 
-    public void viewPayments() {
-        return ;//getAllPayments();
+    public List<Payment> viewPayments()
+    {
+        List<Payment> payments = new ArrayList<>();
+        // first get all owners , then for specific owner get all centers, then for each center get all slots, then for each slot get all bookings, then for each booking get payment details.
+        List<GymOwner> allOwners = gymUserDAO.getAllOwners();
+        for(GymOwner owner : allOwners)
+        {
+            List<GymCenter> centers = gymUserDAO.getAllCentersByOwnerId(owner.getOwnerId());
+            for(GymCenter center : centers)
+            {
+                if(center.getApprovalStatus() != 1) { // Only process approved centers
+                    continue;
+                }
+                List<Slot> slots = gymUserDAO.getSlotByCenterId(center.getCenterId());
+                for(Slot slot : slots)
+                {
+                    List<Booking> bookings = gymUserDAO.getBookingsBySlotId(slot.getSlotId());
+                    for(Booking booking : bookings) {
+                        Payment payment = gymUserDAO.getPaymentByBookingId(booking.getBookingId());
+                        if(payment != null) {
+                            payments.add(payment);
+                        }
+                    }
+                }
+            }
+        }
+        return payments;//getAllPayments();
     }
 
     public void cancelbooking(Booking booking){
         System.out.println("Booking Cancelled");
     }
 
-    public void viewPendingGymCenters() {
-        System.out.println("[Here are the gym centers pending approval!]");
+    public List<GymCenter> viewPendingGymCenters() {
+        List<GymCenter> gymCenters = gymUserDAO.getAllCenters();
+        List<GymCenter> viewPendingGymCenters = new ArrayList<GymCenter>();
+        for(GymCenter gymCenter : gymCenters)
+        {
+            if(gymCenter.getApprovalStatus() == 2) { // Assuming 2 means pending
+                viewPendingGymCenters.add(gymCenter);
+            }
+        }
+        return viewPendingGymCenters;
     }
 
-    public boolean verifyGymCenter(int gymCenter) {
+    public int verifyGymCenter(int gymCenter, int approvalStatus) {
         // admin will view details of gym and approve or reject.
-        System.out.println("[Did you approve or reject? IDK, cos there is no functionality yet.]");
-        return true;
+        List<GymCenter> viewPendingGymCenters = viewPendingGymCenters();
+        for(GymCenter center : viewPendingGymCenters) {
+            if(center.getCenterId() == gymCenter)
+            {
+                if(approvalStatus == 1) {
+                    center.setApprovalStatus(1); // Approve
+                    return 1;
+                } else if(approvalStatus == 0) {
+                    center.setApprovalStatus(0); // Reject
+                    return 0;
+                } else {
+                    return -1; // Invalid status
+                }
+            }
+        }
+
+        return -2;
     }
 
     public void addNewRole(String roleName, String roleDesc) {
@@ -37,24 +97,35 @@ public class GymAdminBusinessService implements GymAdminBusinessServiceInterface
         System.out.println("[New role added to db!]");
     }
     
-    public void addGymCustomer(String customerName, String customerEmail, String customerPhone) {
+    public void addGymCustomer(String userName, String customerName, String password, int age, String location, int gender, String customerEmail, String customerPhone) {
         // admin can add new gym customer here
-        System.out.println("[New gym customer added to db!]");
+        GymUser newUser = userBusiness.createUserBean(customerName, password, 0, userName);
+        userBusiness.addUser(newUser);
+        GymCustomer newCustomer = customerBusiness.createCustomerBean(customerName, password, 0, userName, age, location, gender, customerEmail, newUser.getUserId());
+        customerBusiness.registerCustomer(newCustomer);
+        return ;  // Customer added successfully
     }
     
-    public void removeGymCustomer(int customerId) {
+    public boolean removeGymCustomer(int customerId) {
         // admin can remove gym customer here
-        System.out.println("[Gym customer with ID " + customerId + " removed from db!]");
+        return gymCustomerDAO.removeCustomer(customerId);
+
     }
     
-    public void addGymOwner(String ownerName, String ownerEmail, String ownerPhone) {
+    public void addGymOwner(String userName,String ownerName, String password, int gender, String ownerEmail, String ownerPhone) {
         // admin can add new gym owner here
-        System.out.println("[New gym owner added to db!]");
+        // admin can add new gym customer here
+        GymUser newUser = userBusiness.createUserBean(ownerName, password, 1, userName);
+        userBusiness.addUser(newUser);
+        GymOwner newOwner = ownerBusiness.createOwnerBean(ownerName, password, 1, userName, gender, ownerEmail, newUser.getUserId());
+        ownerBusiness.registerOwner(newOwner);
+        return ;  // Owner added successfully
     }
-    
-    public void removeGymOwner(int ownerId) {
+
+    public boolean removeGymOwner(int ownerId) {
         // admin can remove gym owner here
-        System.out.println("[Gym owner with ID " + ownerId + " removed from db!]");
+        return gymOwnerDAO.removeOwner(ownerId);
+
     }
 
 }

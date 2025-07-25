@@ -135,8 +135,12 @@ public class GymOwnerDAOImpl implements GymOwnerDAO {
     }
 
     @Override
-    public void removeOwner(int ownerId) {
-        ownerMap.remove(ownerId);
+    public boolean removeOwner(int ownerId) {
+        if(ownerMap.containsValue(ownerId)){
+            ownerMap.remove(ownerId);
+            return  true;
+        }
+        return false;
     }
 
     public void addGymCenter(GymCenter gymCenter) {
