@@ -8,6 +8,7 @@ import com.flipfit.business.GymOwnerBusinessService;
 import com.flipfit.business.GymUserBusinessService;
 import com.flipfit.dao.*;
 
+
 public class GymFlipfitApplicationClient {
     public static void main(String[] args) {
 
