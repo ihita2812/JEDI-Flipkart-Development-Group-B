@@ -5,6 +5,11 @@ import com.flipfit.bean.*;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
 import com.flipfit.dao.GymCustomerDAOImpl;
 import com.flipfit.dao.GymOwnerDAOImpl;
 import com.flipfit.dao.GymAdminDAOImpl;
@@ -301,9 +306,26 @@ public class GymUserDAOImpl implements GymUserDAO {
 
     @Override
     public void addUser(GymUser user) {
+
+
         int newUserId = Collections.max(userMap.keySet()) + 1;
         user.setUserId(newUserId);
         userMap.put(newUserId, user);
+
+        try (Connection db = DBConnection.getConnection();
+             PreparedStatement preparedStatement = db.prepareStatement("INSERT INTO Gymuser (userId, userName, roleId, password, name) VALUES (?, ?, ?,?,?);")) {
+
+            preparedStatement.setInt(1, user.getUserId());
+            preparedStatement.setString(2, user.getUserName());
+            preparedStatement.setInt(3, user.getRole().getRoleId());
+            preparedStatement.setString(4, user.getPassword());
+            preparedStatement.setString(5, user.getName());
+
+            int rowsAffected = preparedStatement.executeUpdate();
+            System.out.println(rowsAffected + " row(s) inserted.");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         System.out.println("User added successfully with ID: " + newUserId);
     }
 
