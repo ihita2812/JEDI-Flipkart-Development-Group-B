@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/JEDI-Flipfit-Java-POS/com.flipfit.DAO" isTestSource="false" packagePrefix="com.flipfit.dao" />
+      <sourceFolder url="file://$MODULE_DIR$/JEDI-Flipfit-Java-POS/com.flipfit.bean" isTestSource="false" packagePrefix="com.flipfit.bean" />
+      <sourceFolder url="file://$MODULE_DIR$/JEDI-Flipfit-Java-POS/com.flipfit.business" isTestSource="false" packagePrefix="com.flipfit.business" />
+      <sourceFolder url="file://$MODULE_DIR$/JEDI-Flipfit-Java-POS/com.flipfit.client" isTestSource="false" packagePrefix="com.flipfit.client" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$USER_HOME$/Downloads/mysql-connector-j-8.4.0/mysql-connector-j-8.4.0.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+  </component>
+</module>
