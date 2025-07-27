@@ -50,10 +50,10 @@ The application's database password needs to be configured to match your local M
 
 2.  In this file, find the following line:
     ```java
-    return DriverManager.getConnection("jdbc:mysql://localhost:3306/Flipfit","root","aXath2oo!@#%");
+    return DriverManager.getConnection("jdbc:mysql://localhost:3306/Flipfit","root","password");
     ```
 
-3.  Change the password (`"aXath2oo!@#%"`) to your own local MySQL root password.
+3.  Change the password (`"password"`) to your own local MySQL root password.
 
 ### Step 2.4: Build the Project with Maven
 
